@@ -64,83 +64,6 @@
       background-color: #000;
     }
 
-    /* Custom loading spinner with neon effect */
-    .spinner-container {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: rgba(0, 0, 0, 0.7);
-      z-index: 10;
-    }
-
-    .spinner {
-      width: 70px;
-      height: 70px;
-      border: 5px solid rgba(0, 194, 255, 0.1);
-      border-radius: 50%;
-      border-top: 5px solid #00c2ff;
-      animation: spin 1s linear infinite, glow 2s ease-in-out infinite;
-    }
-
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-
-    @keyframes glow {
-      0% { box-shadow: 0 0 5px #00c2ff; }
-      50% { box-shadow: 0 0 20px #00c2ff, 0 0 30px #00c2ff; }
-      100% { box-shadow: 0 0 5px #00c2ff; }
-    }
-
-    /* Custom play button with neon effect */
-    .play-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80px;
-      height: 80px;
-      background-color: rgba(0, 0, 0, 0.5);
-      border-radius: 50%;
-      border: 3px solid #00c2ff;
-      cursor: pointer;
-      z-index: 5;
-      box-shadow: 0 0 15px #00c2ff;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      animation: buttonGlow 2s infinite ease-in-out;
-      transition: all 0.3s ease;
-    }
-
-    .play-button:hover {
-      transform: translate(-50%, -50%) scale(1.1);
-      box-shadow: 0 0 25px #00c2ff, 0 0 35px rgba(0, 194, 255, 0.7);
-    }
-
-    .play-button:before {
-      content: '';
-      width: 0;
-      height: 0;
-      border-top: 20px solid transparent;
-      border-bottom: 20px solid transparent;
-      border-left: 30px solid #00c2ff;
-      margin-left: 8px;
-      filter: drop-shadow(0 0 8px #00c2ff);
-    }
-
-    @keyframes buttonGlow {
-      0% { box-shadow: 0 0 10px #00c2ff; }
-      50% { box-shadow: 0 0 20px #00c2ff, 0 0 30px rgba(0, 194, 255, 0.8); }
-      100% { box-shadow: 0 0 10px #00c2ff; }
-    }
-
     .content-wrapper {
       position: relative;
       width: 100%;
@@ -209,44 +132,6 @@
       }
     }
 
-    /* Controls styling */
-    .video-controls {
-      position: absolute;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      height: 40px;
-      background: rgba(0, 0, 0, 0.7);
-      z-index: 5;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 10px;
-      box-sizing: border-box;
-    }
-
-    #player-container:hover .video-controls {
-      opacity: 1;
-    }
-
-    .progress-bar {
-      position: absolute;
-      bottom: 40px;
-      left: 0;
-      width: 100%;
-      height: 4px;
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    .progress {
-      height: 100%;
-      background: #00c2ff;
-      width: 0;
-      box-shadow: 0 0 10px #00c2ff;
-    }
-
     /* Make the player responsive */
     @media (max-width: 768px) {
       .telegram-btn {
@@ -258,17 +143,6 @@
         width: 100%;
         max-width: 100%;
       }
-      
-      .play-button {
-        width: 60px;
-        height: 60px;
-      }
-      
-      .play-button:before {
-        border-top: 15px solid transparent;
-        border-bottom: 15px solid transparent;
-        border-left: 22px solid #00c2ff;
-      }
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -276,14 +150,6 @@
 <body>
   <!-- Player Container with Neon Border and proper 16:9 aspect ratio -->
   <div id="player-container">
-    <!-- Custom loading spinner with neon effect -->
-    <div class="spinner-container" id="loading">
-      <div class="spinner"></div>
-    </div>
-
-    <!-- Custom play button with neon effect -->
-    <div class="play-button" id="play-button"></div>
-    
     <!-- Using sandbox attribute to prevent redirects -->
     <iframe 
       id="video-player"
@@ -292,14 +158,6 @@
       sandbox="allow-scripts allow-same-origin allow-forms allow-presentation"
       referrerpolicy="no-referrer">
     </iframe>
-    
-    <!-- Custom video controls with neon effect -->
-    <div class="progress-bar">
-      <div class="progress" id="progress"></div>
-    </div>
-    <div class="video-controls">
-      <!-- Controls could be added here if needed -->
-    </div>
   </div>
   
   <div class="content-wrapper">
@@ -312,36 +170,10 @@
   </a>
 
   <script>
-    // Show loading spinner
+    // Prevent potential iframe redirects
     document.addEventListener('DOMContentLoaded', function() {
       var iframe = document.getElementById('video-player');
-      var loading = document.getElementById('loading');
-      var playButton = document.getElementById('play-button');
       
-      // Hide loading spinner after iframe loads
-      iframe.addEventListener('load', function() {
-        setTimeout(function() {
-          loading.style.display = 'none';
-        }, 1000); // 1 second delay to ensure content is ready
-      });
-      
-      // Play button functionality
-      playButton.addEventListener('click', function() {
-        playButton.style.display = 'none';
-        try {
-          // Try to play the video if possible
-          var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
-          var videoElement = iframeDoc.querySelector('video');
-          if (videoElement) {
-            videoElement.play();
-          }
-        } catch(e) {
-          // Cross-origin restrictions may prevent this
-          console.log("Could not access iframe video due to cross-origin restrictions");
-        }
-      });
-      
-      // Prevent potential iframe redirects
       iframe.addEventListener('load', function() {
         try {
           var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
@@ -360,17 +192,6 @@
           console.log("Could not access iframe content due to cross-origin restrictions");
         }
       });
-      
-      // Simulate progress for demonstration purposes
-      var progress = document.getElementById('progress');
-      setInterval(function() {
-        var currentWidth = parseFloat(progress.style.width || '0');
-        if (currentWidth < 100) {
-          progress.style.width = (currentWidth + 0.1) + '%';
-        } else {
-          progress.style.width = '0%'; // Reset
-        }
-      }, 100);
     });
   </script>
 </body>
