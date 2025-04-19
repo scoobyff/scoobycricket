@@ -42,19 +42,26 @@
 
     #player-container {
       width: 100%;
-      height: 100vh;
+      max-width: 100%;
+      height: 0;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
       position: relative;
       z-index: 1;
       border: 2px solid #00c2ff;
       box-shadow: 0 0 20px #00c2ff, 0 0 40px rgba(0, 194, 255, 0.5);
       box-sizing: border-box;
       animation: neonPulse 3s infinite ease-in-out;
+      margin: 0 auto;
     }
 
     iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       border: none;
+      background-color: #000;
     }
 
     .content-wrapper {
@@ -64,7 +71,7 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      padding-top: 100vh;
+      margin-top: 20px;
     }
 
     .telegram-btn {
@@ -125,20 +132,31 @@
       }
     }
 
+    /* Make the player responsive */
     @media (max-width: 768px) {
       .telegram-btn {
         padding: 10px 20px;
         font-size: 14px;
+      }
+      
+      #player-container {
+        width: 100%;
+        max-width: 100%;
       }
     }
   </style>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-  <!-- Player Container with Neon Border -->
+  <!-- Player Container with Neon Border and proper 16:9 aspect ratio -->
   <div id="player-container">
-    <!-- Original iframe player from first file -->
-    <iframe src="https://user65873.hls-video.net/hls/token/a3f0c81db39d64f85b6f6a5cfaa1b2ce/stream.m3u8" allowfullscreen></iframe>
+    <!-- Using sandbox attribute to prevent redirects -->
+    <iframe 
+      src="https://user65873.hls-video.net/hls/token/a3f0c81db39d64f85b6f6a5cfaa1b2ce/stream.m3u8" 
+      allowfullscreen
+      sandbox="allow-scripts allow-same-origin allow-forms allow-presentation"
+      referrerpolicy="no-referrer">
+    </iframe>
   </div>
   
   <div class="content-wrapper">
@@ -149,5 +167,30 @@
   <a href="https://t.me/scoobystream" class="telegram-btn" target="_blank">
     <i class="fab fa-telegram"></i> Join Telegram
   </a>
+
+  <script>
+    // Prevent potential iframe redirects
+    document.addEventListener('DOMContentLoaded', function() {
+      var iframe = document.querySelector('iframe');
+      
+      // Cancel any navigation events
+      iframe.addEventListener('load', function() {
+        try {
+          var iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+          
+          // Override any potential redirects in the iframe content
+          if (iframeDoc) {
+            iframeDoc.addEventListener('click', function(e) {
+              e.preventDefault();
+              return false;
+            }, true);
+          }
+        } catch(e) {
+          // Cross-origin restrictions may prevent this
+          console.log("Could not access iframe content due to cross-origin restrictions");
+        }
+      });
+    });
+  </script>
 </body>
 </html>
