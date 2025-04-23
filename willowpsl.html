@@ -291,6 +291,28 @@
                     </div>
                 `;
             });
+
+            // Set up Telegram button with the URL from the JSON config
+            setupTelegramButton(streamConfig);
+        }
+
+        // Function to set up the Telegram button using the URL from JSON
+        function setupTelegramButton(streamConfig) {
+            const telegramBtn = document.getElementById('telegram-btn');
+
+            if (streamConfig && streamConfig.telegramUrl) {
+                telegramBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    // Open the Telegram URL from the JSON config
+                    window.open(streamConfig.telegramUrl, '_blank');
+                });
+            } else {
+                // Fallback if no Telegram URL is provided in the JSON
+                telegramBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    alert('Please Join Our Telegram Channels for links');
+                });
+            }
         }
 
         // Start player setup
@@ -304,13 +326,6 @@
                 jwControls.style.visibility = 'visible';
                 jwControls.style.pointerEvents = 'auto';
             }
-        });
-
-        // Telegram button event handler
-        document.getElementById('telegram-btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            // Replace with your actual Telegram link handling
-            alert('Please Join Our Telegram Channels for links');
         });
     </script>
 </body>
