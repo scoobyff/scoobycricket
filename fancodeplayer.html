@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script> <!-- Include HLS.js -->
+    <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Stream Player</title>
@@ -47,11 +47,9 @@
             margin-top: 0;
         }
 
-        video {
+        #player {
             width: 100%;
             height: 100%;
-            object-fit: cover;
-            display: block;
         }
 
         .content-wrapper {
@@ -129,34 +127,26 @@
 <body>
 
     <div id="player-container">
-        <video id="video" controls autoplay muted playsinline></video>
+        <div id="player"></div>
     </div>
 
-    <div class="content-wrapper">
-        <!-- You can add more content here -->
-    </div>
+    <div class="content-wrapper"></div>
 
     <a href="#" class="telegram-btn" id="telegram-btn">
         <i class="fab fa-telegram"></i> Join Telegram
     </a>
 
     <script>
-        var video = document.getElementById('video');
-        var videoSrc = 'https://dai-partner.fancode.com:443/linear/hls/pb/event/Ei8BfVkgS_-6Iock4AfRkw/stream/70526c22-a4c7-4d70-9bc3-8eb65bfda38f:TPE/variant/0f7873ae2750a4f8e097f2840315447b/bandwidth/3289416.m3u8';
-
-        if (Hls.isSupported()) {
-            var hls = new Hls();
-            hls.loadSource(videoSrc);
-            hls.attachMedia(video);
-            hls.on(Hls.Events.MANIFEST_PARSED, function() {
-                video.play();
-            });
-        } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-            video.src = videoSrc;
-            video.addEventListener('loadedmetadata', function() {
-                video.play();
-            });
-        }
+        var player = new Clappr.Player({
+            source: 'https://dai-partner.fancode.com:443/linear/hls/pb/event/Ei8BfVkgS_-6Iock4AfRkw/stream/70526c22-a4c7-4d70-9bc3-8eb65bfda38f:TPE/variant/0f7873ae2750a4f8e097f2840315447b/bandwidth/3289416.m3u8',
+            parentId: '#player',
+            width: '100%',
+            height: '100%',
+            autoPlay: true,
+            mute: false,
+            poster: '',
+            mediacontrol: { seekbar: "#00c2ff", buttons: "#00c2ff" },
+        });
 
         document.getElementById('telegram-btn').addEventListener('click', function(e) {
             e.preventDefault();
@@ -166,4 +156,5 @@
 
 </body>
 <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
+
 </html>
