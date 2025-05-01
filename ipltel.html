@@ -33,9 +33,17 @@
             z-index: -1;
         }
 
-        #player-container {
+        .main-wrapper {
             width: 100%;
-            max-width: 960px;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #player-container {
+            width: 95%;
+            max-width: 100%;
             aspect-ratio: 16/9;
             position: relative;
             z-index: 1;
@@ -43,15 +51,47 @@
             box-shadow: 0 0 20px #00c2ff, 0 0 40px rgba(0, 194, 255, 0.5);
             animation: neonPulse 3s infinite ease-in-out;
             background-color: black;
-            margin: 0 auto;
-            margin-top: 0;
+            margin: 20px 0 0 0;
         }
 
         video {
             width: 100%;
             height: 100%;
-            object-fit: cover;
+            object-fit: contain;
             display: block;
+        }
+        
+        #quality-control {
+            width: 95%;
+            max-width: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-bottom: 2px solid #00c2ff;
+            border-left: 2px solid #00c2ff;
+            border-right: 2px solid #00c2ff;
+            padding: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 5px 15px rgba(0, 194, 255, 0.3);
+            margin-bottom: 20px;
+        }
+        
+        .quality-btn {
+            background: linear-gradient(90deg, #000000, #1a1a1a);
+            color: #00c2ff;
+            border: 1px solid #00c2ff;
+            padding: 6px 12px;
+            margin: 0 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .quality-btn:hover, .quality-btn.active {
+            background: linear-gradient(90deg, #0088cc, #00c2ff);
+            color: white;
+            transform: scale(1.05);
         }
 
         .content-wrapper {
@@ -150,16 +190,25 @@
 
 <body>
 
-    <div id="player-container">
-        <video id="video" controls autoplay muted playsinline></video>
-        <div id="loading" class="loading">
-            <i class="fas fa-spinner"></i>
-            Loading Stream...
+    <div class="main-wrapper">
+        <div id="player-container">
+            <video id="video" controls autoplay muted playsinline></video>
+            <div id="loading" class="loading">
+                <i class="fas fa-spinner"></i>
+                Loading Stream...
+            </div>
         </div>
-    </div>
+        
+        <div id="quality-control">
+            <button class="quality-btn" data-quality="auto">Auto</button>
+            <button class="quality-btn" data-quality="high">High</button>
+            <button class="quality-btn" data-quality="medium">Medium</button>
+            <button class="quality-btn" data-quality="low">Low</button>
+        </div>
 
-    <div class="content-wrapper">
-        <!-- You can add more content here -->
+        <div class="content-wrapper">
+            <!-- You can add more content here -->
+        </div>
     </div>
 
     <a href="#" class="telegram-btn" id="telegram-btn">
@@ -208,9 +257,36 @@
             }
         }
         
+        // Global hls object to control quality
+        var hls = null;
+        var currentLevel = -1; // -1 means auto
+        
+        // Function to set quality level
+        function setQuality(level) {
+            if (hls) {
+                hls.currentLevel = level;
+                currentLevel = level;
+                
+                // Update active button
+                document.querySelectorAll('.quality-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                });
+                
+                if (level === -1) {
+                    document.querySelector('.quality-btn[data-quality="auto"]').classList.add('active');
+                } else if (level === 0) {
+                    document.querySelector('.quality-btn[data-quality="low"]').classList.add('active');
+                } else if (level === hls.levels.length - 1) {
+                    document.querySelector('.quality-btn[data-quality="high"]').classList.add('active');
+                } else {
+                    document.querySelector('.quality-btn[data-quality="medium"]').classList.add('active');
+                }
+            }
+        }
+        
         // Function to fetch the stream configuration from JSON
         function fetchStreamConfig() {
-            // Replace with your GitHub raw JSON URL
+            // Updated JSON URL
             var configUrl = 'https://raw.githubusercontent.com/scoobyff/jsondrm/main/ipltel.json';
             
             fetch(configUrl)
@@ -241,7 +317,7 @@
                     
                     // Fallback to hardcoded stream (you can remove this in production)
                     loadAndPlayStream(
-                        'https://psplayflix.site/2025/ps_ipl-liv.m3u8?ps=tel',
+                        'https://psplayflix.site/2025/ps_ipl-liv.m3u8?ps=mal',
                         'https://psplay.site/'
                     );
                 });
@@ -265,4 +341,4 @@
 
 </body>
 <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
-</html>
+</html>is 
