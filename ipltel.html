@@ -61,7 +61,7 @@
             display: block;
         }
         
-        #quality-control {
+        #controls-container {
             width: 95%;
             max-width: 100%;
             background-color: rgba(0, 0, 0, 0.7);
@@ -74,6 +74,12 @@
             align-items: center;
             box-shadow: 0 5px 15px rgba(0, 194, 255, 0.3);
             margin-bottom: 20px;
+        }
+        
+        .control-group {
+            display: flex;
+            align-items: center;
+            margin: 0 10px;
         }
         
         .quality-btn {
@@ -89,6 +95,31 @@
         }
         
         .quality-btn:hover, .quality-btn.active {
+            background: linear-gradient(90deg, #0088cc, #00c2ff);
+            color: white;
+            transform: scale(1.05);
+        }
+        
+        #mute-btn {
+            background: linear-gradient(90deg, #000000, #1a1a1a);
+            color: #00c2ff;
+            border: 1px solid #00c2ff;
+            padding: 6px 12px;
+            margin: 0 5px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        #mute-btn i {
+            margin-right: 5px;
+        }
+        
+        #mute-btn:hover {
             background: linear-gradient(90deg, #0088cc, #00c2ff);
             color: white;
             transform: scale(1.05);
@@ -199,11 +230,19 @@
             </div>
         </div>
         
-        <div id="quality-control">
-            <button class="quality-btn" data-quality="auto">Auto</button>
-            <button class="quality-btn" data-quality="high">High</button>
-            <button class="quality-btn" data-quality="medium">Medium</button>
-            <button class="quality-btn" data-quality="low">Low</button>
+        <div id="controls-container">
+            <div class="control-group">
+                <button id="mute-btn">
+                    <i class="fas fa-volume-mute"></i> Unmute
+                </button>
+            </div>
+            
+            <div class="control-group">
+                <button class="quality-btn" data-quality="auto">Auto</button>
+                <button class="quality-btn" data-quality="high">High</button>
+                <button class="quality-btn" data-quality="medium">Medium</button>
+                <button class="quality-btn" data-quality="low">Low</button>
+            </div>
         </div>
 
         <div class="content-wrapper">
@@ -218,6 +257,7 @@
     <script>
         var video = document.getElementById('video');
         var loadingElement = document.getElementById('loading');
+        var muteBtn = document.getElementById('mute-btn');
         
         // Default telegram link (can be updated from the JSON)
         var telegramLink = '#';
@@ -225,12 +265,15 @@
         // Function to load and play the stream
         function loadAndPlayStream(streamUrl, referrer) {
             if (Hls.isSupported()) {
-                var hls = new Hls({
+                // Create new HLS instance
+                hls = new Hls({
                     xhrSetup: function(xhr, url) {
                         if (referrer) {
                             xhr.setRequestHeader('Referer', referrer);
                         }
-                    }
+                    },
+                    startLevel: -1, // Auto quality by default
+                    capLevelToPlayerSize: true // Automatically adjust quality based on player size
                 });
                 
                 hls.loadSource(streamUrl);
@@ -239,6 +282,35 @@
                 hls.on(Hls.Events.MANIFEST_PARSED, function() {
                     video.play();
                     loadingElement.style.display = 'none';
+                    
+                    // Set up quality control buttons
+                    setQuality(-1); // Set auto by default
+                    
+                    console.log('Available quality levels:', hls.levels);
+                    
+                    // Setup quality button event listeners
+                    document.querySelectorAll('.quality-btn').forEach(btn => {
+                        btn.addEventListener('click', function() {
+                            const quality = this.getAttribute('data-quality');
+                            
+                            if (quality === 'auto') {
+                                setQuality(-1); // Auto
+                            } else if (quality === 'high') {
+                                setQuality(hls.levels.length - 1); // Highest quality
+                            } else if (quality === 'low') {
+                                setQuality(0); // Lowest quality
+                            } else if (quality === 'medium') {
+                                // Choose a middle quality level
+                                const middleIndex = Math.floor(hls.levels.length / 2);
+                                setQuality(middleIndex);
+                            }
+                        });
+                    });
+                });
+                
+                hls.on(Hls.Events.LEVEL_SWITCHED, function(event, data) {
+                    console.log('Quality level switched to:', data.level);
+                    // You can display current quality info here if needed
                 });
                 
                 hls.on(Hls.Events.ERROR, function(event, data) {
@@ -253,6 +325,9 @@
                 video.addEventListener('loadedmetadata', function() {
                     video.play();
                     loadingElement.style.display = 'none';
+                    
+                    // Hide quality buttons for Safari as they won't work
+                    document.getElementById('quality-control').style.display = 'none';
                 });
             }
         }
@@ -281,6 +356,17 @@
                 } else {
                     document.querySelector('.quality-btn[data-quality="medium"]').classList.add('active');
                 }
+            }
+        }
+        
+        // Function to toggle mute/unmute
+        function toggleMute() {
+            if (video.muted) {
+                video.muted = false;
+                muteBtn.innerHTML = '<i class="fas fa-volume-up"></i> Mute';
+            } else {
+                video.muted = true;
+                muteBtn.innerHTML = '<i class="fas fa-volume-mute"></i> Unmute';
             }
         }
         
@@ -317,7 +403,7 @@
                     
                     // Fallback to hardcoded stream (you can remove this in production)
                     loadAndPlayStream(
-                        'https://psplayflix.site/2025/ps_ipl-liv.m3u8?ps=tel',
+                        'https://psplayflix.site/2025/ps_ipl-liv.m3u8?ps=mal',
                         'https://psplay.site/'
                     );
                 });
@@ -328,6 +414,9 @@
             // Fetch stream configuration
             fetchStreamConfig();
             
+            // Set up mute button click handler
+            muteBtn.addEventListener('click', toggleMute);
+            
             // Set up Telegram button click handler
             document.getElementById('telegram-btn').addEventListener('click', function(e) {
                 if (telegramLink === '#') {
@@ -336,9 +425,28 @@
                 }
                 // If telegramLink is a real URL, the default link behavior will work
             });
+            
+            // Make video full screen on double-click
+            video.addEventListener('dblclick', function() {
+                if (video.requestFullscreen) {
+                    video.requestFullscreen();
+                } else if (video.webkitRequestFullscreen) { /* Safari */
+                    video.webkitRequestFullscreen();
+                } else if (video.msRequestFullscreen) { /* IE11 */
+                    video.msRequestFullscreen();
+                }
+            });
+            
+            // Allow video to be unmuted by clicking on it
+            video.addEventListener('click', function() {
+                if (video.muted) {
+                    video.muted = false;
+                    muteBtn.innerHTML = '<i class="fas fa-volume-up"></i> Mute';
+                }
+            });
         });
     </script>
 
 </body>
 <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
-</html>is 
+</html>
