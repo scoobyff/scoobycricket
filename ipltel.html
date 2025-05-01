@@ -2,30 +2,19 @@
 <html lang="en">
 
 <head>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-NF8ZFVLJN9"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-
-        gtag('config', 'G-NF8ZFVLJN9');
-    </script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script> <!-- Include HLS.js -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cxh.pages.dev/style.css">
-    <title>Scooby Stream</title>
-    <script src="//content.jwplatform.com/libraries/SAHhwvZq.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Live Stream Player</title>
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            height: 100%;
             background-color: #000;
             font-family: 'Arial', sans-serif;
             overflow-x: hidden;
@@ -44,30 +33,31 @@
             z-index: -1;
         }
 
-        #jwplayerDiv {
+        #player-container {
             width: 100%;
-            height: 100%;
-        }
-
-        .video-container {
-            width: 100%;
-            height: 100vh;
+            max-width: 960px;
+            aspect-ratio: 16/9;
             position: relative;
             z-index: 1;
             border: 2px solid #00c2ff;
             box-shadow: 0 0 20px #00c2ff, 0 0 40px rgba(0, 194, 255, 0.5);
-            box-sizing: border-box;
             animation: neonPulse 3s infinite ease-in-out;
+            background-color: black;
+            margin: 0 auto;
+            margin-top: 0;
+        }
+
+        video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         .content-wrapper {
-            position: relative;
             width: 100%;
-            z-index: 2;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding-top: 100vh;
+            text-align: center;
+            margin-top: 20px;
         }
 
         .telegram-btn {
@@ -96,8 +86,48 @@
             box-shadow: 0 0 25px rgba(0, 255, 255, 0.9);
         }
 
-        .telegram-btn i {
-            margin-right: 8px;
+        .loading {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 18px;
+            color: #00c2ff;
+            text-align: center;
+        }
+
+        .loading i {
+            font-size: 40px;
+            margin-bottom: 15px;
+            animation: spin 2s infinite linear;
+            display: block;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes neonPulse {
+            0% {
+                box-shadow: 0 0 10px #00c2ff, 0 0 20px rgba(0, 194, 255, 0.5);
+            }
+            50% {
+                box-shadow: 0 0 15px #00c2ff, 0 0 30px rgba(0, 194, 255, 0.7);
+            }
+            100% {
+                box-shadow: 0 0 10px #00c2ff, 0 0 20px rgba(0, 194, 255, 0.5);
+            }
+        }
+
+        @media (max-width: 768px) {
+            #player-container {
+                width: 95%;
+            }
+            .telegram-btn {
+                padding: 10px 20px;
+                font-size: 14px;
+            }
         }
 
         /* Custom scrollbar styles */
@@ -114,177 +144,125 @@
         body::-webkit-scrollbar-thumb:hover {
             background-color: rgba(0, 194, 255, 0.7);
         }
-
-        /* Neon pulse animation for player border */
-        @keyframes neonPulse {
-            0% {
-                box-shadow: 0 0 10px #00c2ff, 0 0 20px rgba(0, 194, 255, 0.5);
-            }
-            50% {
-                box-shadow: 0 0 15px #00c2ff, 0 0 30px rgba(0, 194, 255, 0.7);
-            }
-            100% {
-                box-shadow: 0 0 10px #00c2ff, 0 0 20px rgba(0, 194, 255, 0.5);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .telegram-btn {
-                padding: 10px 20px;
-                font-size: 14px;
-            }
-        }
-
-        /* Popup Style */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-        }
-
-        .popup-content {
-            background: #222;
-            color: white;
-            padding: 15px;
-            border-radius: 8px;
-            text-align: center;
-            width: 75%;
-            max-width: 260px;
-            position: relative;
-        }
-
-        .popup-content h2 {
-            margin: 0 0 8px;
-            font-size: 18px;
-            color: #4da3ff;
-        }
-
-        .popup-content p {
-            font-size: 14px;
-            margin: 8px 0;
-        }
-
-        .popup-buttons {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-        }
-
-        .popup-buttons button {
-            padding: 8px;
-            border: none;
-            cursor: pointer;
-            font-size: 14px;
-        }
-
-        .join-btn-popup {
-            background: #4da3ff;
-            color: white;
-            border-radius: 5px;
-        }
-
-        .already-btn {
-            background: #444;
-            color: white;
-            border-radius: 5px;
-        }
-
-        /* Clickable Telegram Link */
-        .telegram-link {
-            color: #4da3ff;
-            font-weight: bold;
-            text-decoration: none;
-            cursor: pointer;
-        }
-
-        /* Golden Glow Effect for Second Popup */
-        #customPopup .popup-content {
-            border: 3px solid #FFD700;
-            box-shadow: 0px 0px 15px rgba(255, 215, 0, 0.8);
-        }
     </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 
 <body>
-    <div class="video-container">
-        <div id="jwplayerDiv"></div>
-    </div>
 
-    <div class="content-wrapper">
-        <!-- Content area after the video if needed -->
-    </div>
-
-    <a href="https://t.me/scoobystream" class="telegram-btn">
-        <i class="fab fa-telegram"></i> Join Telegram
-    </a>
-
-    <!-- Second Popup -->
-    <div class="popup" id="customPopup">
-        <div class="popup-content">
-            <h2>Support Us!</h2>
-            <p>Join our Telegram channel <a href="https://t.me/scoobystream" class="telegram-link">Scooby Stream</a> for more updates.</p>
-            <div class="popup-buttons">
-                <button class="join-btn-popup" onclick="window.location.href='https://t.me/scoobystream'">Join Now</button>
-                <button class="already-btn" onclick="closePopup()">Already Joined</button>
-            </div>
+    <div id="player-container">
+        <video id="video" controls autoplay muted playsinline></video>
+        <div id="loading" class="loading">
+            <i class="fas fa-spinner"></i>
+            Loading Stream...
         </div>
     </div>
 
+    <div class="content-wrapper">
+        <!-- You can add more content here -->
+    </div>
+
+    <a href="#" class="telegram-btn" id="telegram-btn">
+        <i class="fab fa-telegram"></i> Join Telegram
+    </a>
+
     <script>
-        // First Popup (Browser Alert)
-        setTimeout(() => {
-            let firstPopup = confirm("Join Our Telegram Channel Scooby Stream");
-            if (firstPopup) {
-                window.location.href = "https://t.me/scoobystream";
-            }
-            // Show Second Popup after the first one closes
-            setTimeout(() => {
-                document.getElementById("customPopup").style.display = "flex";
-            }, 500);
-        }, 1000);
-
-        // Close Second Popup
-        function closePopup() {
-            document.getElementById("customPopup").style.display = "none";
-        }
-
-        // Fetch JSON and Load JW Player
-        fetch("https://raw.githubusercontent.com/scoobyff/jiohotstar/refs/heads/main/data.json")
-            .then(response => response.json())
-            .then(data => {
-                jwplayer("jwplayerDiv").setup({
-                    file: data.stream_url,
-                    aspectratio: '16:9',
-                    width: '100%',
-                    height: '100%',
-                    autostart: true,
-                    stretching: "uniform",
-                    controls: true
-                });
-
-                // Force controls to be visible and fix player size
-                jwplayer().on('ready', function () {
-                    setTimeout(function() {
-                        const jwControls = document.querySelector('.jw-controls');
-                        if (jwControls) {
-                            jwControls.style.opacity = '1';
-                            jwControls.style.visibility = 'visible';
-                            jwControls.style.pointerEvents = 'auto';
+        var video = document.getElementById('video');
+        var loadingElement = document.getElementById('loading');
+        
+        // Default telegram link (can be updated from the JSON)
+        var telegramLink = '#';
+        
+        // Function to load and play the stream
+        function loadAndPlayStream(streamUrl, referrer) {
+            if (Hls.isSupported()) {
+                var hls = new Hls({
+                    xhrSetup: function(xhr, url) {
+                        if (referrer) {
+                            xhr.setRequestHeader('Referer', referrer);
                         }
-                    }, 1000);
+                    }
                 });
-            })
-            .catch(error => console.error("Error loading JSON:", error));
+                
+                hls.loadSource(streamUrl);
+                hls.attachMedia(video);
+                
+                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                    video.play();
+                    loadingElement.style.display = 'none';
+                });
+                
+                hls.on(Hls.Events.ERROR, function(event, data) {
+                    console.error('HLS error:', data);
+                    if (data.fatal) {
+                        loadingElement.innerHTML = '<i class="fas fa-exclamation-triangle"></i>Stream loading error. Please try again later.';
+                    }
+                });
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                // For Safari - note that referrer may not work in this fallback
+                video.src = streamUrl;
+                video.addEventListener('loadedmetadata', function() {
+                    video.play();
+                    loadingElement.style.display = 'none';
+                });
+            }
+        }
+        
+        // Function to fetch the stream configuration from JSON
+        function fetchStreamConfig() {
+            // Replace with your GitHub raw JSON URL
+            var configUrl = 'https://raw.githubusercontent.com/yourusername/your-repo/main/stream-config.json';
+            
+            fetch(configUrl)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(config => {
+                    // Update stream settings from config
+                    if (config.streamUrl) {
+                        // Update telegram link if provided
+                        if (config.telegramLink) {
+                            telegramLink = config.telegramLink;
+                            document.getElementById('telegram-btn').href = telegramLink;
+                        }
+                        
+                        // Load the stream with referrer if provided
+                        loadAndPlayStream(config.streamUrl, config.referrer || null);
+                    } else {
+                        loadingElement.innerHTML = '<i class="fas fa-exclamation-triangle"></i>Stream configuration error.';
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching stream config:', error);
+                    loadingElement.innerHTML = '<i class="fas fa-exclamation-triangle"></i>Failed to load stream configuration.';
+                    
+                    // Fallback to hardcoded stream (you can remove this in production)
+                    loadAndPlayStream(
+                        'https://psplayflix.site/2025/ps_ipl-liv.m3u8?ps=mal',
+                        'https://psplay.site/'
+                    );
+                });
+        }
+        
+        // Initial setup
+        document.addEventListener('DOMContentLoaded', function() {
+            // Fetch stream configuration
+            fetchStreamConfig();
+            
+            // Set up Telegram button click handler
+            document.getElementById('telegram-btn').addEventListener('click', function(e) {
+                if (telegramLink === '#') {
+                    e.preventDefault();
+                    alert('Please Join Our Telegram Channel');
+                }
+                // If telegramLink is a real URL, the default link behavior will work
+            });
+        });
     </script>
 
-    <script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
 </body>
-
+<script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
 </html>
