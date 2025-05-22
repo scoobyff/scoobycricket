@@ -321,7 +321,7 @@
 <script>
 (async function() {
   // GitHub raw JSON URL for configuration
-  const configUrl = 'https://raw.githubusercontent.com/scoobyff/jsondrm/main/dai.json';
+  const configUrl = 'https://raw.githubusercontent.com/drmlive/sliv-live-events/main/sonyliv.json';
   
   // Helper to get URL param 'id'
   function getQueryParam(name) {
@@ -433,11 +433,11 @@
     };
   })();
 
-  // Setup JWPlayer with enhanced configuration
-  const playerConfig = {
+  // Setup JWPlayer (using original simple configuration for better compatibility)
+  jwplayer("jwplayerDiv").setup({
     playlist: [{
       title: match.event_name || 'Live Match',
-      description: "You're Watching Live Cricket",
+      description: "You're Watching",
       sources: [{
         file: videoUrl,
         type: "hls",
@@ -448,48 +448,12 @@
     width: "100%",
     height: "100%",
     autostart: true,
-    controls: true,
-    aspectratio: '16:9',
-    image: data.posterImage || 'https://mma.prnewswire.com/media/1919551/WillowTV_Logo.jpg?p=facebook',
-    mute: false,
-    preload: 'auto',
-    captions: { color: 'white', fontSize: '16px', backgroundOpacity: 0 },
-    sharing: {
-      sites: ['facebook', 'twitter']
-    },
-    stretching: 'uniform',
-    displaytitle: true,
-    displaydescription: true
-  };
-
-  // Add DRM configuration if available
-  if (data.drm && data.drm.keyId && data.drm.key) {
-    playerConfig.drm = {
-      "clearkey": {
-        "keyId": data.drm.keyId,
-        "key": data.drm.key
-      }
-    };
-  }
-
-  jwplayer("jwplayerDiv").setup(playerConfig);
+    controls: true
+  });
 
   // Enhanced player event handlers
   jwplayer().on('ready', function () {
-    const playerElement = document.querySelector('#jwplayerDiv');
-    if (playerElement) {
-      playerElement.style.height = '100vh';
-    }
-
-    // Ensure controls are visible after initialization
-    setTimeout(function() {
-      const jwControls = document.querySelector('.jw-controls');
-      if (jwControls) {
-        jwControls.style.opacity = '1';
-        jwControls.style.visibility = 'visible';
-        jwControls.style.pointerEvents = 'auto';
-      }
-    }, 1000);
+    console.log('Player ready');
   });
 
   jwplayer().on('play', function () {
@@ -516,44 +480,11 @@
     `;
   });
 
-})();
 
-// Enhanced popup with better styling - outside async IIFE
-window.addEventListener("load", function() {
-  setTimeout(() => {
-    // Create custom styled confirm dialog
-    const popup = document.createElement('div');
-    popup.className = 'popup';
-    popup.innerHTML = `
-      <h2><i class="fab fa-telegram" style="margin-right: 10px;"></i>Join Our Community!</h2>
-      <p>Stay updated with live matches, exclusive content, and instant notifications!</p>
-      <p>क्रिकेट के सभी लाइव मैच और अपडेट के लिए हमारे टेलीग्राम चैनल से जुड़ें!</p>
-      <button onclick="window.open('https://t.me/+P6IPpHAJ-oZjNDY1', '_blank'); this.parentElement.remove();">
-        <i class="fab fa-telegram"></i> Join Now / अभी जुड़ें
-      </button>
-      <button class="close-btn" onclick="this.parentElement.remove();">
-        <i class="fas fa-times"></i> Maybe Later
-      </button>
-    `;
-    
-    document.body.appendChild(popup);
-  }, 2000);
-});
-
-// Telegram button event handler
+// Telegram button event handler  
 document.getElementById('telegram-btn').addEventListener('click', function(e) {
   e.preventDefault();
   window.open('https://t.me/+P6IPpHAJ-oZjNDY1', '_blank');
-});
-
-// Ensure controls are visible when user interacts
-document.addEventListener('click', function() {
-  const jwControls = document.querySelector('.jw-controls');
-  if (jwControls) {
-    jwControls.style.opacity = '1';
-    jwControls.style.visibility = 'visible';
-    jwControls.style.pointerEvents = 'auto';
-  }
 });
 </script>
 </body>
