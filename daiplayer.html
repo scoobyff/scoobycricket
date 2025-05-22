@@ -1,0 +1,560 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Watch Match</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #000;
+    font-family: 'Arial', sans-serif;
+    overflow-x: hidden;
+    color: #fff;
+    position: relative;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, #000000, #0a0a0a);
+    z-index: -1;
+  }
+
+  #content {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+  }
+
+  #jwplayerDiv {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+    border: 2px solid #00c2ff;
+    box-shadow: 0 0 20px #00c2ff, 0 0 40px rgba(0, 194, 255, 0.5);
+    box-sizing: border-box;
+    animation: neonPulse 3s infinite ease-in-out;
+  }
+
+  .jwplayer {
+    position: absolute !important;
+  }
+
+  .jwplayer.jw-flag-aspect-mode {
+    min-height: 100%;
+    max-height: 100%;
+  }
+
+  .telegram-btn {
+    display: inline-block;
+    background: linear-gradient(90deg, #0088cc, #00c2ff);
+    color: white;
+    padding: 12px 28px;
+    margin: 20px 0;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(0, 136, 204, 0.7);
+    transition: all 0.3s ease;
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+  }
+
+  .telegram-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.9);
+  }
+
+  .telegram-btn i {
+    margin-right: 8px;
+  }
+
+  .message-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 100;
+    background-color: rgba(28, 28, 28, 0.95);
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 0 30px rgba(0, 194, 255, 0.3);
+    border: 1px solid #00c2ff;
+    max-width: 400px;
+    width: 90%;
+  }
+
+  .message-container p {
+    color: #fff;
+    font-size: 18px;
+    margin-bottom: 15px;
+    line-height: 1.4;
+  }
+
+  .join-button {
+    display: inline-block;
+    padding: 12px 28px;
+    background: linear-gradient(90deg, #0088cc, #00c2ff);
+    color: #fff;
+    text-decoration: none;
+    border-radius: 50px;
+    margin-top: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 0 15px rgba(0, 136, 204, 0.7);
+    transition: all 0.3s ease;
+  }
+
+  .join-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.9);
+  }
+
+  /* Make sure JW player controls are visible */
+  .jw-state-idle .jw-controls,
+  .jwplayer .jw-controls {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto !important;
+  }
+
+  /* Custom scrollbar styles */
+  body::-webkit-scrollbar {
+    width: 8px;
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+
+  body::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: rgba(0, 194, 255, 0.5);
+  }
+
+  body::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(0, 194, 255, 0.7);
+  }
+
+  /* Neon pulse animation for player border */
+  @keyframes neonPulse {
+    0% {
+      box-shadow: 0 0 10px #00c2ff, 0 0 20px rgba(0, 194, 255, 0.5);
+    }
+    50% {
+      box-shadow: 0 0 15px #00c2ff, 0 0 30px rgba(0, 194, 255, 0.7);
+    }
+    100% {
+      box-shadow: 0 0 10px #00c2ff, 0 0 20px rgba(0, 194, 255, 0.5);
+    }
+  }
+
+  /* Loading indicator */
+  .loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 105;
+    color: #fff;
+  }
+
+  .loading-spinner {
+    border: 4px solid rgba(0, 194, 255, 0.3);
+    border-top: 4px solid #00c2ff;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 15px;
+  }
+
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    background: linear-gradient(135deg, #1c1c1c, #2a2a2a);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 0 30px rgba(0, 194, 255, 0.4);
+    border: 2px solid #00c2ff;
+    z-index: 1002;
+    width: 90%;
+    max-width: 400px;
+    animation: 0.5s fadeIn;
+  }
+
+  .popup h2 {
+    color: #00c2ff;
+    margin-bottom: 15px;
+    font-size: 22px;
+    text-shadow: 0 0 10px rgba(0, 194, 255, 0.5);
+  }
+
+  .popup p {
+    margin-bottom: 20px;
+    color: #ccc;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .popup button {
+    background: linear-gradient(90deg, #0088cc, #00c2ff);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 50px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    margin: 5px;
+    box-shadow: 0 0 15px rgba(0, 136, 204, 0.7);
+  }
+
+  .popup button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 25px rgba(0, 255, 255, 0.9);
+  }
+
+  .popup .close-btn {
+    background: linear-gradient(90deg, #555, #777);
+    box-shadow: 0 0 15px rgba(85, 85, 85, 0.7);
+  }
+
+  .popup .close-btn:hover {
+    background: linear-gradient(90deg, #333, #555);
+    box-shadow: 0 0 25px rgba(85, 85, 85, 0.9);
+  }
+
+  @keyframes fadeIn {
+    from {opacity:0; transform: translate(-50%, -50%) scale(0.8);}
+    to {opacity:1; transform: translate(-50%, -50%) scale(1);}
+  }
+
+  @media (max-width: 768px) {
+    .telegram-btn {
+      padding: 10px 20px;
+      font-size: 14px;
+    }
+    
+    .message-container {
+      padding: 20px;
+      width: 95%;
+    }
+    
+    .message-container p {
+      font-size: 16px;
+    }
+    
+    .popup {
+      width: 95%;
+      padding: 20px;
+    }
+    
+    .popup h2 {
+      font-size: 18px;
+    }
+    
+    .popup p {
+      font-size: 14px;
+    }
+  }
+
+  #message {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    color: #fff;
+    font-size: 24px;
+  }
+</style>
+<script src="https://content.jwplatform.com/libraries/SAHhwvZq.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+<div id="content">
+  <div class="loading" id="loading-indicator">
+    <div class="loading-spinner"></div>
+    <div>Loading stream...</div>
+  </div>
+</div>
+
+<a href="#" class="telegram-btn" id="telegram-btn">
+  <i class="fab fa-telegram"></i> Join Telegram
+</a>
+
+<script>
+(async function() {
+  // GitHub raw JSON URL for configuration
+  const configUrl = 'https://raw.githubusercontent.com/scoobyff/jsondrm/main/dai.json';
+  
+  // Helper to get URL param 'id'
+  function getQueryParam(name) {
+    const urlParams = new URLSearchParams(window.location.search);
+    return urlParams.get(name);
+  }
+
+  const matchId = getQueryParam('id');
+  
+  // Show loading indicator
+  document.getElementById('loading-indicator').style.display = 'block';
+
+  if (!matchId) {
+    document.getElementById('content').innerHTML = `
+      <div class="message-container">
+        <p><i class="fas fa-exclamation-triangle" style="color: #ff6b6b; margin-right: 10px;"></i>No match ID provided in URL.</p>
+        <p>Please add ?id=YOUR_MATCH_ID to the URL</p>
+        <a href="https://t.me/+P6IPpHAJ-oZjNDY1" class="join-button" target="_blank" rel="noopener">
+          <i class="fab fa-telegram"></i> Join Telegram for Updates
+        </a>
+      </div>
+    `;
+    return;
+  }
+
+  // Fetch JSON data with enhanced error handling
+  let data;
+  try {
+    const timestamp = new Date().getTime();
+    const res = await fetch(`${configUrl}?_=${timestamp}`, {
+      cache: 'no-store',
+      headers: {
+        'Accept': 'application/json'
+      }
+    });
+    
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+    
+    data = await res.json();
+  } catch(e) {
+    console.error('Error fetching data:', e);
+    document.getElementById('content').innerHTML = `
+      <div class="message-container">
+        <p><i class="fas fa-wifi" style="color: #ff6b6b; margin-right: 10px;"></i>Failed to load match data.</p>
+        <p>Please check your internet connection and try again.</p>
+        <button class="join-button" onclick="window.location.reload()">
+          <i class="fas fa-refresh"></i> Retry
+        </button>
+        <a href="https://t.me/+P6IPpHAJ-oZjNDY1" class="join-button" target="_blank" rel="noopener">
+          <i class="fab fa-telegram"></i> Join Telegram
+        </a>
+      </div>
+    `;
+    return;
+  }
+
+  // Find match by contentId
+  const match = data.matches.find(m => String(m.contentId) === matchId);
+  if (!match) {
+    document.getElementById('content').innerHTML = `
+      <div class="message-container">
+        <p><i class="fas fa-search" style="color: #ff6b6b; margin-right: 10px;"></i>Match not found.</p>
+        <p>Match ID: ${matchId} is not available.</p>
+        <a href="https://t.me/+P6IPpHAJ-oZjNDY1" class="join-button" target="_blank" rel="noopener">
+          <i class="fab fa-telegram"></i> Join Telegram for Available Matches
+        </a>
+      </div>
+    `;
+    return;
+  }
+
+  // Determine video URL to play
+  const videoUrl = match.video_url || match.dai_url || match.pub_url || data.streamUrl || null;
+
+  // If no playable URL, show enhanced message
+  if (!videoUrl || !videoUrl.includes('.m3u8')) {
+    document.getElementById('content').innerHTML = `
+      <div class="message-container">
+        <h2 style="color: #00c2ff; margin-bottom: 20px;">
+          <i class="fas fa-clock" style="margin-right: 10px;"></i>Stream Not Available
+        </h2>
+        <p><i class="fas fa-info-circle" style="color: #00c2ff; margin-right: 8px;"></i>The match either has not started or has ended on SonyLiv.</p>
+        <p><i class="fas fa-play-circle" style="color: #00c2ff; margin-right: 8px;"></i>मैच sonylive पर लाइव होते ही शुरू हो जाएगा।</p>
+        <p><i class="fab fa-telegram" style="color: #00c2ff; margin-right: 8px;"></i>Join our Telegram for live updates and notifications:</p>
+        <a href="${data.telegramUrl || 'https://t.me/+P6IPpHAJ-oZjNDY1'}" class="join-button" target="_blank" rel="noopener">
+          <i class="fab fa-telegram"></i> Join Telegram / टेलीग्राम से जुड़ें
+        </a>
+      </div>
+    `;
+    return;
+  }
+
+  // Hide loading indicator and setup player
+  document.getElementById('loading-indicator').style.display = 'none';
+  document.getElementById('content').innerHTML = '<div id="jwplayerDiv"></div>';
+
+  // Intercept XMLHttpRequest open to rewrite URLs
+  (function interceptNetworkRequests() {
+    const originalOpen = XMLHttpRequest.prototype.open;
+    XMLHttpRequest.prototype.open = function(method, url) {
+      if (url.includes('sonydaimenew.akamaized.net')) {
+        url = url.replace('sonydaimenew.akamaized.net', 'sony.cricsterspkl.io/event.php');
+      } else if (url.includes('sonypartnersdaimenew.akamaized.net')) {
+        url = url.replace('sonypartnersdaimenew.akamaized.net', 'sony.cricsterspkl.io/event.php');
+      }
+      return originalOpen.apply(this, arguments);
+    };
+  })();
+
+  // Setup JWPlayer with enhanced configuration
+  const playerConfig = {
+    playlist: [{
+      title: match.event_name || 'Live Match',
+      description: "You're Watching Live Cricket",
+      sources: [{
+        file: videoUrl,
+        type: "hls",
+        label: "1080p",
+        default: true
+      }]
+    }],
+    width: "100%",
+    height: "100%",
+    autostart: true,
+    controls: true,
+    aspectratio: '16:9',
+    image: data.posterImage || 'https://mma.prnewswire.com/media/1919551/WillowTV_Logo.jpg?p=facebook',
+    mute: false,
+    preload: 'auto',
+    captions: { color: 'white', fontSize: '16px', backgroundOpacity: 0 },
+    sharing: {
+      sites: ['facebook', 'twitter']
+    },
+    stretching: 'uniform',
+    displaytitle: true,
+    displaydescription: true
+  };
+
+  // Add DRM configuration if available
+  if (data.drm && data.drm.keyId && data.drm.key) {
+    playerConfig.drm = {
+      "clearkey": {
+        "keyId": data.drm.keyId,
+        "key": data.drm.key
+      }
+    };
+  }
+
+  jwplayer("jwplayerDiv").setup(playerConfig);
+
+  // Enhanced player event handlers
+  jwplayer().on('ready', function () {
+    const playerElement = document.querySelector('#jwplayerDiv');
+    if (playerElement) {
+      playerElement.style.height = '100vh';
+    }
+
+    // Ensure controls are visible after initialization
+    setTimeout(function() {
+      const jwControls = document.querySelector('.jw-controls');
+      if (jwControls) {
+        jwControls.style.opacity = '1';
+        jwControls.style.visibility = 'visible';
+        jwControls.style.pointerEvents = 'auto';
+      }
+    }, 1000);
+  });
+
+  jwplayer().on('play', function () {
+    document.body.style.backgroundColor = "#000";
+  });
+
+  jwplayer().on('error', function (e) {
+    console.error("Playback error:", e.message);
+    
+    document.getElementById('content').innerHTML = `
+      <div class="message-container">
+        <h2 style="color: #ff6b6b; margin-bottom: 20px;">
+          <i class="fas fa-exclamation-triangle" style="margin-right: 10px;"></i>Playback Error
+        </h2>
+        <p><i class="fas fa-info-circle" style="color: #ff6b6b; margin-right: 8px;"></i>Stream playback error occurred</p>
+        <p style="font-size: 14px; color: #999;">${e.message}</p>
+        <button class="join-button" onclick="window.location.reload()" style="margin-right: 10px;">
+          <i class="fas fa-refresh"></i> Retry
+        </button>
+        <a href="${data.telegramUrl || 'https://t.me/+P6IPpHAJ-oZjNDY1'}" class="join-button" target="_blank" rel="noopener">
+          <i class="fab fa-telegram"></i> Get Help
+        </a>
+      </div>
+    `;
+  });
+
+})();
+
+// Enhanced popup with better styling - outside async IIFE
+window.addEventListener("load", function() {
+  setTimeout(() => {
+    // Create custom styled confirm dialog
+    const popup = document.createElement('div');
+    popup.className = 'popup';
+    popup.innerHTML = `
+      <h2><i class="fab fa-telegram" style="margin-right: 10px;"></i>Join Our Community!</h2>
+      <p>Stay updated with live matches, exclusive content, and instant notifications!</p>
+      <p>क्रिकेट के सभी लाइव मैच और अपडेट के लिए हमारे टेलीग्राम चैनल से जुड़ें!</p>
+      <button onclick="window.open('https://t.me/+P6IPpHAJ-oZjNDY1', '_blank'); this.parentElement.remove();">
+        <i class="fab fa-telegram"></i> Join Now / अभी जुड़ें
+      </button>
+      <button class="close-btn" onclick="this.parentElement.remove();">
+        <i class="fas fa-times"></i> Maybe Later
+      </button>
+    `;
+    
+    document.body.appendChild(popup);
+  }, 2000);
+});
+
+// Telegram button event handler
+document.getElementById('telegram-btn').addEventListener('click', function(e) {
+  e.preventDefault();
+  window.open('https://t.me/+P6IPpHAJ-oZjNDY1', '_blank');
+});
+
+// Ensure controls are visible when user interacts
+document.addEventListener('click', function() {
+  const jwControls = document.querySelector('.jw-controls');
+  if (jwControls) {
+    jwControls.style.opacity = '1';
+    jwControls.style.visibility = 'visible';
+    jwControls.style.pointerEvents = 'auto';
+  }
+});
+</script>
+</body>
+</html>
