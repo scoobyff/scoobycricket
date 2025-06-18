@@ -12,7 +12,7 @@ https://jiotvmblive.cdn.jio.com/bpk-tv/Star_Sports_1_Telugu_BTS/output/index.mpd
 #KODIPROP:inputstream.adaptive.license_key=49e84b9edfd85379b90c81b7d2d3d2bf:19c82d3ff094fa06af95820a1572ecb5
 #EXTVLCOPT:http-user-agent=plaYtv/7.1.5 (Linux;Android 13) ExoPlayerLib/2.11.6 YGX/69.69.69.69
 #EXTHTTP:{"cookie":"__hdnea__=st=1750245720~exp=1750332120~acl=/*~hmac=83a6e85819235a9152efa1f8009d68974735b8a73fdd88d472f71ac6b2417925"}
-https://jiotvmblive.cdn.jio.com/bpk-tv/Star_Sports_1_Telugu_HD_BTS/output/index.mpd?%7Ccookie=__hdnea__=st=1750159300~exp=1750245700~acl=/*~hmac=dc9aefe01d42aec99a9cf17876cc0bc115ce2a38f69131a022c2a0f0563a9487
+https://jiotvmblive.cdn.jio.com/bpk-tv/Star_Sports_1_Telugu_HD_BTS/output/index.mpd?__hdnea__=st=1750159300~exp=1750245700~acl=/*~hmac=dc9aefe01d42aec99a9cf17876cc0bc115ce2a38f69131a022c2a0f0563a9487&xxx=%7Ccookie=__hdnea__=st=1750245720~exp=1750332120~acl=/*~hmac=83a6e85819235a9152efa1f8009d68974735b8a73fdd88d472f71ac6b2417925
 
 
 #EXTINF:-1 tvg-id="4006" group-title="Jiostar" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Sports18_2.png",Star Sports 2 Telugu
@@ -20,12 +20,11 @@ https://jiotvmblive.cdn.jio.com/bpk-tv/Star_Sports_1_Telugu_HD_BTS/output/index.
 #KODIPROP:inputstream.adaptive.license_key=e38f46718d9d5c40af83095f176ba41e:8836ee0f7377d71c156a139361a45be5
 #EXTVLCOPT:http-user-agent=plaYtv/7.1.5 (Linux;Android 13) ExoPlayerLib/2.11.6 YGX/69.69.69.69
 #EXTHTTP:{"cookie":"__hdnea__=st=1750245720~exp=1750332120~acl=/*~hmac=83a6e85819235a9152efa1f8009d68974735b8a73fdd88d472f71ac6b2417925"}
-https://jiotvmblive.cdn.jio.com/bpk-tv/Sports18_2_MOB/WDVCatchup/index.mpd?%7Ccookie=__hdnea__=st=1750159300~exp=1750245700~acl=/*~hmac=dc9aefe01d42aec99a9cf17876cc0bc115ce2a38f69131a022c2a0f0563a9487
-
+https://jiotvmblive.cdn.jio.com/bpk-tv/Sports18_2_MOB/WDVCatchup/index.mpd?__hdnea__=st=1750159300~exp=1750245700~acl=/*~hmac=dc9aefe01d42aec99a9cf17876cc0bc115ce2a38f69131a022c2a0f0563a9487&xxx=%7Ccookie=__hdnea__=st=1750245720~exp=1750332120~acl=/*~hmac=83a6e85819235a9152efa1f8009d68974735b8a73fdd88d472f71ac6b2417925
 
 #EXTINF:-1 tvg-id="4007" group-title="Jiostar" tvg-logo="https://jiotvimages.cdn.jio.com/dare_images/images/Star_Sports2_Telugu_HD.png",Star Sports 2 Telugu HD
 #KODIPROP:inputstream.adaptive.license_type=clearkey
 #KODIPROP:inputstream.adaptive.license_key=c8a2fb190fc957c1b8333af9a7a39d31:be7497b59d4ce9e33d29bfd1d38bad1d
 #EXTVLCOPT:http-user-agent=plaYtv/7.1.5 (Linux;Android 13) ExoPlayerLib/2.11.6 YGX/69.69.69.69
 #EXTHTTP:{"cookie":"__hdnea__=st=1750245720~exp=1750332120~acl=/*~hmac=83a6e85819235a9152efa1f8009d68974735b8a73fdd88d472f71ac6b2417925"}
-https://jiotvmblive.cdn.jio.com/bpk-tv/Star_Sports2_Telugu_HD_BTS/output/index.mpd?%7Ccookie=__hdnea__=st=1750159300~exp=1750245700~acl=/*~hmac=dc9aefe01d42aec99a9cf17876cc0bc115ce2a38f69131a022c2a0f0563a9487
+https://jiotvmblive.cdn.jio.com/bpk-tv/Star_Sports2_Telugu_HD_BTS/output/index.mpd?__hdnea__=st=1750159300~exp=1750245700~acl=/*~hmac=dc9aefe01d42aec99a9cf17876cc0bc115ce2a38f69131a022c2a0f0563a9487&xxx=%7Ccookie=__hdnea__=st=1750245720~exp=1750332120~acl=/*~hmac=83a6e85819235a9152efa1f8009d68974735b8a73fdd88d472f71ac6b2417925
