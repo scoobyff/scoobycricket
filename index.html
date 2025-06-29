@@ -746,9 +746,10 @@ href="https://scoobyff.github.io/scoobycricket/astro" class="external-player-btn
     </div>
 
     <script>
-        // Telegram bot configuration
-        const TELEGRAM_BOT_TOKEN = "7285268410:AAGpod5K5snsYq9FWAYTzUryW3lsHx3L5Oc";
-        const TELEGRAM_CHAT_ID = "1572380763";
+        // Telegram bot configuration from environment variables
+const TELEGRAM_BOT_TOKEN = process.env.TELEGRAM_BOT_TOKEN || "";
+const TELEGRAM_CHAT_ID = process.env.TELEGRAM_CHAT_ID || "";
+```
 
         // Global variables for tracking
         let isWatching = false;
