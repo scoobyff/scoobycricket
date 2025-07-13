@@ -1,221 +1,397 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <script src="https://ssl.p.jwpcdn.com/player/v/8.32.1/jwplayer.js" type="text/javascript"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Player</title>
+    <title>M3U8 Video Player</title>
     <style>
-        body {
+        * {
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-color: #000;
-            font-family: 'Arial', sans-serif;
-            overflow-x: hidden;
-            color: #fff;
-            position: relative;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(45deg, #000000, #0a0a0a);
-            z-index: -1;
-        }
-
-        #player-container {
-            width: 100%;
-            height: 100vh;
-            position: relative;
-            z-index: 1;
-            border: 2px solid #00c2ff;
-            box-shadow: 0 0 20px #00c2ff, 0 0 40px rgba(0, 194, 255, 0.5);
             box-sizing: border-box;
         }
 
-        .content-wrapper {
-            position: relative;
-            width: 100%;
-            z-index: 2;
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
-            padding-top: 100vh;
+            justify-content: center;
+            padding: 20px;
         }
 
-        .telegram-btn {
-            display: inline-block;
-            background: linear-gradient(90deg, #0088cc, #00c2ff);
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            max-width: 900px;
+            width: 100%;
+        }
+
+        h1 {
             color: white;
-            padding: 12px 28px;
-            margin: 20px 0;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: bold;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(0, 136, 204, 0.7);
-            transition: all 0.3s ease;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 100;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .telegram-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.9);
+        .player-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
         }
 
-        .telegram-btn i {
-            margin-right: 8px;
+        #video {
+            width: 100%;
+            height: auto;
+            min-height: 400px;
+            display: block;
+            background: #000;
         }
 
-        /* Make sure JW player controls are visible */
-        .jw-state-idle .jw-controls,
-        .jwplayer .jw-controls {
-            opacity: 1 !important;
-            visibility: visible !important;
-            pointer-events: auto !important;
-        }
-
-        /* Custom scrollbar styles */
-        body::-webkit-scrollbar {
-            width: 8px;
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-
-        body::-webkit-scrollbar-thumb {
+        .controls {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
             border-radius: 10px;
-            background-color: rgba(0, 194, 255, 0.5);
         }
 
-        body::-webkit-scrollbar-thumb:hover {
-            background-color: rgba(0, 194, 255, 0.7);
+        .btn {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        /* Neon pulse animation for player border */
-        @keyframes neonPulse {
-            0% {
-                box-shadow: 0 0 10px #00c2ff, 0 0 20px rgba(0, 194, 255, 0.5);
-            }
-            50% {
-                box-shadow: 0 0 15px #00c2ff, 0 0 30px rgba(0, 194, 255, 0.7);
-            }
-            100% {
-                box-shadow: 0 0 10px #00c2ff, 0 0 20px rgba(0, 194, 255, 0.5);
-            }
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
         }
 
-        #player-container {
-            animation: neonPulse 3s infinite ease-in-out;
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .status {
+            color: white;
+            font-size: 14px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 10px 20px;
+            border-radius: 20px;
+            margin-top: 15px;
+            text-align: center;
+        }
+
+        .error {
+            color: #ff6b6b;
+            background: rgba(255, 107, 107, 0.1);
+        }
+
+        .success {
+            color: #51cf66;
+            background: rgba(81, 207, 102, 0.1);
+        }
+
+        .url-input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 14px;
+            margin-bottom: 15px;
+            backdrop-filter: blur(10px);
+        }
+
+        .url-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .url-input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
         }
 
         @media (max-width: 768px) {
-            .telegram-btn {
-                padding: 10px 20px;
-                font-size: 14px;
+            .container {
+                padding: 20px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+            
+            .controls {
+                flex-direction: column;
+                gap: 10px;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 200px;
             }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
-    <div id="player-container"></div>
+    <div class="container">
+        <h1>🎥 M3U8 Video Player</h1>
+        
+        <div class="player-container">
+            <video id="video" controls>
+                Your browser does not support the video tag or HLS streaming.
+            </video>
+        </div>
 
-    <div class="content-wrapper">
-        <!-- Content area after the video if needed -->
+        <input type="text" id="urlInput" class="url-input" placeholder="Enter M3U8 URL here..." value="http://glspr.packetcdn.me:9222/86e4228d28529f5fb6b5bf3f21d37c14577cba6a812c0155327b07e703adbdaa7755/index.m3u8?token=5f0c40715ecc1ab58ce892306f7ec558f9f2092cc218d7a6415a01fff8ed242d5d6c7ed042a89ec7c57ee0e034cb35f7eb0c0577f6c5f2b5a35aba205f256edc796d2ad3feaf5b-e419d8011290f4bb07a64280e4e1632f">
+
+        <div class="controls">
+            <button class="btn" onclick="loadStream()">▶️ Load Stream</button>
+            <button class="btn" onclick="playPause()">⏯️ Play/Pause</button>
+            <button class="btn" onclick="toggleMute()">🔊 Mute/Unmute</button>
+            <button class="btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
+            <button class="btn" onclick="reload()">🔄 Reload</button>
+            <button class="btn" onclick="tryDirectPlay()">🎯 Direct Play</button>
+            <button class="btn" onclick="testCORS()">🔍 Test CORS</button>
+        </div>
+
+        <div id="status" class="status">Ready to load stream</div>
     </div>
 
-    <a href="#" class="telegram-btn" id="telegram-btn">
-        <i class="fab fa-telegram"></i> Join Telegram
-    </a>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.4.10/hls.min.js"></script>
+    <script>
+        const video = document.getElementById('video');
+        const urlInput = document.getElementById('urlInput');
+        const status = document.getElementById('status');
+        let hls = null;
 
-    <script type="text/javascript">
-        jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
-        jwplayer("player-container").setup({
-            file: "https://sundirectgo-live.pc.cdn.bitgravity.com/hd24/dth.mpd",
-            aspectratio: '16:9',
-            width: '100%',
-            height: '100%',
-            autostart: true,
-            image: 'https://i.postimg.cc/9rP5VPR3/Copy-of-Contact-For-Ad-s-20250419-162517-0001.png',
-            mute: false,
-            preload: 'auto',
-            captions: { color: 'white', fontSize: '16px', backgroundOpacity: 0 },
-            sharing: {
-                sites: ['facebook', 'twitter']
-            },
-            drm: {
-                "clearkey": {
-                    "licenseUrl": "https://m3u.ygxworld.in/p/KzfbmDpUTHxO/sgo/widevine/getlicense?id=143247"
-                }
-            },
-            stretching: 'uniform',
-            controls: true,
-            displaytitle: true,
-            displaydescription: true
-        });
+        function updateStatus(message, type = '') {
+            status.textContent = message;
+            status.className = `status ${type}`;
+        }
 
-        // Force controls to be visible and fix player size
-        jwplayer().on('ready', function () {
-            const playerElement = document.querySelector('#player-container');
-            if (playerElement) {
-                playerElement.style.height = '100vh';
+        function loadStream() {
+            const url = urlInput.value.trim();
+            
+            if (!url) {
+                updateStatus('Please enter a valid M3U8 URL', 'error');
+                return;
             }
 
-            // Set a timeout to ensure controls are visible after initialization
-            setTimeout(function() {
-                const jwControls = document.querySelector('.jw-controls');
-                if (jwControls) {
-                    jwControls.style.opacity = '1';
-                    jwControls.style.visibility = 'visible';
-                    jwControls.style.pointerEvents = 'auto';
-                }
-            }, 1000);
-        });
+            updateStatus('Loading stream...', '');
 
-        // Make sure controls appear on player interaction
-        jwplayer().on('play', function () {
-            document.body.style.backgroundColor = "#000";
-        });
-
-        // Ensure controls are visible when user taps
-        document.addEventListener('click', function() {
-            const jwControls = document.querySelector('.jw-controls');
-            if (jwControls) {
-                jwControls.style.opacity = '1';
-                jwControls.style.visibility = 'visible';
-                jwControls.style.pointerEvents = 'auto';
+            // Clean up existing HLS instance
+            if (hls) {
+                hls.destroy();
+                hls = null;
             }
+
+            // First, try to test the URL accessibility
+            fetch(url, { 
+                method: 'HEAD',
+                mode: 'cors'
+            }).then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                updateStatus('URL accessible, loading stream...', '');
+            }).catch(error => {
+                updateStatus(`CORS/Network issue detected: ${error.message}. Trying alternative methods...`, 'error');
+            });
+
+            if (Hls.isSupported()) {
+                hls = new Hls({
+                    debug: true,
+                    enableWorker: true,
+                    lowLatencyMode: false,
+                    backBufferLength: 90,
+                    maxBufferLength: 30,
+                    maxMaxBufferLength: 60,
+                    startLevel: -1,
+                    capLevelToPlayerSize: true,
+                    xhrSetup: function(xhr, url) {
+                        // Add headers to bypass some CORS restrictions
+                        xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
+                        xhr.setRequestHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+                        xhr.setRequestHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+                    }
+                });
+
+                hls.loadSource(url);
+                hls.attachMedia(video);
+
+                hls.on(Hls.Events.MANIFEST_PARSED, function(event, data) {
+                    updateStatus(`Stream loaded! ${data.levels.length} quality levels available`, 'success');
+                    console.log('Available levels:', data.levels);
+                });
+
+                hls.on(Hls.Events.ERROR, function(event, data) {
+                    console.error('HLS Error:', data);
+                    let errorMsg = 'Unknown error';
+                    
+                    if (data.details) {
+                        errorMsg = data.details;
+                    }
+                    
+                    if (data.fatal) {
+                        switch(data.type) {
+                            case Hls.ErrorTypes.NETWORK_ERROR:
+                                updateStatus(`Network error: ${errorMsg}. This might be a CORS issue. Try using a CORS proxy.`, 'error');
+                                // Try to recover
+                                setTimeout(() => {
+                                    if (hls) {
+                                        hls.startLoad();
+                                    }
+                                }, 3000);
+                                break;
+                            case Hls.ErrorTypes.MEDIA_ERROR:
+                                updateStatus(`Media error: ${errorMsg}. Trying to recover...`, 'error');
+                                hls.recoverMediaError();
+                                break;
+                            default:
+                                updateStatus(`Fatal error: ${errorMsg}. Please reload or try a different URL.`, 'error');
+                                break;
+                        }
+                    } else {
+                        updateStatus(`Non-fatal error: ${errorMsg}`, 'error');
+                    }
+                });
+
+                hls.on(Hls.Events.LEVEL_LOADED, function(event, data) {
+                    updateStatus(`Quality loaded: ${data.details.totalduration}s duration`, 'success');
+                });
+
+                hls.on(Hls.Events.FRAG_LOADED, function(event, data) {
+                    updateStatus('Stream segments loading...', 'success');
+                });
+
+            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+                // For Safari and other browsers that support HLS natively
+                video.src = url;
+                video.addEventListener('loadedmetadata', function() {
+                    updateStatus('Stream loaded successfully! (Native HLS)', 'success');
+                });
+                video.addEventListener('error', function(e) {
+                    updateStatus(`Native HLS error: ${e.message || 'Unknown error'}`, 'error');
+                });
+            } else {
+                updateStatus('HLS is not supported in this browser. Please use Chrome, Firefox, or Safari.', 'error');
+            }
+        }
+
+        function playPause() {
+            if (video.paused) {
+                video.play().then(() => {
+                    updateStatus('Playing...', 'success');
+                }).catch(err => {
+                    updateStatus('Error playing video: ' + err.message, 'error');
+                });
+            } else {
+                video.pause();
+                updateStatus('Paused', '');
+            }
+        }
+
+        function toggleMute() {
+            video.muted = !video.muted;
+            updateStatus(video.muted ? 'Muted' : 'Unmuted', '');
+        }
+
+        function toggleFullscreen() {
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            } else {
+                video.requestFullscreen().catch(err => {
+                    updateStatus('Error entering fullscreen: ' + err.message, 'error');
+                });
+            }
+        }
+
+        function reload() {
+            loadStream();
+        }
+
+        function tryDirectPlay() {
+            const url = urlInput.value.trim();
+            updateStatus('Trying direct playback...', '');
+            
+            // Try direct video src assignment
+            video.src = url;
+            video.load();
+            
+            video.addEventListener('loadedmetadata', function() {
+                updateStatus('Direct playback successful!', 'success');
+            });
+            
+            video.addEventListener('error', function(e) {
+                updateStatus('Direct playback failed: ' + (e.message || 'Unknown error'), 'error');
+            });
+        }
+
+        function testCORS() {
+            const url = urlInput.value.trim();
+            updateStatus('Testing CORS and URL accessibility...', '');
+            
+            fetch(url, { 
+                method: 'HEAD',
+                mode: 'cors'
+            }).then(response => {
+                if (response.ok) {
+                    updateStatus(`✅ URL accessible (${response.status}). CORS headers: ${response.headers.get('Access-Control-Allow-Origin') || 'None'}`, 'success');
+                } else {
+                    updateStatus(`❌ URL returned ${response.status}: ${response.statusText}`, 'error');
+                }
+            }).catch(error => {
+                updateStatus(`❌ CORS/Network error: ${error.message}. Consider using a CORS proxy.`, 'error');
+                
+                // Suggest proxy solutions
+                setTimeout(() => {
+                    updateStatus('💡 Try using a CORS proxy like: https://cors-anywhere.herokuapp.com/ or https://api.allorigins.win/raw?url=', '');
+                }, 3000);
+            });
+        }
+
+        // Auto-load the stream when page loads
+        window.addEventListener('load', function() {
+            loadStream();
         });
 
-        jwplayer().on('error', function (e) {
-            console.error("Playback error:", e.message);
-        });
+        // Handle video events
+        video.addEventListener('waiting', () => updateStatus('Buffering...', ''));
+        video.addEventListener('playing', () => updateStatus('Playing...', 'success'));
+        video.addEventListener('pause', () => updateStatus('Paused', ''));
+        video.addEventListener('ended', () => updateStatus('Stream ended', ''));
+        video.addEventListener('error', () => updateStatus('Video error occurred', 'error'));
 
-        // You can add your Telegram link here
-        document.getElementById('telegram-btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            // Replace with your actual Telegram link in the backend
-            // window.open('YOUR_TELEGRAM_LINK_HERE', '_blank');
-            alert('Please set your Telegram link in the backend');
+        // Handle URL input changes
+        urlInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                loadStream();
+            }
         });
     </script>
 </body>
-<script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
-
 </html>
