@@ -1,68 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Shaka Player HLS Stream</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.compiled.js"></script>
+  <title>Video.js HLS Player</title>
+  <link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet" />
+  <script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/videojs-contrib-hls@latest/dist/videojs-contrib-hls.js"></script>
   <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      background-color: black;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    video {
-      width: 80%;
-      max-width: 960px;
-      border: 2px solid #fff;
-      border-radius: 10px;
-    }
+    body { margin: 0; background: #000; display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .video-js { width: 80%; max-width: 960px; }
   </style>
 </head>
 <body>
-
-  <video id="video" controls autoplay></video>
-
+  <video id="hls-video" class="video-js vjs-default-skin" controls autoplay muted></video>
   <script>
-    async function initPlayer() {
-      const video = document.getElementById('video');
-      const manifestUri = 'http://glspr.packetcdn.me:9222/86e4228d28529f5fb6b5bf3f21d37c14577cba6a812c0155327b07e703adbdaa7755/index.m3u8?token=c9a66a70a87c1f3e4680e373eb80819ed0d447599c19b4e9ec1efee126c0414aa15b262ad2e013197e1da00ead6112657feb7d50f550c2de9e4af733bde33fa6e68a13b1690c2f-5d0db885e94328445d45e24ea93c6492';
-
-      // Install polyfills
-      shaka.polyfill.installAll();
-
-      // Check for browser support
-      if (!shaka.Player.isBrowserSupported()) {
-        alert('Shaka Player is not supported on this browser.');
-        return;
-      }
-
-      const player = new shaka.Player(video);
-
-      // Listen for errors.
-      player.addEventListener('error', onErrorEvent);
-
-      try {
-        await player.load(manifestUri);
-        console.log('The video has been loaded successfully.');
-      } catch (error) {
-        onError(error);
-      }
-    }
-
-    function onErrorEvent(event) {
-      onError(event.detail);
-    }
-
-    function onError(error) {
-      console.error('Error code', error.code, 'object', error);
-      alert("Playback failed. See console for details.");
-    }
-
-    document.addEventListener('DOMContentLoaded', initPlayer);
+    var player = videojs('hls-video');
+    player.src({
+      src: 'http://glspr.packetcdn.me:9222/86e4228d28529f5fb6b5bf3f21d37c14577cba6a812c0155327b07e703adbdaa7755/index.m3u8?token=c9a66a70a87c1f3e4680e373eb80819ed0d447599c19b4e9ec1efee126c0414aa15b262ad2e013197e1da00ead6112657feb7d50f550c2de9e4af733bde33fa6e68a13b1690c2f-5d0db885e94328445d45e24ea93c6492',
+      type: 'application/x-mpegURL'
+    });
+    player.play();
   </script>
-
 </body>
 </html>
