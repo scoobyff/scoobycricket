@@ -1,397 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>M3U8 Video Player</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .container {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 30px;
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            max-width: 900px;
-            width: 100%;
-        }
-
-        h1 {
-            color: white;
-            text-align: center;
-            margin-bottom: 30px;
-            font-size: 2.5em;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-        }
-
-        .player-container {
-            position: relative;
-            width: 100%;
-            max-width: 800px;
-            margin: 0 auto;
-            border-radius: 15px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-        }
-
-        #video {
-            width: 100%;
-            height: auto;
-            min-height: 400px;
-            display: block;
-            background: #000;
-        }
-
-        .controls {
-            background: rgba(0, 0, 0, 0.8);
-            padding: 15px;
-            display: flex;
-            gap: 15px;
-            align-items: center;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-top: 20px;
-            border-radius: 10px;
-        }
-
-        .btn {
-            background: linear-gradient(45deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 12px 24px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-        }
-
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .btn:active {
-            transform: translateY(0);
-        }
-
-        .status {
-            color: white;
-            font-size: 14px;
-            background: rgba(255, 255, 255, 0.1);
-            padding: 10px 20px;
-            border-radius: 20px;
-            margin-top: 15px;
-            text-align: center;
-        }
-
-        .error {
-            color: #ff6b6b;
-            background: rgba(255, 107, 107, 0.1);
-        }
-
-        .success {
-            color: #51cf66;
-            background: rgba(81, 207, 102, 0.1);
-        }
-
-        .url-input {
-            width: 100%;
-            padding: 15px;
-            border: 2px solid rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
-            font-size: 14px;
-            margin-bottom: 15px;
-            backdrop-filter: blur(10px);
-        }
-
-        .url-input::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        .url-input:focus {
-            outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 20px rgba(102, 126, 234, 0.3);
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 20px;
-            }
-            
-            h1 {
-                font-size: 2em;
-            }
-            
-            .controls {
-                flex-direction: column;
-                gap: 10px;
-            }
-            
-            .btn {
-                width: 100%;
-                max-width: 200px;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <title>HLS Video Player</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <style>
+    body {
+      background-color: #000;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    video {
+      width: 80%;
+      max-width: 960px;
+      border: 2px solid #fff;
+      border-radius: 8px;
+    }
+  </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🎥 M3U8 Video Player</h1>
-        
-        <div class="player-container">
-            <video id="video" controls>
-                Your browser does not support the video tag or HLS streaming.
-            </video>
-        </div>
+  <video id="video" controls autoplay></video>
 
-        <input type="text" id="urlInput" class="url-input" placeholder="Enter M3U8 URL here..." value="http://glspr.packetcdn.me:9222/86e4228d28529f5fb6b5bf3f21d37c14577cba6a812c0155327b07e703adbdaa7755/index.m3u8?token=5f0c40715ecc1ab58ce892306f7ec558f9f2092cc218d7a6415a01fff8ed242d5d6c7ed042a89ec7c57ee0e034cb35f7eb0c0577f6c5f2b5a35aba205f256edc796d2ad3feaf5b-e419d8011290f4bb07a64280e4e1632f">
+  <script>
+    const video = document.getElementById('video');
+    const videoSrc = 'http://glspr.packetcdn.me:9222/86e4228d28529f5fb6b5bf3f21d37c14577cba6a812c0155327b07e703adbdaa7755/index.m3u8?token=c9a66a70a87c1f3e4680e373eb80819ed0d447599c19b4e9ec1efee126c0414aa15b262ad2e013197e1da00ead6112657feb7d50f550c2de9e4af733bde33fa6e68a13b1690c2f-5d0db885e94328445d45e24ea93c6492';
 
-        <div class="controls">
-            <button class="btn" onclick="loadStream()">▶️ Load Stream</button>
-            <button class="btn" onclick="playPause()">⏯️ Play/Pause</button>
-            <button class="btn" onclick="toggleMute()">🔊 Mute/Unmute</button>
-            <button class="btn" onclick="toggleFullscreen()">⛶ Fullscreen</button>
-            <button class="btn" onclick="reload()">🔄 Reload</button>
-            <button class="btn" onclick="tryDirectPlay()">🎯 Direct Play</button>
-            <button class="btn" onclick="testCORS()">🔍 Test CORS</button>
-        </div>
-
-        <div id="status" class="status">Ready to load stream</div>
-    </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.4.10/hls.min.js"></script>
-    <script>
-        const video = document.getElementById('video');
-        const urlInput = document.getElementById('urlInput');
-        const status = document.getElementById('status');
-        let hls = null;
-
-        function updateStatus(message, type = '') {
-            status.textContent = message;
-            status.className = `status ${type}`;
-        }
-
-        function loadStream() {
-            const url = urlInput.value.trim();
-            
-            if (!url) {
-                updateStatus('Please enter a valid M3U8 URL', 'error');
-                return;
-            }
-
-            updateStatus('Loading stream...', '');
-
-            // Clean up existing HLS instance
-            if (hls) {
-                hls.destroy();
-                hls = null;
-            }
-
-            // First, try to test the URL accessibility
-            fetch(url, { 
-                method: 'HEAD',
-                mode: 'cors'
-            }).then(response => {
-                if (!response.ok) {
-                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
-                }
-                updateStatus('URL accessible, loading stream...', '');
-            }).catch(error => {
-                updateStatus(`CORS/Network issue detected: ${error.message}. Trying alternative methods...`, 'error');
-            });
-
-            if (Hls.isSupported()) {
-                hls = new Hls({
-                    debug: true,
-                    enableWorker: true,
-                    lowLatencyMode: false,
-                    backBufferLength: 90,
-                    maxBufferLength: 30,
-                    maxMaxBufferLength: 60,
-                    startLevel: -1,
-                    capLevelToPlayerSize: true,
-                    xhrSetup: function(xhr, url) {
-                        // Add headers to bypass some CORS restrictions
-                        xhr.setRequestHeader('Access-Control-Allow-Origin', '*');
-                        xhr.setRequestHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
-                        xhr.setRequestHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-                    }
-                });
-
-                hls.loadSource(url);
-                hls.attachMedia(video);
-
-                hls.on(Hls.Events.MANIFEST_PARSED, function(event, data) {
-                    updateStatus(`Stream loaded! ${data.levels.length} quality levels available`, 'success');
-                    console.log('Available levels:', data.levels);
-                });
-
-                hls.on(Hls.Events.ERROR, function(event, data) {
-                    console.error('HLS Error:', data);
-                    let errorMsg = 'Unknown error';
-                    
-                    if (data.details) {
-                        errorMsg = data.details;
-                    }
-                    
-                    if (data.fatal) {
-                        switch(data.type) {
-                            case Hls.ErrorTypes.NETWORK_ERROR:
-                                updateStatus(`Network error: ${errorMsg}. This might be a CORS issue. Try using a CORS proxy.`, 'error');
-                                // Try to recover
-                                setTimeout(() => {
-                                    if (hls) {
-                                        hls.startLoad();
-                                    }
-                                }, 3000);
-                                break;
-                            case Hls.ErrorTypes.MEDIA_ERROR:
-                                updateStatus(`Media error: ${errorMsg}. Trying to recover...`, 'error');
-                                hls.recoverMediaError();
-                                break;
-                            default:
-                                updateStatus(`Fatal error: ${errorMsg}. Please reload or try a different URL.`, 'error');
-                                break;
-                        }
-                    } else {
-                        updateStatus(`Non-fatal error: ${errorMsg}`, 'error');
-                    }
-                });
-
-                hls.on(Hls.Events.LEVEL_LOADED, function(event, data) {
-                    updateStatus(`Quality loaded: ${data.details.totalduration}s duration`, 'success');
-                });
-
-                hls.on(Hls.Events.FRAG_LOADED, function(event, data) {
-                    updateStatus('Stream segments loading...', 'success');
-                });
-
-            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                // For Safari and other browsers that support HLS natively
-                video.src = url;
-                video.addEventListener('loadedmetadata', function() {
-                    updateStatus('Stream loaded successfully! (Native HLS)', 'success');
-                });
-                video.addEventListener('error', function(e) {
-                    updateStatus(`Native HLS error: ${e.message || 'Unknown error'}`, 'error');
-                });
-            } else {
-                updateStatus('HLS is not supported in this browser. Please use Chrome, Firefox, or Safari.', 'error');
-            }
-        }
-
-        function playPause() {
-            if (video.paused) {
-                video.play().then(() => {
-                    updateStatus('Playing...', 'success');
-                }).catch(err => {
-                    updateStatus('Error playing video: ' + err.message, 'error');
-                });
-            } else {
-                video.pause();
-                updateStatus('Paused', '');
-            }
-        }
-
-        function toggleMute() {
-            video.muted = !video.muted;
-            updateStatus(video.muted ? 'Muted' : 'Unmuted', '');
-        }
-
-        function toggleFullscreen() {
-            if (document.fullscreenElement) {
-                document.exitFullscreen();
-            } else {
-                video.requestFullscreen().catch(err => {
-                    updateStatus('Error entering fullscreen: ' + err.message, 'error');
-                });
-            }
-        }
-
-        function reload() {
-            loadStream();
-        }
-
-        function tryDirectPlay() {
-            const url = urlInput.value.trim();
-            updateStatus('Trying direct playback...', '');
-            
-            // Try direct video src assignment
-            video.src = url;
-            video.load();
-            
-            video.addEventListener('loadedmetadata', function() {
-                updateStatus('Direct playback successful!', 'success');
-            });
-            
-            video.addEventListener('error', function(e) {
-                updateStatus('Direct playback failed: ' + (e.message || 'Unknown error'), 'error');
-            });
-        }
-
-        function testCORS() {
-            const url = urlInput.value.trim();
-            updateStatus('Testing CORS and URL accessibility...', '');
-            
-            fetch(url, { 
-                method: 'HEAD',
-                mode: 'cors'
-            }).then(response => {
-                if (response.ok) {
-                    updateStatus(`✅ URL accessible (${response.status}). CORS headers: ${response.headers.get('Access-Control-Allow-Origin') || 'None'}`, 'success');
-                } else {
-                    updateStatus(`❌ URL returned ${response.status}: ${response.statusText}`, 'error');
-                }
-            }).catch(error => {
-                updateStatus(`❌ CORS/Network error: ${error.message}. Consider using a CORS proxy.`, 'error');
-                
-                // Suggest proxy solutions
-                setTimeout(() => {
-                    updateStatus('💡 Try using a CORS proxy like: https://cors-anywhere.herokuapp.com/ or https://api.allorigins.win/raw?url=', '');
-                }, 3000);
-            });
-        }
-
-        // Auto-load the stream when page loads
-        window.addEventListener('load', function() {
-            loadStream();
-        });
-
-        // Handle video events
-        video.addEventListener('waiting', () => updateStatus('Buffering...', ''));
-        video.addEventListener('playing', () => updateStatus('Playing...', 'success'));
-        video.addEventListener('pause', () => updateStatus('Paused', ''));
-        video.addEventListener('ended', () => updateStatus('Stream ended', ''));
-        video.addEventListener('error', () => updateStatus('Video error occurred', 'error'));
-
-        // Handle URL input changes
-        urlInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                loadStream();
-            }
-        });
-    </script>
+    if (Hls.isSupported()) {
+      const hls = new Hls();
+      hls.loadSource(videoSrc);
+      hls.attachMedia(video);
+      hls.on(Hls.Events.MANIFEST_PARSED, function () {
+        video.play();
+      });
+    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
+      // Safari / iOS native support
+      video.src = videoSrc;
+      video.addEventListener('loadedmetadata', function () {
+        video.play();
+      });
+    } else {
+      alert("Your browser does not support HLS playback.");
+    }
+  </script>
 </body>
 </html>
