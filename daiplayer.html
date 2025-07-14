@@ -1,48 +1,68 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>HLS Video Player</title>
-  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <meta charset="UTF-8">
+  <title>Shaka Player HLS Stream</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/shaka-player/4.3.5/shaka-player.compiled.js"></script>
   <style>
-    body {
-      background-color: #000;
+    html, body {
+      height: 100%;
+      margin: 0;
+      background-color: black;
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 100vh;
     }
     video {
       width: 80%;
       max-width: 960px;
       border: 2px solid #fff;
-      border-radius: 8px;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
+
   <video id="video" controls autoplay></video>
 
   <script>
-    const video = document.getElementById('video');
-    const videoSrc = 'http://glspr.packetcdn.me:9222/86e4228d28529f5fb6b5bf3f21d37c14577cba6a812c0155327b07e703adbdaa7755/index.m3u8?token=c9a66a70a87c1f3e4680e373eb80819ed0d447599c19b4e9ec1efee126c0414aa15b262ad2e013197e1da00ead6112657feb7d50f550c2de9e4af733bde33fa6e68a13b1690c2f-5d0db885e94328445d45e24ea93c6492';
+    async function initPlayer() {
+      const video = document.getElementById('video');
+      const manifestUri = 'http://glspr.packetcdn.me:9222/86e4228d28529f5fb6b5bf3f21d37c14577cba6a812c0155327b07e703adbdaa7755/index.m3u8?token=c9a66a70a87c1f3e4680e373eb80819ed0d447599c19b4e9ec1efee126c0414aa15b262ad2e013197e1da00ead6112657feb7d50f550c2de9e4af733bde33fa6e68a13b1690c2f-5d0db885e94328445d45e24ea93c6492';
 
-    if (Hls.isSupported()) {
-      const hls = new Hls();
-      hls.loadSource(videoSrc);
-      hls.attachMedia(video);
-      hls.on(Hls.Events.MANIFEST_PARSED, function () {
-        video.play();
-      });
-    } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-      // Safari / iOS native support
-      video.src = videoSrc;
-      video.addEventListener('loadedmetadata', function () {
-        video.play();
-      });
-    } else {
-      alert("Your browser does not support HLS playback.");
+      // Install polyfills
+      shaka.polyfill.installAll();
+
+      // Check for browser support
+      if (!shaka.Player.isBrowserSupported()) {
+        alert('Shaka Player is not supported on this browser.');
+        return;
+      }
+
+      const player = new shaka.Player(video);
+
+      // Listen for errors.
+      player.addEventListener('error', onErrorEvent);
+
+      try {
+        await player.load(manifestUri);
+        console.log('The video has been loaded successfully.');
+      } catch (error) {
+        onError(error);
+      }
     }
+
+    function onErrorEvent(event) {
+      onError(event.detail);
+    }
+
+    function onError(error) {
+      console.error('Error code', error.code, 'object', error);
+      alert("Playback failed. See console for details.");
+    }
+
+    document.addEventListener('DOMContentLoaded', initPlayer);
   </script>
+
 </body>
 </html>
