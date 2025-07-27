@@ -566,8 +566,7 @@
 
             telegramBtn.addEventListener('click', function(e) {
                 e.preventDefault();
-                // You can add telegramUrl to your JSON format if needed
-                // For now, using a default action
+                // Default action since telegramUrl is not in your JSON format
                 alert('Please Join Our Telegram Channels for more streams!');
             });
         }
@@ -598,4 +597,17 @@
         setInterval(async function() {
             const config = await loadStreamConfig();
             if (config) {
-                // Upd
+                // Update only the status and time without reloading the player
+                const statusBadge = document.getElementById('status-badge');
+                const currentStatus = statusBadge.textContent;
+                const newStatus = config.status || 'UNKNOWN';
+                
+                if (currentStatus !== newStatus) {
+                    updateMatchInfo(config);
+                }
+            }
+        }, 30000); // Check for updates every 30 seconds
+    </script>
+</body>
+
+</html>
