@@ -41,6 +41,7 @@
             border: 2px solid #00c2ff;
             box-shadow: 0 0 20px #00c2ff, 0 0 40px rgba(0, 194, 255, 0.5);
             box-sizing: border-box;
+            animation: neonPulse 3s infinite ease-in-out;
         }
 
         .content-wrapper {
@@ -58,18 +59,18 @@
         .banner-section {
             width: 100%;
             max-width: 1200px;
-            margin: 0 0 30px 0;
+            margin: 0;
             overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 0 20px rgba(0, 194, 255, 0.3);
+            border-radius: 0;
+            box-shadow: none;
         }
 
         .banner-image {
             width: 100%;
             height: auto;
             display: block;
-            border-radius: 15px;
-            border: 2px solid rgba(0, 194, 255, 0.3);
+            border-radius: 0;
+            border: none;
         }
 
         /* Enhanced Header Section */
@@ -80,7 +81,7 @@
             backdrop-filter: blur(10px);
             border: 2px solid #00c2ff;
             border-radius: 15px;
-            margin: 0 20px 30px 20px;
+            margin: 20px 20px 30px 20px;
             padding: 25px;
             box-shadow: 0 0 30px rgba(0, 194, 255, 0.4);
         }
@@ -304,10 +305,6 @@
             }
         }
 
-        #player-container {
-            animation: neonPulse 3s infinite ease-in-out;
-        }
-
         @media (max-width: 768px) {
             .header-content {
                 flex-direction: column;
@@ -448,7 +445,7 @@
         jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
 
         // GitHub raw JSON URL - Update this with your GitHub JSON file URL
-        const configUrl = 'https://raw.githubusercontent.com/scoobyff/jsondrm/main/wcl1.json';
+        const configUrl = 'https://raw.githubusercontent.com/scoobyff/jsondrm/main/wcl2.json';
 
         // Function to load stream configuration from GitHub JSON
         async function loadStreamConfig() {
