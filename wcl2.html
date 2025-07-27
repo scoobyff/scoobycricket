@@ -12,7 +12,7 @@
             padding: 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             min-height: 100vh;
             background-color: #000;
@@ -20,6 +20,7 @@
             overflow-x: hidden;
             color: #fff;
             position: relative;
+            padding-top: 200px;
         }
 
         body::before {
@@ -31,6 +32,28 @@
             bottom: 0;
             background: linear-gradient(45deg, #000000, #0a0a0a);
             z-index: -1;
+        }
+
+        /* Banner Image Section - Above Video */
+        .banner-section {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 3;
+            overflow: hidden;
+            border-radius: 0;
+            box-shadow: none;
+            height: 200px;
+        }
+
+        .banner-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            display: block;
+            border-radius: 0;
+            border: none;
         }
 
         #player-container {
@@ -45,32 +68,13 @@
         }
 
         .content-wrapper {
-            position: absolute;
-            top: 100vh;
+            position: relative;
             width: 100%;
             z-index: 2;
             display: flex;
             flex-direction: column;
             align-items: center;
             background: rgba(0, 0, 0, 0.9);
-        }
-
-        /* Banner Image Section */
-        .banner-section {
-            width: 100%;
-            max-width: 1200px;
-            margin: 0;
-            overflow: hidden;
-            border-radius: 0;
-            box-shadow: none;
-        }
-
-        .banner-image {
-            width: 100%;
-            height: auto;
-            display: block;
-            border-radius: 0;
-            border: none;
         }
 
         /* Enhanced Header Section */
@@ -306,6 +310,18 @@
         }
 
         @media (max-width: 768px) {
+            body {
+                padding-top: 150px;
+            }
+
+            .banner-section {
+                height: 150px;
+            }
+
+            .banner-image {
+                height: 150px;
+            }
+
             .header-content {
                 flex-direction: column;
                 align-items: flex-start;
@@ -382,6 +398,12 @@
 </head>
 
 <body>
+    <!-- Banner Image Section (Top) -->
+    <div class="banner-section" id="banner-section" style="display: none;">
+        <img class="banner-image" id="banner-image" src="" alt="Event Banner">
+    </div>
+
+    <!-- Video Player (Middle) -->
     <div id="player-container">
         <div class="loading" id="loading-indicator">
             <div class="loading-spinner"></div>
@@ -389,12 +411,8 @@
         </div>
     </div>
 
+    <!-- Match Data (Bottom) -->
     <div class="content-wrapper">
-        <!-- Banner Image Section -->
-        <div class="banner-section" id="banner-section" style="display: none;">
-            <img class="banner-image" id="banner-image" src="" alt="Event Banner">
-        </div>
-
         <!-- Enhanced Header -->
         <div class="match-header" id="match-header" style="display: none;">
             <div class="header-content">
@@ -519,7 +537,7 @@
             // Update match time
             document.getElementById('match-time').textContent = config.startTime || 'Time TBD';
             
-            // Update match details section (removed match_id)
+            // Update match details section (no match_id)
             document.getElementById('event-name').textContent = config.event_name || 'N/A';
             document.getElementById('match-name').textContent = config.match_name || 'N/A';
             document.getElementById('start-time').textContent = config.startTime || 'N/A';
