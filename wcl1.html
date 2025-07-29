@@ -456,7 +456,7 @@
         jwplayer.key = 'XSuP4qMl+9tK17QNb+4+th2Pm9AWgMO/cYH8CI0HGGr7bdjo';
 
         // GitHub raw JSON URL - Update this with your GitHub JSON file URL
-        const configUrl = 'https://raw.githubusercontent.com/scoobyff/jsondrm/main/wcl2.json';
+        const configUrl = 'https://raw.githubusercontent.com/scoobyff/jsondrm/main/wcl1.json';
 
         // Function to load stream configuration from GitHub JSON
         async function loadStreamConfig() {
@@ -613,5 +613,72 @@
             jwplayer().on('error', function (e) {
                 console.error("Playback error:", e.message);
 
-                // Show error message in player container
-                const playerContainer = document.getElementById('playe
+                      // Show error message in player container
+                const playerContainer = document.getElementById('player-container');
+                playerContainer.innerHTML = `
+                    <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #ff4444;">
+                        <div style="font-size: 24px; margin-bottom: 15px;"><i class="fas fa-exclamation-triangle"></i></div>
+                        <div style="font-size: 18px; margin-bottom: 15px;">Stream playback error</div>
+                        <div style="font-size: 14px; margin-bottom: 20px;">${e.message}</div>
+                        <button style="padding: 10px 20px; background: #00c2ff; border: none; border-radius: 5px; color: white; cursor: pointer; font-weight: bold;" 
+                                onclick="window.location.reload()">
+                            <i class="fas fa-redo"></i> Retry
+                        </button>
+                    </div>
+                `;
+            });
+
+            // Set up Telegram button
+            setupTelegramButton(streamConfig);
+        }
+
+        // Function to set up the Telegram button
+        function setupTelegramButton(streamConfig) {
+            const telegramBtn = document.getElementById('telegram-btn');
+
+            telegramBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Please Join Our Telegram Channels for more streams!');
+            });
+        }
+
+        // Start player setup
+        setupPlayer();
+
+        // Ensure controls are visible when user interacts
+        document.addEventListener('click', function() {
+            const jwControls = document.querySelector('.jw-controls');
+            if (jwControls) {
+                jwControls.style.opacity = '1';
+                jwControls.style.visibility = 'visible';
+                jwControls.style.pointerEvents = 'auto';
+            }
+        });
+
+        // Handle fullscreen changes
+        document.addEventListener('fullscreenchange', function() {
+            if (document.fullscreenElement) {
+                console.log('Entered fullscreen');
+            } else {
+                console.log('Exited fullscreen');
+            }
+        });
+
+        // Auto-refresh functionality for live status updates
+        setInterval(async function() {
+            const config = await loadStreamConfig();
+            if (config) {
+                // Update only the status and time without reloading the player
+                const statusBadge = document.getElementById('status-badge');
+                const currentStatus = statusBadge.textContent;
+                const newStatus = config.status || 'UNKNOWN';
+
+                if (currentStatus !== newStatus) {
+                    updateMatchInfo(config);
+                }
+            }
+        }, 30000); // Check for updates every 30 seconds
+    </script>
+</body>
+
+</html>
