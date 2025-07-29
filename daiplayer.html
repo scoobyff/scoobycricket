@@ -137,18 +137,18 @@
         }
         
         .channel-logo {
-            width: 160px;
-            height: 160px;
+            width: 140px;
+            height: 140px;
             border-radius: 15px;
-            object-fit: cover;
-            border: 3px solid rgba(255, 255, 255, 0.2);
+            object-fit: contain;
+            border: none;
             transition: all 0.3s;
             flex-shrink: 0;
             background: rgba(40, 40, 40, 0.8);
+            padding: 10px;
         }
         
         .channel-btn:hover .channel-logo {
-            border-color: var(--neon-primary);
             box-shadow: 0 0 20px rgba(0, 255, 102, 0.6);
             transform: scale(1.02);
         }
@@ -243,8 +243,9 @@
             }
             
             .channel-logo {
-                width: 100px;
-                height: 100px;
+                width: 140px;
+                height: 140px;
+                padding: 8px;
             }
             
             .channel-name {
@@ -264,8 +265,9 @@
             }
             
             .channel-logo {
-                width: 140px;
-                height: 140px;
+                width: 120px;
+                height: 120px;
+                padding: 6px;
             }
             
             .channel-name {
@@ -346,7 +348,7 @@
                     
                     channelBtn.innerHTML = `
                         <img src="${channel.logo}" alt="${channel.name}" class="channel-logo" 
-                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIwIiBoZWlnaHQ9IjEyMCIgdmlld0JveD0iMCAwIDEyMCAxMjAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjEyMCIgaGVpZ2h0PSIxMjAiIGZpbGw9IiM0NDQ0NDQiLz48dGV4dCB4PSI2MCIgeT0iNTUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxMiIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Tk8gSU1BR0U8L3RleHQ+PHRleHQgeD0iNjAiIHk9IjcwIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkFWQUlMQUJMRTwvdGV4dD48L3N2Zz4='">
+                             onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjE0MCIgaGVpZ2h0PSIxNDAiIGZpbGw9IiM0NDQ0NDQiLz48dGV4dCB4PSI3MCIgeT0iNjUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iI2NjYyIgdGV4dC1hbmNob3I9Im1pZGRsZSI+Tk8gSU1BR0U8L3RleHQ+PHRleHQgeD0iNzAiIHk9IjgyIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiPkFWQUlMQUJMRTwvdGV4dD48L3N2Zz4='">
                         <div class="channel-info">
                             <div class="channel-name">${channel.name}</div>
                         </div>
