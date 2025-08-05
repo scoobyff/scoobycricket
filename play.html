@@ -185,7 +185,7 @@
     </div>
 
     <!-- Telegram Button -->
-    <a href="https://t.me/+lkbpBqFd0FljNzJl" class="telegram-button" target="_blank">
+    <a href="https://t.me/+" class="telegram-button" target="_blank">
         Join Telegram
     </a>
 
@@ -227,13 +227,30 @@
                     };
                 });
                 
+                // Check for URL parameter
+                const urlParams = new URLSearchParams(window.location.search);
+                const streamId = urlParams.get("id");
+                
+                if (streamId) {
+                    // Find stream by ID
+                    const stream = streams.find(s => s.id === streamId);
+                    if (stream) {
+                        loadStream(stream);
+                        // Hide selector if direct ID is used
+                        streamSelector.style.display = 'none';
+                        return;
+                    } else {
+                        console.warn(`Stream with ID "${streamId}" not found`);
+                    }
+                }
+                
                 populateStreamSelector();
             } catch (error) {
                 console.error('Error loading streams:', error);
-                // Try URL parameter as fallback
+                // Try URL parameter as direct URL fallback
                 const urlParams = new URLSearchParams(window.location.search);
                 const streamUrl = urlParams.get("id");
-                if (streamUrl) {
+                if (streamUrl && (streamUrl.startsWith('http') || streamUrl.endsWith('.m3u8'))) {
                     loadStream({ id: "url-param", name: "Direct Stream", link: streamUrl });
                 } else {
                     showError();
