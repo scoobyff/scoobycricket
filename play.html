@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="description" content="Scooby Streams ">
-    <meta name="keywords" content="Sports">
+    <meta name="description" content="Scooby Streams">
+    <meta name="keywords" content="Live Scooby">
     <meta name="author" content="unknown">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Scooby Streams</title>
+    <title>Scooby Bruh Is Genius</title>
 
     <link href="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/plyr@3.6.12/dist/plyr.min.js"></script>
@@ -84,23 +84,7 @@
             height: 100%;
         }
 
-        .stream-selector {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            z-index: 100;
-            background: rgba(0, 0, 0, 0.8);
-            padding: 10px;
-            border-radius: 5px;
-        }
 
-        .stream-selector select {
-            padding: 5px 10px;
-            background: #333;
-            color: #fff;
-            border: 1px solid #555;
-            border-radius: 3px;
-        }
 
         .error-message {
             position: absolute;
@@ -123,12 +107,7 @@
         </div>
     </div>
 
-    <!-- Stream Selector -->
-    <div class="stream-selector" id="stream-selector" style="display: none;">
-        <select id="stream-select">
-            <option value="">Select a stream...</option>
-        </select>
-    </div>
+
 
     <!-- Media Container -->
     <div id="media-container">
@@ -157,8 +136,6 @@
         const sourceEl = document.getElementById("m3u8-url");
         const iframeEl = document.getElementById("iframe-player");
         const iframeWrapper = document.getElementById("iframe-wrapper");
-        const streamSelect = document.getElementById("stream-select");
-        const streamSelector = document.getElementById("stream-selector");
         const errorMessage = document.getElementById("error-message");
 
         // Hide loading screen
@@ -195,15 +172,16 @@
                     const stream = streams.find(s => s.id === streamId);
                     if (stream) {
                         loadStream(stream);
-                        // Hide selector if direct ID is used
-                        streamSelector.style.display = 'none';
                         return;
                     } else {
                         console.warn(`Stream with ID "${streamId}" not found`);
+                        showError();
+                        return;
                     }
                 }
                 
-                populateStreamSelector();
+                // If no ID parameter, show error
+                showError();
             } catch (error) {
                 console.error('Error loading streams:', error);
                 // Try URL parameter as direct URL fallback
