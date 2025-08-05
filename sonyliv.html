@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Stream Player</title>
+    <title>Live Stream Player - DPlayer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dplayer/1.27.1/DPlayer.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/hls.js/1.4.10/hls.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dplayer/1.27.1/DPlayer.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -29,7 +31,7 @@
             padding: 30px;
             box-shadow: 0 25px 50px rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            max-width: 1000px;
+            max-width: 1200px;
             width: 100%;
         }
 
@@ -75,50 +77,18 @@
 
         .video-wrapper {
             position: relative;
-            background: #000;
             border-radius: 15px;
             overflow: hidden;
             box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            background: #000;
         }
 
-        video {
-            width: 100%;
-            height: auto;
-            display: block;
-            min-height: 300px;
+        #dplayer {
+            border-radius: 15px;
+            overflow: hidden;
         }
 
-        .loading-overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.8);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.2rem;
-            z-index: 10;
-        }
-
-        .loading-spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-top: 4px solid white;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin-right: 15px;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .controls {
+        .controls-info {
             margin-top: 20px;
             display: flex;
             gap: 15px;
@@ -126,49 +96,56 @@
             flex-wrap: wrap;
         }
 
-        .control-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        .info-card {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.2);
             color: white;
-            padding: 12px 24px;
-            border-radius: 25px;
-            cursor: pointer;
+            padding: 12px 20px;
+            border-radius: 15px;
             font-size: 0.9rem;
-            font-weight: 600;
-            transition: all 0.3s ease;
+            font-weight: 500;
             backdrop-filter: blur(10px);
-        }
-
-        .control-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .control-btn:active {
-            transform: translateY(0);
-        }
-
-        .quality-selector {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 10px 15px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 0.9rem;
-            backdrop-filter: blur(10px);
-        }
-
-        .quality-selector option {
-            background: #333;
-            color: white;
+            text-align: center;
         }
 
         .status {
             margin-top: 20px;
             text-align: center;
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        .features {
+            margin-top: 25px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+
+        .feature-card {
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-icon {
+            font-size: 1.5rem;
+            margin-bottom: 8px;
+        }
+
+        .feature-title {
+            color: white;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .feature-desc {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.8rem;
         }
 
         .error-message {
@@ -178,6 +155,8 @@
             border-radius: 10px;
             margin-top: 15px;
             border: 1px solid rgba(255, 71, 87, 0.3);
+            text-align: center;
+            display: none;
         }
 
         @media (max-width: 768px) {
@@ -189,188 +168,217 @@
                 font-size: 2rem;
             }
             
-            .controls {
+            .controls-info {
                 gap: 10px;
             }
             
-            .control-btn {
-                padding: 10px 18px;
+            .info-card {
+                padding: 10px 15px;
                 font-size: 0.8rem;
             }
+        }
+
+        /* Custom DPlayer styling */
+        .dplayer-video-wrap {
+            border-radius: 15px;
+        }
+
+        .dplayer-mask {
+            border-radius: 15px;
         }
     </style>
 </head>
 <body>
     <div class="player-container">
         <div class="player-header">
-            <h1 class="player-title">Live Stream</h1>
+            <h1 class="player-title">Live Stream Player</h1>
             <div class="live-indicator">
                 <div class="live-dot"></div>
-                LIVE
+                LIVE STREAM
             </div>
         </div>
 
         <div class="video-wrapper">
-            <video id="video" controls autoplay muted playsinline>
-                Your browser does not support the video tag.
-            </video>
-            <div class="loading-overlay" id="loading">
-                <div class="loading-spinner"></div>
-                Loading stream...
+            <div id="dplayer"></div>
+        </div>
+
+        <div class="controls-info">
+            <div class="info-card">
+                <strong>Quality:</strong> Auto-Adaptive
+            </div>
+            <div class="info-card">
+                <strong>Format:</strong> HLS Stream
+            </div>
+            <div class="info-card">
+                <strong>Status:</strong> <span id="streamStatus">Initializing...</span>
             </div>
         </div>
 
-        <div class="controls">
-            <button class="control-btn" onclick="togglePlay()">Play/Pause</button>
-            <button class="control-btn" onclick="toggleMute()">Mute/Unmute</button>
-            <button class="control-btn" onclick="toggleFullscreen()">Fullscreen</button>
-            <select class="quality-selector" id="qualitySelector" onchange="changeQuality()">
-                <option value="auto">Auto Quality</option>
-            </select>
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">📺</div>
+                <div class="feature-title">HD Quality</div>
+                <div class="feature-desc">Adaptive bitrate streaming</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🔄</div>
+                <div class="feature-title">Auto Recovery</div>
+                <div class="feature-desc">Automatic error handling</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <div class="feature-title">Mobile Ready</div>
+                <div class="feature-desc">Works on all devices</div>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <div class="feature-title">Low Latency</div>
+                <div class="feature-desc">Optimized for live streaming</div>
+            </div>
         </div>
 
-        <div class="status" id="status">Initializing player...</div>
-        <div class="error-message" id="error" style="display: none;"></div>
+        <div class="status" id="status">
+            Setting up your live stream player...
+        </div>
+
+        <div class="error-message" id="error"></div>
     </div>
 
     <script>
-        const video = document.getElementById('video');
-        const loading = document.getElementById('loading');
-        const status = document.getElementById('status');
-        const errorDiv = document.getElementById('error');
-        const qualitySelector = document.getElementById('qualitySelector');
-        
         const streamUrl = 'https://sonymtmnew.akamaized.net/hls/live/2022316/DAI12ME-V3/master_lrl.m3u8?hdnea=exp=1754408959~acl=/*~id=66094566219905210807626746862461~hmac=33b030ef1e1dde53208ab42a9ebb2610156036f31f5801783e7924e92589c61b';
         
-        let hls;
+        let dp;
+        const statusElement = document.getElementById('status');
+        const streamStatusElement = document.getElementById('streamStatus');
+        const errorElement = document.getElementById('error');
 
-        function initPlayer() {
-            if (Hls.isSupported()) {
-                hls = new Hls({
-                    enableWorker: true,
-                    lowLatencyMode: true,
-                    backBufferLength: 90,
-                    xhrSetup: function(xhr, url) {
-                        // Enable credentials for cookie-based authentication
-                        xhr.withCredentials = true;
-                        // Set additional headers if needed
-                        xhr.setRequestHeader('Cache-Control', 'no-cache');
-                    }
-                });
-                
-                hls.loadSource(streamUrl);
-                hls.attachMedia(video);
-                
-                hls.on(Hls.Events.MANIFEST_PARSED, function(event, data) {
-                    loading.style.display = 'none';
-                    status.textContent = 'Stream ready - Click play to start';
-                    
-                    // Populate quality selector
-                    qualitySelector.innerHTML = '<option value="-1">Auto Quality</option>';
-                    hls.levels.forEach((level, index) => {
-                        const option = document.createElement('option');
-                        option.value = index;
-                        option.textContent = `${level.height}p (${Math.round(level.bitrate/1000)}kbps)`;
-                        qualitySelector.appendChild(option);
-                    });
-                });
-                
-                hls.on(Hls.Events.ERROR, function(event, data) {
-                    console.error('HLS Error:', data);
-                    loading.style.display = 'none';
-                    
-                    if (data.fatal) {
-                        switch(data.type) {
-                            case Hls.ErrorTypes.NETWORK_ERROR:
-                                showError('Network error - Please check your connection');
-                                break;
-                            case Hls.ErrorTypes.MEDIA_ERROR:
-                                showError('Media error - Trying to recover...');
-                                hls.recoverMediaError();
-                                break;
-                            default:
-                                showError('Fatal error - Unable to load stream');
-                                break;
+        function updateStatus(message, isError = false) {
+            statusElement.textContent = message;
+            if (isError) {
+                errorElement.textContent = message;
+                errorElement.style.display = 'block';
+                streamStatusElement.textContent = 'Error';
+            } else {
+                errorElement.style.display = 'none';
+            }
+        }
+
+        function initDPlayer() {
+            try {
+                dp = new DPlayer({
+                    container: document.getElementById('dplayer'),
+                    live: true,
+                    autoplay: false,
+                    theme: '#667eea',
+                    loop: false,
+                    lang: 'en',
+                    screenshot: true,
+                    hotkey: true,
+                    preload: 'auto',
+                    volume: 0.7,
+                    mutex: true,
+                    video: {
+                        url: streamUrl,
+                        type: 'hls',
+                        customType: {
+                            hls: function (video, player) {
+                                const hls = new Hls({
+                                    enableWorker: true,
+                                    lowLatencyMode: true,
+                                    backBufferLength: 90,
+                                    maxBufferLength: 30,
+                                    maxMaxBufferLength: 600,
+                                    xhrSetup: function(xhr, url) {
+                                        xhr.withCredentials = true;
+                                        xhr.setRequestHeader('Cache-Control', 'no-cache');
+                                    }
+                                });
+                                hls.loadSource(video.src);
+                                hls.attachMedia(video);
+                                
+                                hls.on(Hls.Events.MANIFEST_PARSED, function() {
+                                    updateStatus('✅ Stream loaded successfully! Click play to start watching.');
+                                    streamStatusElement.textContent = 'Ready';
+                                });
+
+                                hls.on(Hls.Events.ERROR, function(event, data) {
+                                    console.error('HLS Error:', data);
+                                    if (data.fatal) {
+                                        switch(data.type) {
+                                            case Hls.ErrorTypes.NETWORK_ERROR:
+                                                updateStatus('❌ Network error - Please check your connection and try refreshing', true);
+                                                break;
+                                            case Hls.ErrorTypes.MEDIA_ERROR:
+                                                updateStatus('⚠️ Media error detected - Attempting recovery...', false);
+                                                hls.recoverMediaError();
+                                                break;
+                                            default:
+                                                updateStatus('❌ Fatal streaming error - Please refresh the page', true);
+                                                break;
+                                        }
+                                    }
+                                });
+
+                                // Quality level events
+                                hls.on(Hls.Events.LEVEL_SWITCHED, function(event, data) {
+                                    updateStatus(`📺 Quality switched to ${hls.levels[data.level].height}p`);
+                                });
+                            }
                         }
                     }
                 });
-            } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
-                // Safari native HLS support with credentials
-                video.crossOrigin = 'use-credentials';
-                video.src = streamUrl;
-                loading.style.display = 'none';
-                status.textContent = 'Stream ready - Click play to start';
-            } else {
-                showError('HLS is not supported in this browser');
+
+                // DPlayer event listeners
+                dp.on('loadstart', function () {
+                    updateStatus('🔄 Loading stream...');
+                    streamStatusElement.textContent = 'Loading';
+                });
+
+                dp.on('canplay', function () {
+                    updateStatus('✅ Stream ready to play');
+                    streamStatusElement.textContent = 'Ready';
+                });
+
+                dp.on('play', function () {
+                    updateStatus('▶️ Playing live stream');
+                    streamStatusElement.textContent = 'Playing';
+                });
+
+                dp.on('pause', function () {
+                    updateStatus('⏸️ Stream paused');
+                    streamStatusElement.textContent = 'Paused';
+                });
+
+                dp.on('waiting', function () {
+                    updateStatus('⏳ Buffering...');
+                    streamStatusElement.textContent = 'Buffering';
+                });
+
+                dp.on('error', function () {
+                    updateStatus('❌ Playback error occurred', true);
+                });
+
+            } catch (error) {
+                console.error('DPlayer initialization error:', error);
+                updateStatus('❌ Failed to initialize player', true);
             }
         }
 
-        function showError(message) {
-            errorDiv.textContent = message;
-            errorDiv.style.display = 'block';
-            status.textContent = 'Error occurred';
-        }
-
-        function togglePlay() {
-            if (video.paused) {
-                video.play();
-                status.textContent = 'Playing live stream';
-            } else {
-                video.pause();
-                status.textContent = 'Stream paused';
-            }
-        }
-
-        function toggleMute() {
-            video.muted = !video.muted;
-            status.textContent = video.muted ? 'Stream muted' : 'Stream unmuted';
-        }
-
-        function toggleFullscreen() {
-            if (!document.fullscreenElement) {
-                video.requestFullscreen();
-            } else {
-                document.exitFullscreen();
-            }
-        }
-
-        function changeQuality() {
-            if (hls) {
-                const quality = parseInt(qualitySelector.value);
-                hls.currentLevel = quality;
-                status.textContent = quality === -1 ? 'Auto quality selected' : `Quality changed to ${hls.levels[quality].height}p`;
-            }
-        }
-
-        // Event listeners
-        video.addEventListener('loadstart', () => {
-            status.textContent = 'Loading stream...';
+        // Initialize player when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            updateStatus('🚀 Initializing DPlayer...');
+            setTimeout(initDPlayer, 1000);
         });
 
-        video.addEventListener('canplay', () => {
-            status.textContent = 'Stream ready to play';
-        });
-
-        video.addEventListener('playing', () => {
-            status.textContent = 'Playing live stream';
-        });
-
-        video.addEventListener('waiting', () => {
-            status.textContent = 'Buffering...';
-        });
-
-        video.addEventListener('error', (e) => {
-            showError('Video playback error');
-        });
-
-        // Add CORS and credential support for video element
-        video.crossOrigin = 'use-credentials';
-        document.addEventListener('DOMContentLoaded', initPlayer);
-        
         // Handle page visibility changes
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                video.pause();
+        document.addEventListener('visibilitychange', function() {
+            if (dp) {
+                if (document.hidden) {
+                    dp.pause();
+                } else {
+                    // Optionally auto-resume when page becomes visible
+                    // dp.play();
+                }
             }
         });
     </script>
