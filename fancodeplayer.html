@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <script src="https://cdn.jsdelivr.net/npm/clappr@latest/dist/clappr.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Live Stream Player</title>
+    <title>Live Sports Events</title>
     <style>
         * {
             margin: 0;
@@ -13,148 +11,316 @@
             box-sizing: border-box;
         }
 
-        html, body {
-            height: 100%;
-            background-color: #000;
+        body {
+            background: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            color: white;
             font-family: 'Arial', sans-serif;
-            overflow-x: hidden;
-            color: #fff;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            background: linear-gradient(45deg, #ff6b6b, #4ecdc4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .loading {
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 50px 0;
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .event-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+            border-radius: 20px;
+            padding: 0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            overflow: hidden;
             position: relative;
         }
 
-        body::before {
+        .event-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .event-header {
+            position: relative;
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .event-header::before {
             content: '';
-            position: fixed;
+            position: absolute;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(45deg, #000000, #0a0a0a);
-            z-index: -1;
+            background: linear-gradient(180deg, rgba(0,0,0,0.3) 0%, rgba(0,0,0,0.7) 100%);
         }
 
-        #player-container {
-            width: 100%;
-            max-width: 960px;
-            aspect-ratio: 16/9;
-            position: relative;
-            z-index: 1;
-            border: 2px solid #00c2ff;
-            box-shadow: 0 0 20px #00c2ff, 0 0 40px rgba(0, 194, 255, 0.5);
-            animation: neonPulse 3s infinite ease-in-out;
-            background-color: black;
-            margin: 0 auto;
-            margin-top: 0;
-        }
-
-        #player {
-            width: 100%;
-            height: 100%;
-        }
-
-        .content-wrapper {
-            width: 100%;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .telegram-btn {
-            display: inline-block;
-            background: linear-gradient(90deg, #0088cc, #00c2ff);
+        .event-category {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: rgba(0, 0, 0, 0.8);
             color: white;
-            padding: 12px 28px;
-            margin: 20px 0;
-            border-radius: 50px;
-            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            z-index: 2;
+        }
+
+        .event-status {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 1px;
-            border: none;
-            cursor: pointer;
-            box-shadow: 0 0 15px rgba(0, 136, 204, 0.7);
-            transition: all 0.3s ease;
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            z-index: 100;
+            z-index: 2;
         }
 
-        .telegram-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 0 25px rgba(0, 255, 255, 0.9);
+        .status-live {
+            background: #4CAF50;
+            color: white;
+            animation: pulse 2s infinite;
         }
 
-        @keyframes neonPulse {
-            0% {
-                box-shadow: 0 0 10px #00c2ff, 0 0 20px rgba(0, 194, 255, 0.5);
-            }
-            50% {
-                box-shadow: 0 0 15px #00c2ff, 0 0 30px rgba(0, 194, 255, 0.7);
-            }
-            100% {
-                box-shadow: 0 0 10px #00c2ff, 0 0 20px rgba(0, 194, 255, 0.5);
-            }
+        .status-upcoming {
+            background: #FF9800;
+            color: white;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.7; }
+            100% { opacity: 1; }
+        }
+
+        .event-content {
+            padding: 20px;
+        }
+
+        .event-title {
+            font-size: 1.3rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+            line-height: 1.4;
+        }
+
+        .event-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .event-name {
+            color: #4ecdc4;
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .start-time {
+            color: #ff6b6b;
+            font-size: 0.9rem;
+            font-weight: 600;
+        }
+
+        .teams {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+
+        .team {
+            flex: 1;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .vs {
+            margin: 0 15px;
+            font-size: 1.2rem;
+            color: #4ecdc4;
+            font-weight: bold;
+        }
+
+        .no-events {
+            text-align: center;
+            font-size: 1.2rem;
+            color: #ccc;
+            margin: 50px 0;
+        }
+
+        .error {
+            text-align: center;
+            color: #ff6b6b;
+            font-size: 1.1rem;
+            margin: 50px 0;
         }
 
         @media (max-width: 768px) {
-            #player-container {
-                width: 95%;
+            .events-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
-            .telegram-btn {
-                padding: 10px 20px;
-                font-size: 14px;
+            
+            .header h1 {
+                font-size: 2rem;
             }
-        }
-
-        /* Custom scrollbar styles */
-        body::-webkit-scrollbar {
-            width: 8px;
-            background-color: rgba(0, 0, 0, 0.7);
-        }
-
-        body::-webkit-scrollbar-thumb {
-            border-radius: 10px;
-            background-color: rgba(0, 194, 255, 0.5);
-        }
-
-        body::-webkit-scrollbar-thumb:hover {
-            background-color: rgba(0, 194, 255, 0.7);
+            
+            .event-card {
+                margin: 0 10px;
+            }
         }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-
 <body>
-
-    <div id="player-container">
-        <div id="player"></div>
+    <div class="container">
+        <div class="header">
+            <h1>🏆 Live Sports Events</h1>
+            <p>Click on any event to watch live</p>
+        </div>
+        
+        <div id="loading" class="loading">
+            Loading events...
+        </div>
+        
+        <div id="events-container" class="events-grid" style="display: none;">
+        </div>
+        
+        <div id="error" class="error" style="display: none;">
+        </div>
+        
+        <div id="no-events" class="no-events" style="display: none;">
+            No events available at the moment.
+        </div>
     </div>
 
-    <div class="content-wrapper"></div>
-
-    <a href="#" class="telegram-btn" id="telegram-btn">
-        <i class="fab fa-telegram"></i> Join Telegram
-    </a>
-
     <script>
-        var player = new Clappr.Player({
-            source: 'https://dai-partner.fancode.com:443/linear/hls/pb/event/Ei8BfVkgS_-6Iock4AfRkw/stream/70526c22-a4c7-4d70-9bc3-8eb65bfda38f:TPE/variant/0f7873ae2750a4f8e097f2840315447b/bandwidth/3289416.m3u8',
-            parentId: '#player',
-            width: '100%',
-            height: '100%',
-            autoPlay: true,
-            mute: false,
-            poster: '',
-            mediacontrol: { seekbar: "#00c2ff", buttons: "#00c2ff" },
-        });
+        const JSON_URL = 'https://raw.githubusercontent.com/drmlive/fancode-live-events/main/fancode.json';
+        const NEW_DOMAIN = 'https://abcd-foxcon-72bi.vercel.app/';
+        const REDIRECT_BASE = 'https://scoobyff.github.io/test/redirect?url=';
 
-        document.getElementById('telegram-btn').addEventListener('click', function(e) {
-            e.preventDefault();
-            alert('Please Join Our Telegram Channel');
-        });
+        async function fetchEvents() {
+            const loadingEl = document.getElementById('loading');
+            const eventsContainer = document.getElementById('events-container');
+            const errorEl = document.getElementById('error');
+            const noEventsEl = document.getElementById('no-events');
+
+            try {
+                const response = await fetch(JSON_URL);
+                if (!response.ok) {
+                    throw new Error('Failed to fetch events');
+                }
+                
+                const events = await response.json();
+                
+                loadingEl.style.display = 'none';
+                
+                if (events.length === 0) {
+                    noEventsEl.style.display = 'block';
+                    return;
+                }
+                
+                eventsContainer.style.display = 'grid';
+                renderEvents(events);
+                
+            } catch (error) {
+                console.error('Error fetching events:', error);
+                loadingEl.style.display = 'none';
+                errorEl.textContent = 'Failed to load events. Please try again later.';
+                errorEl.style.display = 'block';
+            }
+        }
+
+        function renderEvents(events) {
+            const container = document.getElementById('events-container');
+            
+            events.forEach(event => {
+                const eventCard = createEventCard(event);
+                container.appendChild(eventCard);
+            });
+        }
+
+        function createEventCard(event) {
+            const card = document.createElement('div');
+            card.className = 'event-card';
+            
+            // Create the modified URL
+            const adfreeUrl = event.adfree_url;
+            const urlPath = adfreeUrl.replace(/^https?:\/\/[^\/]+\//, '');
+            const newUrl = NEW_DOMAIN + urlPath;
+            const finalUrl = REDIRECT_BASE + encodeURIComponent(newUrl);
+            
+            card.addEventListener('click', () => {
+                window.open(finalUrl, '_blank');
+            });
+            
+            const statusClass = event.status === 'LIVE' ? 'status-live' : 'status-upcoming';
+            
+            card.innerHTML = `
+                <div class="event-header" style="background-image: url('${event.src}')">
+                    <div class="event-category">${event.event_category}</div>
+                    <div class="event-status ${statusClass}">${event.status}</div>
+                </div>
+                <div class="event-content">
+                    <div class="event-title">${event.match_name}</div>
+                    <div class="event-details">
+                        <div class="event-name">${event.event_name}</div>
+                        <div class="start-time">${event.startTime}</div>
+                    </div>
+                    <div class="teams">
+                        <div class="team">${event.team_1}</div>
+                        <div class="vs">VS</div>
+                        <div class="team">${event.team_2}</div>
+                    </div>
+                </div>
+            `;
+            
+            return card;
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', fetchEvents);
+        
+        // Refresh events every 5 minutes
+        setInterval(fetchEvents, 5 * 60 * 1000);
     </script>
-
 </body>
-<script disable-devtool-auto src='https://cdn.jsdelivr.net/npm/disable-devtool@latest'></script>
-
 </html>
