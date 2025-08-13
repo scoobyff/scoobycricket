@@ -72,6 +72,12 @@
         "image": "https://cdn.freelogovectors.net/wp-content/uploads/2021/12/sonyliv-logo-freelogovectors.net_.png",
         "linkType": "external",
         "link": "https://scoobystar.vercel.app/st5hd"
+      },
+      {
+        "name": "TNT 1",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-kingdom/hd/tnt-sports-1-hd-uk.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/tnt1"
       }
     ]
     },
