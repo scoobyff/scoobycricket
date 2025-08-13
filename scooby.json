@@ -62,6 +62,18 @@
         "link": "https://scoobystar.vercel.app/st1hd"
       },
       {
+        "name": "Willow Ad Free",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUTz7gbP8IZLP-5X4qRDbIOJwnxB7o6NXXYNZ34F2QfOfOnbpNDvs-2xSd&s=10",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/hundredadfree"
+      },
+      {
+        "name": "Ten Cricket",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCDD4QOvdXBL6w_G9IoNSuKmnhTZlaYQlQsrdKyzMuMLRp5ybG06gC6Lc&s=10",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/tencricket"
+      },
+      {
         "name": "BBC Sports",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/misc/media/bbc-sport-hz.png",
         "linkType": "external",
@@ -104,6 +116,18 @@
         "image": "https://cdn.freelogovectors.net/wp-content/uploads/2021/12/sonyliv-logo-freelogovectors.net_.png",
         "linkType": "external",
         "link": "https://scoobystar.vercel.app/st3hd"
+      },
+      {
+        "name": "Willow Ad Free",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUTz7gbP8IZLP-5X4qRDbIOJwnxB7o6NXXYNZ34F2QfOfOnbpNDvs-2xSd&s=10",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/hundredadfree"
+      },
+      {
+        "name": "Ten Cricket",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCDD4QOvdXBL6w_G9IoNSuKmnhTZlaYQlQsrdKyzMuMLRp5ybG06gC6Lc&s=10",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/tencricket"
       },
       {
         "name": "BBC Sports",
