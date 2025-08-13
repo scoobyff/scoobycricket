@@ -33,7 +33,7 @@
         "name": "Sony Ten 4",
         "image": "https://brand-websites-prod.s3.ap-south-1.amazonaws.com/sony-sports-networks-live/channel_logos/Sony%20Sports%20TEN%204%20Tamil.png",
         "linkType": "external",
-        "link": "https://scoobystreams.vercel.app/sonysports.html?c=sonyten4sd"
+        "link": "https://scoobyfancode.vercel.app/sonysports.html?c=sonyten4sd"
       },
       {
         "name": "Sony Ten 5",
@@ -42,6 +42,38 @@
         "link": "https://scoobysports.vercel.app/player/sonyten5"
       }
      ]
+    },
+    {
+    "name": "UEFA Super Cup 2025 - PSG vs Tottenham",
+    "image": "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000006226/1754894435095289_UEFA_SuperCup_PSG_vs_Tottenham_8aug_Landscape_thumb_ton.jpg",
+    "linkType": "multi",
+    "featured": true,
+    "streams": [
+      {
+        "name": "Sony Ten 2",
+        "image": "https://brand-websites-prod.s3.ap-south-1.amazonaws.com/sony-sports-networks-live/channel_logos/Sony%20Sports%20TEN%202%20HD.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/sonyten2"
+      },
+      {
+        "name": "Sony Ten 5 English",
+        "image": "https://brand-websites-prod.s3.ap-south-1.amazonaws.com/sony-sports-networks-live/channel_logos/Sony%20Sports%20TEN%205%20HD.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/sonyten5"
+      }
+      {
+        "name": "Sony Liv English",
+        "image": "https://cdn.freelogovectors.net/wp-content/uploads/2021/12/sonyliv-logo-freelogovectors.net_.png",
+        "linkType": "external",
+        "link": "https://scoobystar.vercel.app/st2hd"
+      },
+      {
+        "name": "Sony Liv Hindi",
+        "image": "https://cdn.freelogovectors.net/wp-content/uploads/2021/12/sonyliv-logo-freelogovectors.net_.png",
+        "linkType": "external",
+        "link": "https://scoobystar.vercel.app/st5hd"
+      }
+    ]
     },
     {
     "name": "The Hundred Womens",
