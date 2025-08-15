@@ -45,7 +45,7 @@
     },
     {
     "name": "Laliga 2025-2026",
-    "image": "https://www.fancode.com/skillup-uploads/cms-media/GironVSRayo_Old_match-card.jpg",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpGyTMUlsYVoq4JtofNCRH2Qb8Gd4o_AanDkuI6zjej3dDjFrx2zjx4bk&s=10",
     "linkType": "multi",
     "featured": true,
     "streams": [
@@ -53,19 +53,13 @@
         "name": "Fancode English",
         "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/FanCode_logo.svg/1200px-FanCode_logo.svg.png",
         "linkType": "external",
-        "link": "https://scoobyfancode.vercel.app/fancode.html?id=130836"
+        "link": "https://scoobysports.vercel.app/player/fancode1"
       },
       {
         "name": "Laliga TV",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-kingdom/laliga-tv-uk.png",
         "linkType": "external",
         "link": "https://scoobysports.vercel.app/player/laligatv"
-      },
-      {
-        "name": "Bein Sports",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/international/beinsports/old/stacked/bein-sports-3-int.png",
-        "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/bein3au"
       }
     ]
     },
