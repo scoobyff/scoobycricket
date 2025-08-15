@@ -57,15 +57,15 @@
       },
       {
         "name": "Laliga TV",
-        "image": "https://brand-websites-prod.s3.ap-south-1.amazonaws.com/sony-sports-networks-live/channel_logos/Sony%20Sports%20TEN%204%20Telugu.png",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-kingdom/laliga-tv-uk.png",
         "linkType": "external",
         "link": "https://scoobysports.vercel.app/player/laligatv"
       },
       {
         "name": "Bein Sports",
-        "image": "https://brand-websites-prod.s3.ap-south-1.amazonaws.com/sony-sports-networks-live/channel_logos/Sony%20Sports%20TEN%205%20HD.png",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/international/beinsports/old/stacked/bein-sports-3-int.png",
         "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/sonyten5"
+        "link": "https://scoobysports.vercel.app/player/bein3au"
       }
     ]
     },
