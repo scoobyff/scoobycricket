@@ -86,6 +86,12 @@
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/world-latin-america/usa-network-lam.png",
         "linkType": "external",
         "link": "https://scoobysports.vercel.app/player/usawest"
+      },
+      {
+        "name": "Peacock TV",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/misc/media/peacock.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/peacock"
       }
     ]
     },
