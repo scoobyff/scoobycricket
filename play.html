@@ -1,1 +1,177 @@
-you nigga
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JW Player Custom</title>
+  <style>
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      background: #000;
+    }
+
+    #player {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
+    .jw-stats-item,
+    #player .jw-rightclick-link {
+      display: none !important;
+    }
+
+    .box-shadow {
+      width: 100%;
+      box-shadow: 9px 9px 8px #8c8c8c, -29px -29px 58px #ffffff;
+      border-radius: 10px;
+      overflow: hidden;
+    }
+
+    /* Fullscreen icon */
+    .jw-icon-fullscreen path {
+      display: none;
+    }
+
+    .jw-icon-fullscreen svg {
+      background-image: url('/icon/full-screen.svg');
+      background-size: cover;
+      background-position: center;
+      margin-left: 5px;
+    }
+
+    .jw-icon-fullscreen.jw-off svg {
+      background-image: url('/icon/full-screen-exit.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    /* Picture-in-Picture */
+    .jw-icon-pip path {
+      display: none;
+    }
+
+    .jw-icon-pip svg {
+      background-image: url('/icon/pip-on.svg');
+      background-size: contain;
+      background-repeat: no-repeat;
+      height: 25px;
+      width: 25px;
+      margin: 5px;
+    }
+
+    .jw-icon-pip.jw-off svg {
+      background-image: url('/icon/pip-off.svg');
+    }
+
+    /* Rewind */
+    .jw-svg-icon-rewind path {
+      display: none;
+    }
+
+    .jw-svg-icon-rewind {
+      background-image: url("icon.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    /* Play / Pause */
+    .jw-state-paused .jw-svg-icon-play path,
+    .jw-svg-icon-pause path {
+      display: none;
+    }
+
+    .jw-state-paused .jw-svg-icon-play {
+      background-image: url("/icon/play.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    .jw-svg-icon-pause {
+      background-image: url("/icon/pause.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+    }
+
+    /* Volume */
+    .jw-svg-icon-volume-100 path,
+    .jw-svg-icon-volume-0 path {
+      display: none;
+    }
+
+    .jw-svg-icon-volume-100 {
+      background-image: url("/icon/sound.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-right: 5px;
+    }
+
+    .jw-svg-icon-volume-0 {
+      background-image: url("/icon/mute.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-right: 5px;
+    }
+
+    /* Settings */
+    .jw-svg-icon-settings path {
+      display: none;
+    }
+
+    .jw-svg-icon-settings {
+      background-image: url("/icon/setting.svg");
+      background-size: contain;
+      background-repeat: no-repeat;
+      margin-left: 5px;
+    }
+  </style>
+</head>
+
+<body>
+  <script src="https://ssl.p.jwpcdn.com/player/v/8.33.2/jwplayer.js" type="text/javascript"></script>
+  <div id="player"></div>
+
+  <script type="text/javascript">
+    const urlParams = new URLSearchParams(window.location.search);
+    const filex = urlParams.get("dtv");
+    const thumb = urlParams.get("thumb");
+
+    const defaultFile = "https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8";
+    const defaultThumb = "https://iili.io/d5iVUu4.md.jpg";
+
+    const playerInstance = jwplayer("player");
+    playerInstance.setup({
+      width: "100%",
+      height: "100%",
+      key: "cLGMn8T20tGvW+0eXPhq4NNmLB57TrscPjd1IyJF84o=",
+      image: thumb || defaultThumb,
+      sources: [{
+        file: filex || defaultFile
+      }],
+      primary: "html5"
+    });
+
+    // Custom button to toggle stretching modes
+    let currentStretchIndex = 0;
+    const stretchingModes = ["uniform", "exactfit", "fill"];
+
+    playerInstance.on("ready", function () {
+      playerInstance.addButton(
+        "zoom222222.svg", // Icon
+        "Change Stretching", // Tooltip
+        function () {
+          currentStretchIndex = (currentStretchIndex + 1) % stretchingModes.length;
+          const nextMode = stretchingModes[currentStretchIndex];
+          playerInstance.setConfig({ stretching: nextMode });
+        },
+        "custom-button"
+      );
+    });
+  </script>
+</body>
+
+</html>
