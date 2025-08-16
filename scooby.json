@@ -64,6 +64,26 @@
     ]
     },
     {
+    "name": "Premier League 2025-2026",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNcrZwGIqz9wYGMlxvrG3Yd_TrmXr8HckUNOX71UTcuEsmcVwjn79ZQRGm&s=10",
+    "linkType": "multi",
+    "featured": true,
+    "streams": [
+      {
+        "name": "Premier League TV",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/misc/sports/leagues/premier-league-uk.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/pltv"
+      },
+      {
+        "name": "Laliga TV",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-kingdom/laliga-tv-uk.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/laligatv"
+      }
+    ]
+    },
+    {
     "name": "The Hundred Womens",
     "image": "https://www.fancode.com/skillup-uploads/cms-media/132269_5506_NOS-W_BPH-W_Fc-Web.jpg",
     "linkType": "multi",
