@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Live Stream Player</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- HLS.js for HLS playback -->
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <style>
+    /* Custom styles for better mobile experience */
+    .video-container {
+      position: relative;
+      width: 100%;
+      height: 0;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    }
+    
+    .video-container iframe,
+    .video-container video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+    
+    /* Loading spinner */
+    .spinner {
+      border: 4px solid #f3f4f6;
+      border-top: 4px solid #3b82f6;
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+      animation: spin 1s linear infinite;
+    }
+    
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body class="bg-gray-100 text-gray-800 min-h-screen">
+  <!-- Header -->
+  <header class="bg-blue-900 text-white px-4 flex items-center justify-between sticky top-0 z-40 h-14">
+    <!-- Mobile Menu Button -->
+    <button id="openMenu" class="lg:hidden text-white p-2 hover:bg-white/10 rounded">
+      <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+    
+    <!-- Logo -->
+    <div class="absolute left-1/2 transform -translate-x-1/2 lg:static lg:transform-none">
+      <h1 class="text-xl font-bold">🎥 Stream Player</h1>
+    </div>
+    
+    <!-- Desktop Nav Links -->
+    <nav class="hidden lg:flex gap-6">
+      <a href="#" class="text-gray-300 hover:text-white transition">Home</a>
+      <a href="#" class="text-gray-300 hover:text-white transition">Live</a>
+      <a href="#" class="text-gray-300 hover:text-white transition">Schedule</a>
+      <a href="#" class="text-gray-300 hover:text-white transition">About</a>
+    </nav>
+    
+    <!-- Theme Toggle -->
+    <button id="themeToggle" class="text-white px-3 py-1 border border-white rounded text-sm hover:bg-white/10 transition">
+      🌓
+    </button>
+  </header>
+  
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="fixed inset-0 z-50 transform -translate-x-full transition-transform duration-300 ease-in-out lg:hidden">
+    <div id="overlay" class="absolute inset-0 bg-black/50"></div>
+    <div class="relative w-4/5 max-w-xs h-full bg-white shadow-xl">
+      <div class="px-4 py-3 flex justify-between items-center bg-blue-900">
+        <h2 class="text-white font-bold">Menu</h2>
+        <button id="closeMenu" class="text-white p-2 rounded hover:bg-white/10">
+          <svg class="h-6 w-6" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <nav class="p-4">
+        <ul class="space-y-4">
+          <li><a href="#" class="block text-gray-700 hover:text-blue-900 transition">Home</a></li>
+          <li><a href="#" class="block text-gray-700 hover:text-blue-900 transition">Live Streams</a></li>
+          <li><a href="#" class="block text-gray-700 hover:text-blue-900 transition">Schedule</a></li>
+          <li><a href="#" class="block text-gray-700 hover:text-blue-900 transition">About</a></li>
+          <li><a href="#" class="block text-gray-700 hover:text-blue-900 transition">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <main class="max-w-4xl mx-auto px-4 py-8">
+    <h1 class="text-3xl font-bold mb-6 text-center">🎥 Live Stream Player</h1>
+
+    <!-- Stream Info -->
+    <div id="streamInfo" class="mb-6 bg-white shadow-lg rounded-xl p-6 hidden">
+      <h2 class="text-xl font-semibold mb-2" id="streamTitle">Stream Title</h2>
+      <p class="text-sm text-gray-500 mb-2" id="streamCategory">Category</p>
+      <p class="text-xs text-gray-600" id="streamTime">Start Time</p>
+    </div>
+
+    <!-- Stream Input -->
+    <div class="mb-6 bg-white shadow-lg rounded-xl p-6">
+      <h3 class="text-lg font-semibold mb-4">Enter Stream Details</h3>
+      <div class="grid md:grid-cols-2 gap-4 mb-4">
+        <div>
+          <label class="block text-sm font-medium mb-2">Stream URL:</label>
+          <input 
+            type="text" 
+            id="streamUrl" 
+            placeholder="https://example.com/stream.m3u8"
+            class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+          />
+        </div>
+        <div>
+          <label class="block text-sm font-medium mb-2">Stream Type:</label>
+          <select id="streamType" class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500">
+            <option value="hls">HLS Stream</option>
+            <option value="google">Google DAI</option>
+            <option value="iframe">Iframe Embed</option>
+          </select>
+        </div>
+      </div>
+      <div class="mb-4">
+        <label class="block text-sm font-medium mb-2">Stream Title (Optional):</label>
+        <input 
+          type="text" 
+          id="streamTitleInput" 
+          placeholder="Live Match - Team A vs Team B"
+          class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+        />
+      </div>
+      <button 
+        id="loadStream" 
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition duration-200"
+      >
+        Load Stream
+      </button>
+    </div>
+
+    <!-- Video Player Container -->
+    <div class="relative bg-black rounded-xl overflow-hidden shadow-lg">
+      <div class="video-container">
+        <!-- Loading Spinner -->
+        <div id="loadingSpinner" class="absolute inset-0 flex items-center justify-center bg-black/80 hidden">
+          <div class="text-center">
+            <div class="spinner mx-auto mb-4"></div>
+            <p class="text-white">Loading stream...</p>
+          </div>
+        </div>
+        
+        <!-- Iframe Player -->
+        <iframe 
+          id="iframePlayer" 
+          class="hidden"
+          frameborder="0" 
+          allow="autoplay; fullscreen; picture-in-picture" 
+          allowfullscreen
+        ></iframe>
+        
+        <!-- HTML5 Video Player -->
+        <video 
+          id="videoPlayer" 
+          class="hidden bg-black" 
+          controls 
+          autoplay 
+          muted
+          playsinline
+        >
+          Your browser does not support the video tag.
+        </video>
+        
+        <!-- Error Message -->
+        <div id="errorMessage" class="absolute inset-0 flex items-center justify-center bg-black/90 hidden">
+          <div class="text-center text-white p-6">
+            <h3 class="text-xl font-semibold mb-2">❌ Stream Unavailable</h3>
+            <p class="text-gray-300 mb-4">The stream could not be loaded. Please check the URL and try again.</p>
+            <button id="retryBtn" class="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition">
+              Retry
+            </button>
+          </div>
+        </div>
+        
+        <!-- Default Message -->
+        <div id="defaultMessage" class="absolute inset-0 flex items-center justify-center bg-gray-800">
+          <div class="text-center text-white p-6">
+            <h3 class="text-xl font-semibold mb-2">🎬 Ready to Stream</h3>
+            <p class="text-gray-300">Enter a stream URL above to get started</p>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Stream Controls -->
+      <div class="p-4 bg-gray-900 text-white">
+        <div class="flex items-center justify-between">
+          <div class="flex items-center space-x-4">
+            <span id="viewerCount" class="text-sm bg-red-600 px-2 py-1 rounded">🔴 LIVE</span>
+            <span id="streamStatus" class="text-sm text-gray-300">Ready</span>
+          </div>
+          <div class="flex space-x-2">
+            <button id="fullscreenBtn" class="p-2 hover:bg-gray-700 rounded transition" title="Fullscreen">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 11-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15 13.586V12a1 1 0 011-1z" clip-rule="evenodd"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Popular Streams -->
+    <div class="mt-8 bg-white shadow-lg rounded-xl p-6">
+      <h3 class="text-lg font-semibold mb-4">🔥 Quick Start Examples</h3>
+      <div class="grid md:grid-cols-2 gap-4">
+        <button class="example-stream text-left p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition" 
+                data-url="https://test-streams.mux.dev/x36xhzz/x36xhzz.m3u8" 
+                data-type="hls" 
+                data-title="Demo HLS Stream">
+          <h4 class="font-medium">Demo HLS Stream</h4>
+          <p class="text-sm text-gray-600">Test HLS stream for demonstration</p>
+        </button>
+        
+        <button class="example-stream text-left p-4 border border-gray-200 rounded-lg hover:bg-gray-50 transition" 
+                data-url="https://cph-p2p-msl.akamaized.net/hls/live/2000341/test/master.m3u8" 
+                data-type="hls" 
+                data-title="Sample Live Stream">
+          <h4 class="font-medium">Sample Live Stream</h4>
+          <p class="text-sm text-gray-600">Another test stream</p>
+        </button>
+      </div>
+    </div>
+
+    <!-- Social Links -->
+    <div class="flex justify-center gap-4 mt-8">
+      <a href="#" target="_blank" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition">
+        📱 Join Community
+      </a>
+      <a href="#" target="_blank" class="bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow-md transition">
+        💬 Support
+      </a>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-800 text-white py-8 mt-12">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <p class="mb-4">© 2024 Stream Player. Built for Vercel deployment.</p>
+      <div class="flex justify-center space-x-6 text-sm">
+        <a href="#" class="hover:text-blue-400 transition">Privacy Policy</a>
+        <a href="#" class="hover:text-blue-400 transition">Terms of Service</a>
+        <a href="#" class="hover:text-blue-400 transition">Support</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Global variables
+    let currentHls = null;
+    let currentPlayer = null;
+    
+    // DOM Elements
+    const streamUrl = document.getElementById('streamUrl');
+    const streamType = document.getElementById('streamType');
+    const streamTitleInput = document.getElementById('streamTitleInput');
+    const loadStreamBtn = document.getElementById('loadStream');
+    const videoPlayer = document.getElementById('videoPlayer');
+    const iframePlayer = document.getElementById('iframePlayer');
+    const loadingSpinner = document.getElementById('loadingSpinner');
+    const errorMessage = document.getElementById('errorMessage');
+    const defaultMessage = document.getElementById('defaultMessage');
+    const streamInfo = document.getElementById('streamInfo');
+    const streamTitle = document.getElementById('streamTitle');
+    const streamStatus = document.getElementById('streamStatus');
+    const retryBtn = document.getElementById('retryBtn');
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
+    
+    // Mobile menu functionality
+    const mobileMenu = document.getElementById('mobileMenu');
+    const openMenuBtn = document.getElementById('openMenu');
+    const closeMenuBtn = document.getElementById('closeMenu');
+    const overlay = document.getElementById('overlay');
+    
+    function toggleMobileMenu() {
+      mobileMenu.classList.toggle('translate-x-0');
+      mobileMenu.classList.toggle('-translate-x-full');
+    }
+    
+    openMenuBtn.addEventListener('click', toggleMobileMenu);
+    closeMenuBtn.addEventListener('click', toggleMobileMenu);
+    overlay.addEventListener('click', toggleMobileMenu);
+    
+    // Theme toggle functionality
+    const themeToggle = document.getElementById('themeToggle');
+    themeToggle.addEventListener('click', () => {
+      document.body.classList.toggle('dark');
+      // You can expand this to implement a full dark mode
+    });
+    
+    // Hide all players
+    function hideAllPlayers() {
+      videoPlayer.classList.add('hidden');
+      iframePlayer.classList.add('hidden');
+      errorMessage.classList.add('hidden');
+      defaultMessage.classList.add('hidden');
+      loadingSpinner.classList.add('hidden');
+    }
+    
+    // Show loading state
+    function showLoading() {
+      hideAllPlayers();
+      loadingSpinner.classList.remove('hidden');
+      streamStatus.textContent = 'Loading...';
+    }
+    
+    // Show error state
+    function showError(message = 'Stream unavailable') {
+      hideAllPlayers();
+      errorMessage.classList.remove('hidden');
+      streamStatus.textContent = 'Error';
+      errorMessage.querySelector('p').textContent = message;
+    }
+    
+    // Clean up current stream
+    function cleanupCurrentStream() {
+      if (currentHls) {
+        currentHls.destroy();
+        currentHls = null;
+      }
+      if (videoPlayer.src) {
+        videoPlayer.src = '';
+      }
+      if (iframePlayer.src) {
+        iframePlayer.src = '';
+      }
+    }
+    
+    // Load HLS stream
+    function loadHLSStream(url, title) {
+      cleanupCurrentStream();
+      showLoading();
+      
+      if (Hls.isSupported()) {
+        currentHls = new Hls({
+          enableWorker: true,
+          lowLatencyMode: true,
+          backBufferLength: 90
+        });
+        
+        currentHls.loadSource(url);
+        currentHls.attachMedia(videoPlayer);
+        
+        currentHls.on(Hls.Events.MANIFEST_PARSED, () => {
+          hideAllPlayers();
+          videoPlayer.classList.remove('hidden');
+          streamStatus.textContent = 'Live';
+          updateStreamInfo(title || 'HLS Live Stream');
+        });
+        
+        currentHls.on(Hls.Events.ERROR, (event, data) => {
+          console.error('HLS Error:', data);
+          if (data.fatal) {
+            showError('Failed to load HLS stream');
+          }
+        });
+        
+      } else if (videoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
+        // Native HLS support (Safari)
+        videoPlayer.src = url;
+        hideAllPlayers();
+        videoPlayer.classList.remove('hidden');
+        streamStatus.textContent = 'Live';
+        updateStreamInfo(title || 'HLS Live Stream');
+      } else {
+        showError('HLS not supported in this browser');
+      }
+    }
+    
+    // Load iframe stream
+    function loadIframeStream(url, title) {
+      cleanupCurrentStream();
+      showLoading();
+      
+      // Add timestamp to prevent caching issues
+      const finalUrl = url.includes('?') ? `${url}&t=${Date.now()}` : `${url}?t=${Date.now()}`;
+      
+      iframePlayer.src = finalUrl;
+      
+      // Simulate loading time for iframe
+      setTimeout(() => {
+        hideAllPlayers();
+        iframePlayer.classList.remove('hidden');
+        streamStatus.textContent = 'Live';
+        updateStreamInfo(title || 'Iframe Stream');
+      }, 2000);
+    }
+    
+    // Update stream info
+    function updateStreamInfo(title, category = 'Live Stream') {
+      streamTitle.textContent = title;
+      document.getElementById('streamCategory').textContent = category;
+      document.getElementById('streamTime').textContent = `Started: ${new Date().toLocaleTimeString()}`;
+      streamInfo.classList.remove('hidden');
+    }
+    
+    // Load stream based on type
+    function loadStream() {
+      const url = streamUrl.value.trim();
+      const type = streamType.value;
+      const title = streamTitleInput.value.trim();
+      
+      if (!url) {
+        alert('Please enter a stream URL');
+        return;
+      }
+      
+      try {
+        switch (type) {
+          case 'hls':
+            loadHLSStream(url, title);
+            break;
+          case 'google':
+            // For Google DAI streams, treat as iframe
+            loadIframeStream(url, title);
+            break;
+          case 'iframe':
+            loadIframeStream(url, title);
+            break;
+          default:
+            showError('Unknown stream type');
+        }
+      } catch (error) {
+        console.error('Stream loading error:', error);
+        showError('Failed to load stream');
+      }
+    }
+    
+    // Event listeners
+    loadStreamBtn.addEventListener('click', loadStream);
+    retryBtn.addEventListener('click', loadStream);
+    
+    // Example streams
+    document.querySelectorAll('.example-stream').forEach(btn => {
+      btn.addEventListener('click', () => {
+        streamUrl.value = btn.dataset.url;
+        streamType.value = btn.dataset.type;
+        streamTitleInput.value = btn.dataset.title;
+        loadStream();
+      });
+    });
+    
+    // Fullscreen functionality
+    fullscreenBtn.addEventListener('click', () => {
+      const container = document.querySelector('.video-container');
+      if (document.fullscreenElement) {
+        document.exitFullscreen();
+      } else {
+        container.requestFullscreen().catch(err => {
+          console.error('Fullscreen error:', err);
+        });
+      }
+    });
+    
+    // URL parameter handling (for direct links)
+    function loadFromURL() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const url = urlParams.get('url');
+      const type = urlParams.get('type') || 'hls';
+      const title = urlParams.get('title');
+      
+      if (url) {
+        streamUrl.value = url;
+        streamType.value = type;
+        if (title) streamTitleInput.value = decodeURIComponent(title);
+        loadStream();
+      }
+    }
+    
+    // Error handling for video player
+    videoPlayer.addEventListener('error', (e) => {
+      console.error('Video player error:', e);
+      showError('Video playback error');
+    });
+    
+    // Initialize
+    document.addEventListener('DOMContentLoaded', () => {
+      loadFromURL();
+      
+      // Auto-focus on stream URL input
+      streamUrl.focus();
+    });
+    
+    // Handle Enter key in input fields
+    [streamUrl, streamTitleInput].forEach(input => {
+      input.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          loadStream();
+        }
+      });
+    });
+  </script>
+</body>
+</html>
