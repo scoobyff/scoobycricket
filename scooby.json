@@ -76,10 +76,16 @@
         "link": "https://scoobysports.vercel.app/player/pltv"
       },
       {
-        "name": "Laliga TV",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-kingdom/laliga-tv-uk.png",
+        "name": "USA East",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/usa-us.png",
         "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/laligatv"
+        "link": "https://scoobysports.vercel.app/player/usaeast"
+      },
+      {
+        "name": "USA West",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/world-latin-america/usa-network-lam.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/usawest"
       }
     ]
     },
