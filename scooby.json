@@ -40,6 +40,18 @@
         "image": "https://brand-websites-prod.s3.ap-south-1.amazonaws.com/sony-sports-networks-live/channel_logos/Sony%20Sports%20TEN%205%20HD.png",
         "linkType": "external",
         "link": "https://scoobystreams.vercel.app/sonysports.html?c=sonyten5hd"
+      },
+      {
+        "name": "Willow by Cricbuzz",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/willow-us.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/willowbycricbuzz"
+      },
+      {
+        "name": "Willow Sports",
+        "image": "https://p-img.movetv.com/1280x720/6cc66eec23429f8821491ce16bf5032c.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/willowsports"
       }
      ]
     },
@@ -120,6 +132,12 @@
         "link": "https://scoobysports.vercel.app/player/hundredadfree"
       },
       {
+        "name": "Willow by Cricbuzz",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/willow-us.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/willowbycricbuzz"
+      },
+      {
         "name": "Ten Cricket",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCDD4QOvdXBL6w_G9IoNSuKmnhTZlaYQlQsrdKyzMuMLRp5ybG06gC6Lc&s=10",
         "linkType": "external",
@@ -174,6 +192,12 @@
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUTz7gbP8IZLP-5X4qRDbIOJwnxB7o6NXXYNZ34F2QfOfOnbpNDvs-2xSd&s=10",
         "linkType": "external",
         "link": "https://scoobysports.vercel.app/player/hundredadfree"
+      },
+      {
+        "name": "Willow by Cricbuzz",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/willow-us.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/willowbycricbuzz"
       },
       {
         "name": "Ten Cricket",
