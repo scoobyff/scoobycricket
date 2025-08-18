@@ -56,6 +56,26 @@
      ]
     },
     {
+    "name": "Top End T20 2025",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuhir0tAuhmIRR-257Q29xDay4Hu49gMvKKNhe4bVCOOkMqrBpFbjBENAw&s=10",
+    "linkType": "multi",
+    "featured": true,
+    "streams": [
+      {
+        "name": "T Sports",
+        "image": "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/61/7f/90/617f90af-7a7b-e9c5-e5a4-c96a11cf5445/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/tsports"
+      },
+      {
+        "name": "A Sports",
+        "image": "https://play-lh.googleusercontent.com/Qhs1jcocO2FenxF7j5DBVn-3lQV3cPhnsJCfeo3fAvEPzdsUx1RCb8Ka956B_ZEhAA8",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/asports"
+      }
+     ]
+    },
+    {
     "name": "Laliga 2025-2026",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpGyTMUlsYVoq4JtofNCRH2Qb8Gd4o_AanDkuI6zjej3dDjFrx2zjx4bk&s=10",
     "linkType": "multi",
