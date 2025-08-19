@@ -96,6 +96,32 @@
     ]
     },
     {
+    "name": "Australia vs S Africa",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdbxdaVmUnGXW6CfYTyYBUnWfm8301U063M4I-jl-W7EE3upjTnrt8w6W7&s=10",
+    "linkType": "multi",
+    "featured": true,
+    "streams": [
+      {
+        "name": "TNT Sports",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/tnt-us.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/tnt1"
+      },
+      {
+        "name": "Willow by Cricbuzz",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/willow-us.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/willowbycricbuzz"
+      },
+      {
+        "name": "Willow Sports",
+        "image": "https://p-img.movetv.com/1280x720/6cc66eec23429f8821491ce16bf5032c.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/willowsports"
+      }
+     ]
+    }
+    {
     "name": "Premier League 2025-2026",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNcrZwGIqz9wYGMlxvrG3Yd_TrmXr8HckUNOX71UTcuEsmcVwjn79ZQRGm&s=10",
     "linkType": "multi",
