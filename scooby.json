@@ -76,26 +76,6 @@
      ]
     },
     {
-    "name": "Laliga 2025-2026",
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpGyTMUlsYVoq4JtofNCRH2Qb8Gd4o_AanDkuI6zjej3dDjFrx2zjx4bk&s=10",
-    "linkType": "multi",
-    "featured": true,
-    "streams": [
-      {
-        "name": "Fancode English",
-        "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/FanCode_logo.svg/1200px-FanCode_logo.svg.png",
-        "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/fancode1"
-      },
-      {
-        "name": "Laliga TV",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-kingdom/laliga-tv-uk.png",
-        "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/laligatv"
-      }
-    ]
-    },
-    {
     "name": "Australia vs S Africa",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdbxdaVmUnGXW6CfYTyYBUnWfm8301U063M4I-jl-W7EE3upjTnrt8w6W7&s=10",
     "linkType": "multi",
@@ -120,6 +100,38 @@
         "link": "https://scoobysports.vercel.app/player/willowsports"
       }
      ]
+    },
+    {
+    "name": "Laliga 2025-2026",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpGyTMUlsYVoq4JtofNCRH2Qb8Gd4o_AanDkuI6zjej3dDjFrx2zjx4bk&s=10",
+    "linkType": "multi",
+    "featured": true,
+    "streams": [
+      {
+        "name": "Fancode English",
+        "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/FanCode_logo.svg/1200px-FanCode_logo.svg.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/fancode1"
+      },
+      {
+        "name": "Laliga TV",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-kingdom/laliga-tv-uk.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/laligatv"
+      },
+      {
+        "name": "Sky Laliga (Multi🎧)",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKBCa6SydXxbOh3qbRLTAWW6FOnRo5nXa9kw&s",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/skylaligaen"
+      },
+      {
+        "name": "Sky Laliga Espanol",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKBCa6SydXxbOh3qbRLTAWW6FOnRo5nXa9kw&s",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/skylaliga"
+      }
+    ]
     },
     {
     "name": "Premier League 2025-2026",
