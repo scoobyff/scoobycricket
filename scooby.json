@@ -102,6 +102,44 @@
      ]
     },
     {
+    "name": "UFC",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSJ6Ldn1whMSzEaRVqOewSPC188xiL-4-Sq6CIav7Wx3dLSQ2MZv-JNeaWS&s=10",
+    "linkType": "multi",
+    "featured": true,
+    "streams": [
+      {
+        "name": "UFC",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/ufc-us.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/ufc"
+     },
+     {
+        "name": "UFC Fight Pass",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/ufc-fight-pass-us.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/ufcpass"
+     },
+     {
+        "name": "Unifi HD",
+        "image": "https://upload.wikimedia.org/wikipedia/commons/d/df/UnifiTV2022.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/ufcunifi"
+      },
+      {
+        "name": "Sony Ten 1",
+        "image": "https://brand-websites-prod.s3.ap-south-1.amazonaws.com/sony-sports-networks-live/channel_logos/Sony%20Sports%20TEN%201%20HD.png",
+        "linkType": "external",
+        "link": "https://scoobystreams.vercel.app/sonysports.html?c=sonyten1hd"
+      },
+      {
+        "name": "Sony Ten 5",
+        "image": "https://brand-websites-prod.s3.ap-south-1.amazonaws.com/sony-sports-networks-live/channel_logos/Sony%20Sports%20TEN%205%20HD.png",
+        "linkType": "external",
+        "link": "https://scoobystreams.vercel.app/sonysports.html?c=sonyten5hd"
+      }
+   ]
+},
+    {
     "name": "Laliga 2025-2026",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRpGyTMUlsYVoq4JtofNCRH2Qb8Gd4o_AanDkuI6zjej3dDjFrx2zjx4bk&s=10",
     "linkType": "multi",
