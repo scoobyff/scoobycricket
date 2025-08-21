@@ -342,6 +342,32 @@
     ]
     },
     {
+    "name": "GOLF",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAXxCyMDZrwe-qCXVUYcUm0Y0oYyQdAdbdYno2VHlnZXBkl4CCsj70BeFl&s=10",
+    "linkType": "multi",
+    "featured": true,
+    "streams": [
+      {
+        "name": "DP World Tour",
+        "image": "https://provider-static.plex.tv/epg/cms/production/d6825374-e7ca-4fc3-8714-ba6752a8b286/DPWorldTour_1500x1000_for_dark_bgd_-_Eddie_Hunter-Higgins.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/dpworld"
+      },
+      {
+        "name": "PGA Tour",
+        "image": "https://provider-static.plex.tv/epg/cms/production/eed7be0b-c44c-4afa-bfa4-66b9536ace9a/PGA_TOUR_PrimaryLogo_Color_RGB_Reverse_654_-_Lily_MorrisonRDX.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/pgatour"
+      },
+     {
+        "name": "NBC Golf",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/nbc-golf-3d-us.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/astrogolf"
+      }
+   ]
+},
+    {
     "name": "Formula 1",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRz-jhU6YC13Q4RCQRyg9mYhhJyoonamMqezZbK1_iFiwgieDfPK105D8&s=10",
     "linkType": "multi",
