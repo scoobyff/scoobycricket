@@ -374,6 +374,12 @@
     "featured": true,
     "streams": [
       {
+        "name": "F1 TV",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/international/f1-tv-int.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/f1tv"
+      },
+      {
         "name": "Fancode 🇮🇳",
         "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/FanCode_logo.svg/1200px-FanCode_logo.svg.png",
         "linkType": "external",
