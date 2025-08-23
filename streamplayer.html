@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Scooby Bruh">
+    <meta name="keywords" content="Only Sports">
+    <meta name="author" content="unknown">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Scooby Is Genuius</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/plyr@3.6.12/dist/plyr.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@1.1.4/dist/hls.min.js"></script>
+
+    <style>
+        html, body {
+            font-family: Poppins, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            overflow: hidden;
+            background: #000;
+            color: #fff;
+        }
+
+        .loading {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #000;
+            z-index: 9999;
+        }
+
+        .loading-text {
+            position: absolute;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            color: #00b3ff;
+            font-size: 22px;
+        }
+
+        .watermark {
+            position: absolute;
+            bottom: 10px; right: 10px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+            font-style: italic;
+            pointer-events: none;
+            z-index: 10;
+        }
+
+        .telegram-button {
+            position: absolute;
+            top: 20px; right: 20px;
+            padding: 10px 15px;
+            background-color: #0088cc;
+            color: #fff;
+            font-size: 14px;
+            text-decoration: none;
+            border-radius: 5px;
+            z-index: 100;
+        }
+
+        .telegram-button:hover { background-color: #006a99; }
+
+        #media-container {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Force 16:9 aspect ratio */
+        .video-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            aspect-ratio: 16 / 9;
+            background: #000;
+        }
+
+        #player {
+            width: 100%;
+            height: 100%;
+            object-fit: contain !important; /* keep full video inside */
+        }
+
+        .error-message {
+            text-align: center;
+            color: #ff4444;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loading-text">Loading...</div>
+    </div>
+
+    <!-- Media Container -->
+    <div id="media-container">
+        <div class="video-wrapper" id="video-wrapper" style="display:none;">
+            <video id="player" autoplay controls crossorigin playsinline style="--plyr-color-main:#15b4ff;">
+                <source id="m3u8-url" src="" type="application/x-mpegURL">
+            </video>
+        </div>
+
+        <!-- Iframe Player -->
+        <div class="video-wrapper" id="iframe-wrapper" style="display: none;">
+            <iframe id="iframe-player" sandbox="allow-scripts allow-same-origin allow-presentation allow-top-navigation" allowfullscreen></iframe>
+        </div>
+
+        <!-- Error Message -->
+        <div id="error-message" class="error-message" style="display: none;">
+            <p>Failed to load stream. Please check your link.</p>
+        </div>
+
+        <!-- Watermark -->
+        <div class="watermark">Scooby Bruh</div>
+    </div>
+
+    <!-- Telegram Button -->
+    <a href="telegram link" class="telegram-button" target="_blank">Join Telegram</a>
+
+    <script>
+        let currentPlayer = null;
+        const videoEl = document.getElementById("player");
+        const sourceEl = document.getElementById("m3u8-url");
+        const iframeEl = document.getElementById("iframe-player");
+        const iframeWrapper = document.getElementById("iframe-wrapper");
+        const videoWrapper = document.getElementById("video-wrapper");
+        const errorMessage = document.getElementById("error-message");
+
+        setTimeout(() => { document.getElementById("loading").style.display = "none"; }, 1000);
+
+        async function loadStreams() {
+            try {
+                const response = await fetch('https://scoobystreamsv2.vercel.app/sportsdata.txt');
+                if (!response.ok) throw new Error('Failed to fetch streams');
+
+                const text = await response.text();
+                const lines = text.trim().split('\n');
+                const streams = lines.map(line => {
+                    const [id, name, link] = line.split('|');
+                    return { id, name, link };
+                });
+
+                const urlParams = new URLSearchParams(window.location.search);
+                const streamId = urlParams.get("id");
+
+                if (streamId) {
+                    const stream = streams.find(s => s.id === streamId);
+                    if (stream) { loadStream(stream); return; }
+                }
+
+                // if no match
+                showError();
+            } catch (error) {
+                console.error(error);
+                showError();
+            }
+        }
+
+        function loadStream(stream) {
+            videoWrapper.style.display = "none";
+            iframeWrapper.style.display = "none";
+            errorMessage.style.display = "none";
+
+            if (currentPlayer) { try { currentPlayer.destroy(); } catch {} currentPlayer = null; }
+            if (window.hls) { window.hls.destroy(); window.hls = null; }
+
+            const streamUrl = stream.link;
+
+            if (streamUrl.endsWith(".m3u8")) {
+                sourceEl.src = streamUrl;
+                videoWrapper.style.display = "block";
+
+                if (Hls.isSupported()) {
+                    const hls = new Hls();
+                    hls.loadSource(streamUrl);
+                    hls.attachMedia(videoEl);
+                    hls.on(Hls.Events.MANIFEST_PARSED, () => {
+                        currentPlayer = new Plyr(videoEl, {});
+                    });
+                    window.hls = hls;
+                } else {
+                    currentPlayer = new Plyr(videoEl, {});
+                }
+            } else {
+                iframeEl.src = streamUrl;
+                iframeWrapper.style.display = "block";
+            }
+        }
+
+        function showError() {
+            videoWrapper.style.display = "none";
+            iframeWrapper.style.display = "none";
+            errorMessage.style.display = "block";
+        }
+
+        loadStreams();
+    </script>
+</body>
+</html>
