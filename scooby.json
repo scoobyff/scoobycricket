@@ -48,6 +48,24 @@
         "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willowbycricbuzz"
       },
       {
+        "name": "Willow 2",
+        "image": "https://p-img.movetv.com/1280x720/3dca399cce2d5ddec3993ae3dc351399.png",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willow2bycricbuzz"
+      },
+      {
+        "name": "Sky Sports Cricket",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-kingdom/other/sky-sports-cricket-icon-alt-uk.png",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=skysportscricket"
+      },
+      {
+        "name": "Astro Cricket",
+        "image": "https://linear-poster.astro.com.my/prod/logo/AstroCricket_2024.png",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=astro2"
+      },
+      {
         "name": "Willow Sports",
         "image": "https://p-img.movetv.com/1280x720/6cc66eec23429f8821491ce16bf5032c.png",
         "linkType": "external",
@@ -234,6 +252,24 @@
         "link": "https://scoobysports.vercel.app/player/willowbycricbuzz"
       },
       {
+        "name": "Willow 2",
+        "image": "https://p-img.movetv.com/1280x720/3dca399cce2d5ddec3993ae3dc351399.png",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willow2bycricbuzz"
+      },
+      {
+        "name": "Sky Sports Cricket",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-kingdom/other/sky-sports-cricket-icon-alt-uk.png",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=skysportscricket"
+      },
+      {
+        "name": "Astro Cricket",
+        "image": "https://linear-poster.astro.com.my/prod/logo/AstroCricket_2024.png",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=astro2"
+      },
+      {
         "name": "Ten Cricket",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCDD4QOvdXBL6w_G9IoNSuKmnhTZlaYQlQsrdKyzMuMLRp5ybG06gC6Lc&s=10",
         "linkType": "external",
@@ -288,6 +324,24 @@
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUTz7gbP8IZLP-5X4qRDbIOJwnxB7o6NXXYNZ34F2QfOfOnbpNDvs-2xSd&s=10",
         "linkType": "external",
         "link": "https://scoobysports.vercel.app/player/hundredadfree"
+      },
+      {
+        "name": "Willow 2",
+        "image": "https://p-img.movetv.com/1280x720/3dca399cce2d5ddec3993ae3dc351399.png",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willow2bycricbuzz"
+      },
+      {
+        "name": "Sky Sports Cricket",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-kingdom/other/sky-sports-cricket-icon-alt-uk.png",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=skysportscricket"
+      },
+      {
+        "name": "Astro Cricket",
+        "image": "https://linear-poster.astro.com.my/prod/logo/AstroCricket_2024.png",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=astro2"
       },
       {
         "name": "Willow by Cricbuzz",
@@ -396,6 +450,12 @@
         "image": "https://m.media-amazon.com/images/G/01/LCXO_Station_Logos/FanCode2_White-Logo._AC_SL360_FMpng_.png",
         "linkType": "external",
         "link": "https://scoobysports.vercel.app/player/fancode2"
+      },
+      {
+        "name": "Sky Sports F1",
+        "image": "https://m.media-amazon.com/images/G/01/LCXO_Station_Logos/FanCode2_White-Logo._AC_SL360_FMpng_.png",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=skysportsf1"
       },
       {
         "name": "beIN Sports F1",
