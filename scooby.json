@@ -453,7 +453,7 @@
       },
       {
         "name": "Sky Sports F1",
-        "image": "https://m.media-amazon.com/images/G/01/LCXO_Station_Logos/FanCode2_White-Logo._AC_SL360_FMpng_.png",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-kingdom/other/sky-sports-f1-icon-alt-uk.png",
         "linkType": "external",
         "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=skysportsf1"
       },
