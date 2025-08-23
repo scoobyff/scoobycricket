@@ -7,7 +7,7 @@
     <meta name="author" content="unknown">
     <meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <title>Scooby Bruh</title>
+    <title>TEAMROHITOFFICAL45_LIVE</title>
 
     <link href="https://cdn.jsdelivr.net/npm/plyr@3.6.2/dist/plyr.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/plyr@3.6.12/dist/plyr.min.js"></script>
@@ -29,7 +29,8 @@
             flex-direction: column;
             align-items: center;
             min-height: 100vh;
-            padding: 20px;
+            padding: 0;
+            margin: 0;
             box-sizing: border-box;
         }
 
@@ -104,7 +105,6 @@
             height: 0;
             overflow: hidden;
             width: 100%;
-            max-width: 900px;
         }
 
         .iframe-wrapper iframe {
@@ -118,18 +118,16 @@
         #media-container {
             position: relative;
             width: 100%;
-            max-width: 900px;
             margin: auto;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 60vh;
+            flex: 1;
         }
 
         #player {
             width: 100%;
-            max-width: 900px;
             height: auto;
             display: none;
         }
@@ -143,26 +141,7 @@
             bottom: 0;
         }
 
-        .stream-selector {
-            margin: 20px 0;
-            text-align: center;
-        }
 
-        .stream-selector select {
-            padding: 8px 16px;
-            background: #333;
-            color: #fff;
-            border: 1px solid #555;
-            border-radius: 5px;
-            font-size: 14px;
-            min-width: 200px;
-        }
-
-        .stream-selector label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 16px;
-        }
 
         .error-message {
             color: #ff4444;
@@ -180,20 +159,12 @@
     <!-- Loading Screen -->
     <div class="loading" id="loading">
         <div class="loading-text">
-            <span>S</span><span>C</span><span>O</span><span>O</span><span>B</span><span>Y</span><span>I</span><span>S</span><span>G</span><span>O</span><span>D</span>
+            <span>T</span><span>E</span><span>A</span><span>M</span><span>R</span><span>O</span><span>H</span><span>I</span><span>T</span><span>O</span><span>F</span><span>F</span><span>I</span><span>C</span><span>I</span><span>A</span><span>L</span><span>4</span><span>5</span>
         </div>
     </div>
 
     <!-- Error Message -->
     <div class="error-message" id="error-message"></div>
-
-    <!-- Stream Selector -->
-    <div class="stream-selector" id="stream-selector" style="display: none;">
-        <label for="stream-select">Select Stream:</label>
-        <select id="stream-select">
-            <option value="">Choose a stream...</option>
-        </select>
-    </div>
 
     <!-- Media Container -->
     <div id="media-container">
@@ -228,8 +199,6 @@
         const sourceEl = document.getElementById("m3u8-url");
         const iframeEl = document.getElementById("iframe-player");
         const iframeWrapper = document.getElementById("iframe-wrapper");
-        const streamSelector = document.getElementById("stream-selector");
-        const streamSelect = document.getElementById("stream-select");
         const errorMessage = document.getElementById("error-message");
 
         let streamsData = [];
@@ -268,20 +237,6 @@
             });
             
             return streams;
-        }
-
-        // Function to populate stream selector
-        function populateStreamSelector(streams) {
-            streamSelect.innerHTML = '<option value="">Choose a stream...</option>';
-            
-            streams.forEach(stream => {
-                const option = document.createElement('option');
-                option.value = stream.url;
-                option.textContent = `${stream.id} - ${stream.name}`;
-                streamSelect.appendChild(option);
-            });
-            
-            streamSelector.style.display = "block";
         }
 
         // Function to find stream by ID
@@ -392,13 +347,10 @@
             iframeEl.src = "";
         }
 
-        // Stream selector change event
-        streamSelect.addEventListener('change', function() {
-            loadStream(this.value);
-        });
+        // Stream selector change event (removed)
 
         // GitHub raw link for JSON data
-        const githubJsonUrl = "https://scoobystreamsv2.vercel.app/sportsdata.txt";
+        const githubJsonUrl = "https://raw.githubusercontent.com/YOUR_USERNAME/YOUR_REPOSITORY/main/streams.txt";
 
         // Check for JSON URL parameter or use GitHub link
         const finalJsonUrl = jsonUrl || githubJsonUrl;
@@ -414,8 +366,6 @@
                 .then(data => {
                     streamsData = parseStreamsData(data);
                     if (streamsData.length > 0) {
-                        populateStreamSelector(streamsData);
-                        
                         // Check if streamUrl is an ID or direct URL
                         if (streamUrl && streamUrl.trim() !== "") {
                             // Try to find stream by ID first
@@ -423,8 +373,6 @@
                             if (streamById) {
                                 // Found stream by ID, load it
                                 loadStream(streamById.url);
-                                // Pre-select in dropdown
-                                streamSelect.value = streamById.url;
                             } else if (streamUrl.includes('http') || streamUrl.includes('://')) {
                                 // Looks like a direct URL
                                 loadStream(streamUrl);
