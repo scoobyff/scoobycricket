@@ -45,7 +45,7 @@
         "name": "Willow by Cricbuzz",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/willow-us.png",
         "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/willowbycricbuzz"
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willowbycricbuzz"
       },
       {
         "name": "Willow Sports",
@@ -65,13 +65,13 @@
         "name": "T Sports",
         "image": "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/61/7f/90/617f90af-7a7b-e9c5-e5a4-c96a11cf5445/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg",
         "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/tsports"
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=tsports"
       },
       {
         "name": "A Sports",
         "image": "https://play-lh.googleusercontent.com/Qhs1jcocO2FenxF7j5DBVn-3lQV3cPhnsJCfeo3fAvEPzdsUx1RCb8Ka956B_ZEhAA8",
         "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/asports"
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=asports"
       }
      ]
     },
@@ -91,7 +91,7 @@
         "name": "Willow by Cricbuzz",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/willow-us.png",
         "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/willowbycricbuzz"
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willowbycricbuzz"
       },
       {
         "name": "Willow Sports",
@@ -293,7 +293,7 @@
         "name": "Willow by Cricbuzz",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/willow-us.png",
         "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/willowbycricbuzz"
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willowbycricbuzz"
       },
       {
         "name": "Ten Cricket",
