@@ -54,6 +54,12 @@
         "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willow2bycricbuzz"
       },
       {
+        "name": "Fox 501",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/australia/fox-sports-cricket-hd-hz-au.png",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=fox501"
+      },
+      {
         "name": "Sky Sports Cricket",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-kingdom/other/sky-sports-cricket-icon-alt-uk.png",
         "linkType": "external",
@@ -103,13 +109,25 @@
         "name": "TNT Sports",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/tnt-us.png",
         "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/tnt1"
+        "link": "https://scoobysports.vercel.app/player/tnt4"
       },
       {
         "name": "Willow by Cricbuzz",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/willow-us.png",
         "linkType": "external",
         "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willowbycricbuzz"
+      },
+      {
+        "name": "Willow 2",
+        "image": "https://p-img.movetv.com/1280x720/3dca399cce2d5ddec3993ae3dc351399.png",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willow2bycricbuzz"
+      },
+      {
+        "name": "Fox 501",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/australia/fox-sports-cricket-hd-hz-au.png",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=fox501"
       },
       {
         "name": "Willow Sports",
@@ -252,7 +270,7 @@
         "link": "https://scoobysports.vercel.app/player/willowbycricbuzz"
       },
       {
-        "name": "Willow 2",
+        "name": "Willow 2 by Cricbuzz",
         "image": "https://p-img.movetv.com/1280x720/3dca399cce2d5ddec3993ae3dc351399.png",
         "linkType": "external",
         "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willow2bycricbuzz"
@@ -262,6 +280,12 @@
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-kingdom/other/sky-sports-cricket-icon-alt-uk.png",
         "linkType": "external",
         "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=skysportscricket"
+      },
+      {
+        "name": "Fox 501",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/australia/fox-sports-cricket-hd-hz-au.png",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=fox501"
       },
       {
         "name": "Astro Cricket",
@@ -326,6 +350,12 @@
         "link": "https://scoobysports.vercel.app/player/hundredadfree"
       },
       {
+        "name": "Willow by Cricbuzz",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/willow-us.png",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willowbycricbuzz"
+      },
+      {
         "name": "Willow 2",
         "image": "https://p-img.movetv.com/1280x720/3dca399cce2d5ddec3993ae3dc351399.png",
         "linkType": "external",
@@ -336,6 +366,12 @@
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-kingdom/other/sky-sports-cricket-icon-alt-uk.png",
         "linkType": "external",
         "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=skysportscricket"
+      },
+      {
+        "name": "Fox 501",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/australia/fox-sports-cricket-hd-hz-au.png",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=fox501"
       },
       {
         "name": "Astro Cricket",
@@ -369,32 +405,6 @@
       }
     ]
   },
-  {
-    "name": "APL T20 2025",
-    "image": "https://andhracricket.org/andhrapremierleague/images/transparent-Photoroom.jpg",
-    "linkType": "multi",
-    "featured": true,
-    "streams": [
-      {
-        "name": "Fancode English",
-        "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/FanCode_logo.svg/1200px-FanCode_logo.svg.png",
-        "linkType": "external",
-        "link": "https://scoobyfancode.vercel.app/fancode.html?id=132771"
-      },
-      {
-        "name": "Sony Ten 4 Telugu",
-        "image": "https://brand-websites-prod.s3.ap-south-1.amazonaws.com/sony-sports-networks-live/channel_logos/Sony%20Sports%20TEN%204%20Telugu.png",
-        "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/sonyten4"
-      },
-      {
-        "name": "Sony Ten 5 English",
-        "image": "https://brand-websites-prod.s3.ap-south-1.amazonaws.com/sony-sports-networks-live/channel_logos/Sony%20Sports%20TEN%205%20HD.png",
-        "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/sonyten5"
-      }
-    ]
-    },
     {
     "name": "GOLF",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAXxCyMDZrwe-qCXVUYcUm0Y0oYyQdAdbdYno2VHlnZXBkl4CCsj70BeFl&s=10",
