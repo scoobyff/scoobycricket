@@ -3,7 +3,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Video Player</title>
+  <title>@allinone_reborn</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <style>
     body {
@@ -73,11 +74,6 @@
       font-size: 20px;
       padding: 8px;
       border-radius: 6px;
-      cursor: pointer;
-    }
-    
-    .btn-ico:hover {
-      background: rgba(255,255,255,0.1);
     }
     
     .seek-slider {
@@ -97,7 +93,6 @@
       padding: 6px 8px;
       border-radius: 6px;
       font-size: 14px;
-      cursor: pointer;
     }
     
     /* Loading animation */
@@ -136,22 +131,12 @@
       padding: 12px 18px;
       border-radius: 10px;
       font-size: 20px;
-      cursor: pointer;
-    }
-    
-    .big-play button:hover {
-      background: rgba(0,0,0,0.7);
     }
     
     .player-wrap.hide-controls .controls {
       opacity: 0;
       transform: translateY(8px);
       pointer-events: none;
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-    
-    .controls {
-      transition: opacity 0.3s ease, transform 0.3s ease;
     }
     
     /* Mobile adjustments */
@@ -198,21 +183,8 @@
         margin: 4px 0;
       }
     }
-    
-    .d-flex {
-      display: flex;
-    }
-    
-    .align-items-center {
-      align-items: center;
-    }
-    
-    .gap-2 {
-      gap: 8px;
-    }
   </style>
 </head>
-
 <body>
 
 <div class="main-container">
@@ -277,10 +249,7 @@
   }
 
   function initHls(url){
-    if(!url) {
-      console.log('No stream URL provided. Use ?url=YOUR_HLS_STREAM_URL in the address bar.');
-      return;
-    }
+    if(!url) return;
     loadingAnimation.style.display = 'block';
     
     if(Hls.isSupported()){
@@ -298,8 +267,7 @@
         player.play().catch(()=>{});
         loadingAnimation.style.display = 'none';
       });
-      hls.on(Hls.Events.ERROR, function(event, data) {
-        console.error('HLS error:', data);
+      hls.on(Hls.Events.ERROR, function() {
         loadingAnimation.style.display = 'none';
       });
     } else if(player.canPlayType('application/vnd.apple.mpegurl')){
@@ -308,12 +276,11 @@
         player.play().catch(()=>{});
         loadingAnimation.style.display = 'none';
       });
-      player.addEventListener('error', (e)=>{
-        console.error('Video error:', e);
+      player.addEventListener('error', ()=>{
         loadingAnimation.style.display = 'none';
       });
     } else {
-      alert('HLS not supported in this browser.');
+      alert('HLS not supported.');
       loadingAnimation.style.display = 'none';
     }
   }
@@ -321,57 +288,18 @@
   playPause.addEventListener('click', ()=>{ player.paused ? player.play() : player.pause(); });
   bigPlayBtn.addEventListener('click', ()=>{ player.play(); });
   muteBtn.addEventListener('click', ()=>{ player.muted = !player.muted; updateMuteBtn(); });
-  
   function updateMuteBtn(){ muteBtn.textContent = player.muted ? '🔇' : '🔊'; }
-  
-  volumeSlider.addEventListener('input', ()=>{ 
-    player.volume = parseFloat(volumeSlider.value); 
-    player.muted = player.volume===0; 
-    updateMuteBtn(); 
-  });
-  
+  volumeSlider.addEventListener('input', ()=>{ player.volume = parseFloat(volumeSlider.value); player.muted = player.volume===0; updateMuteBtn(); });
   player.addEventListener('play', ()=>{ playPause.textContent='⏸'; bigPlay.style.display='none'; });
   player.addEventListener('pause', ()=>{ playPause.textContent='▶'; bigPlay.style.display='block'; });
   player.addEventListener('volumechange', ()=>{ volumeSlider.value = player.volume; updateMuteBtn(); });
-  player.addEventListener('timeupdate', ()=>{ 
-    if(isFinite(player.duration)){ 
-      seek.value = (player.currentTime/player.duration)*100; 
-      currentTime.textContent = fmt(player.currentTime); 
-    } 
-  });
+  player.addEventListener('timeupdate', ()=>{ if(isFinite(player.duration)){ seek.value = (player.currentTime/player.duration)*100; currentTime.textContent = fmt(player.currentTime); } });
   player.addEventListener('durationchange', ()=>{ duration.textContent = fmt(player.duration); });
-  
-  seek.addEventListener('input', ()=>{ 
-    const pct = parseFloat(seek.value)/100; 
-    currentTime.textContent = fmt((player.duration||0)*pct); 
-  });
-  
-  seek.addEventListener('change', ()=>{ 
-    const pct = parseFloat(seek.value)/100; 
-    if(isFinite(player.duration)) player.currentTime = (player.duration||0)*pct; 
-  });
-  
-  fullscreenBtn.addEventListener('click', ()=>{ 
-    if(!document.fullscreenElement) 
-      playerWrap.requestFullscreen().catch(()=>{}); 
-    else 
-      document.exitFullscreen().catch(()=>{}); 
-  });
-  
-  pipBtn.addEventListener('click', async ()=>{ 
-    try{ 
-      if(document.pictureInPictureElement) 
-        await document.exitPictureInPicture(); 
-      else if(player.requestPictureInPicture) 
-        await player.requestPictureInPicture(); 
-    }catch(e){
-      console.log('Picture-in-Picture not supported or failed');
-    } 
-  });
-  
-  player.volume = parseFloat(volumeSlider.value||1); 
-  updateMuteBtn(); 
-  bigPlay.style.display='block';
+  seek.addEventListener('input', ()=>{ const pct = parseFloat(seek.value)/100; currentTime.textContent = fmt((player.duration||0)*pct); });
+  seek.addEventListener('change', ()=>{ const pct = parseFloat(seek.value)/100; if(isFinite(player.duration)) player.currentTime = (player.duration||0)*pct; });
+  fullscreenBtn.addEventListener('click', ()=>{ if(!document.fullscreenElement) playerWrap.requestFullscreen().catch(()=>{}); else document.exitFullscreen().catch(()=>{}); });
+  pipBtn.addEventListener('click', async ()=>{ try{ if(document.pictureInPictureElement) await document.exitPictureInPicture(); else if(player.requestPictureInPicture) await player.requestPictureInPicture(); }catch(e){} });
+  player.volume = parseFloat(volumeSlider.value||1); updateMuteBtn(); bigPlay.style.display='block';
   initHls(streamUrl);
 })();
 </script>
