@@ -100,16 +100,16 @@
      ]
     },
     {
-    "name": "Australia vs S Africa",
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdbxdaVmUnGXW6CfYTyYBUnWfm8301U063M4I-jl-W7EE3upjTnrt8w6W7&s=10",
+    "name": "UAE Tri Nation",
+    "image": "https://yallasports.ae/wp-content/uploads/2025/08/t20i-tri-series-fixtures-2025.webp",
     "linkType": "multi",
     "featured": true,
     "streams": [
-      {
-        "name": "TNT Sports",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/tnt-us.png",
+    {
+        "name": "Willow 2",
+        "image": "https://p-img.movetv.com/1280x720/3dca399cce2d5ddec3993ae3dc351399.png",
         "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/tnt4"
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willow2bycricbuzz"
       },
       {
         "name": "Willow by Cricbuzz",
@@ -118,24 +118,36 @@
         "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willowbycricbuzz"
       },
       {
-        "name": "Willow 2",
-        "image": "https://p-img.movetv.com/1280x720/3dca399cce2d5ddec3993ae3dc351399.png",
-        "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willow2bycricbuzz"
-      },
-      {
-        "name": "Fox 501",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/australia/fox-sports-cricket-hd-hz-au.png",
-        "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=fox501"
-      },
-      {
         "name": "Willow Sports",
         "image": "https://p-img.movetv.com/1280x720/6cc66eec23429f8821491ce16bf5032c.png",
         "linkType": "external",
         "link": "https://scoobysports.vercel.app/player/willowsports"
+      },
+     {
+        "name": "T Sports",
+        "image": "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/61/7f/90/617f90af-7a7b-e9c5-e5a4-c96a11cf5445/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=tsports"
+      },
+      {
+        "name": "A Sports",
+        "image": "https://play-lh.googleusercontent.com/Qhs1jcocO2FenxF7j5DBVn-3lQV3cPhnsJCfeo3fAvEPzdsUx1RCb8Ka956B_ZEhAA8",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=asports"
+      },
+      {
+        "name": "Fancode 🇮🇳",
+        "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/FanCode_logo.svg/1200px-FanCode_logo.svg.png",
+        "linkType": "external",
+        "link": "https://scoobyfancode.vercel.app/fancode.html?id=132770"
+      },
+            {
+        "name": "Eurosports",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/india/eurosport-in.png",
+        "linkType": "external",
+        "link": "link"
       }
-     ]
+   ]
     },
     {
     "name": "UFC",
