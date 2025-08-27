@@ -139,7 +139,7 @@
         "name": "Eurosports",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/india/eurosport-in.png",
         "linkType": "external",
-        "link": "link"
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=eurosport"
       },
       {
         "name": "Fancode 🇮🇳",
