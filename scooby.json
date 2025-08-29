@@ -459,7 +459,13 @@
         "name": "Fancode 🇮🇳",
         "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/FanCode_logo.svg/1200px-FanCode_logo.svg.png",
         "linkType": "external",
-        "link": "https://scoobyfancode.vercel.app/fancode.html?id=132770"
+        "link": "https://scoobyfancode.vercel.app/fancode.html?id=118452"
+      },
+      {
+        "name": "Fancode (fast Load)",
+        "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/FanCode_logo.svg/1200px-FanCode_logo.svg.png",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=f1eng"
       },
       {
         "name": "Fancode 🌎 1",
