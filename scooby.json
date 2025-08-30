@@ -69,7 +69,7 @@
         "name": "Astro Cricket",
         "image": "https://linear-poster.astro.com.my/prod/logo/AstroCricket_2024.png",
         "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=astro2"
+        "link": "https://scoobysports.vercel.app/player/astrocric"
       },
       {
         "name": "Willow Sports",
@@ -303,7 +303,7 @@
         "name": "Astro Cricket",
         "image": "https://linear-poster.astro.com.my/prod/logo/AstroCricket_2024.png",
         "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=astro2"
+        "link": "https://scoobysports.vercel.app/player/astrocric"
       },
       {
         "name": "Ten Cricket",
@@ -389,7 +389,7 @@
         "name": "Astro Cricket",
         "image": "https://linear-poster.astro.com.my/prod/logo/AstroCricket_2024.png",
         "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=astro2"
+        "link": "https://scoobysports.vercel.app/player/astrocric"
       },
       {
         "name": "Willow by Cricbuzz",
@@ -509,6 +509,6 @@
     "name": "Fancode Live Matches",
     "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/FanCode_logo.svg/1200px-FanCode_logo.svg.png",
     "linkType": "external",
-    "link": "https://scoobyfancode.vercel.app"
+    "link": "https://scoobyfancode.vercel.app/"
    }
 ]
