@@ -80,26 +80,6 @@
      ]
     },
     {
-    "name": "Top End T20 2025",
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSuhir0tAuhmIRR-257Q29xDay4Hu49gMvKKNhe4bVCOOkMqrBpFbjBENAw&s=10",
-    "linkType": "multi",
-    "featured": true,
-    "streams": [
-      {
-        "name": "T Sports",
-        "image": "https://is1-ssl.mzstatic.com/image/thumb/Purple116/v4/61/7f/90/617f90af-7a7b-e9c5-e5a4-c96a11cf5445/AppIcon-0-0-1x_U007emarketing-0-0-0-7-0-0-sRGB-0-0-0-GLES2_U002c0-512MB-85-220-0-0.png/512x512bb.jpg",
-        "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=tsports"
-      },
-      {
-        "name": "A Sports",
-        "image": "https://play-lh.googleusercontent.com/Qhs1jcocO2FenxF7j5DBVn-3lQV3cPhnsJCfeo3fAvEPzdsUx1RCb8Ka956B_ZEhAA8",
-        "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=asports"
-      }
-     ]
-    },
-    {
     "name": "UAE Tri Nation",
     "image": "https://yallasports.ae/wp-content/uploads/2025/08/t20i-tri-series-fixtures-2025.webp",
     "linkType": "multi",
@@ -145,7 +125,7 @@
         "name": "Fancode 🇮🇳",
         "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/FanCode_logo.svg/1200px-FanCode_logo.svg.png",
         "linkType": "external",
-        "link": "https://scoobyfancode.vercel.app/fancode.html?id=132770"
+        "link": "https://scoobyfancode.vercel.app/fancode.html?id=135785"
       }
    ]
     },
@@ -159,13 +139,13 @@
         "name": "UFC",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/ufc-us.png",
         "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/ufc"
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=ufc"
      },
      {
         "name": "UFC Fight Pass",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/ufc-fight-pass-us.png",
         "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/ufcpass"
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=ufcpass"
      },
      {
         "name": "Unifi HD",
