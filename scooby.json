@@ -232,82 +232,8 @@
     ]
     },
     {
-    "name": "The Hundred Womens",
-    "image": "https://images.fancode.com/skillup-uploads/cms-media/The-Hundred-Women's-TV-Background.jpg",
-    "linkType": "multi",
-    "featured": true,
-    "streams": [
-      {
-        "name": "Sony Ten 1",
-        "image": "https://brand-websites-prod.s3.ap-south-1.amazonaws.com/sony-sports-networks-live/channel_logos/Sony%20Sports%20TEN%201%20HD.png",
-        "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/sonyten1"
-      },
-      {
-        "name": "Sony Liv",
-        "image": "https://cdn.freelogovectors.net/wp-content/uploads/2021/12/sonyliv-logo-freelogovectors.net_.png",
-        "linkType": "external",
-        "link": "https://scoobystar.vercel.app/st1hd"
-      },
-      {
-        "name": "Willow Ad Free",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUTz7gbP8IZLP-5X4qRDbIOJwnxB7o6NXXYNZ34F2QfOfOnbpNDvs-2xSd&s=10",
-        "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/hundredadfree"
-      },
-      {
-        "name": "Willow by Cricbuzz",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/willow-us.png",
-        "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/willowbycricbuzz"
-      },
-      {
-        "name": "Willow 2 by Cricbuzz",
-        "image": "https://p-img.movetv.com/1280x720/3dca399cce2d5ddec3993ae3dc351399.png",
-        "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willow2bycricbuzz"
-      },
-      {
-        "name": "Sky Sports Cricket",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-kingdom/other/sky-sports-cricket-icon-alt-uk.png",
-        "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=skysportscricket"
-      },
-      {
-        "name": "Fox 501",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/australia/fox-sports-cricket-hd-hz-au.png",
-        "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=fox501"
-      },
-      {
-        "name": "Astro Cricket",
-        "image": "https://linear-poster.astro.com.my/prod/logo/AstroCricket_2024.png",
-        "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/astrocric"
-      },
-      {
-        "name": "Ten Cricket",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRCDD4QOvdXBL6w_G9IoNSuKmnhTZlaYQlQsrdKyzMuMLRp5ybG06gC6Lc&s=10",
-        "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/tencricket"
-      },
-      {
-        "name": "BBC Sports",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/misc/media/bbc-sport-hz.png",
-        "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/bbcsports"
-      },
-      {
-        "name": "Willow Sports",
-        "image": "https://p-img.movetv.com/1280x720/6cc66eec23429f8821491ce16bf5032c.png",
-        "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/willowsports"
-      }
-    ]
-  },
-  {
-    "name": "The Hundred Mens",
-    "image": "https://images.fancode.com/skillup-uploads/cms-media/The-Hundred_Men_BG.jpg",
+    "name": "The Hundred Mens & Womens Final",
+    "image": "https://brand-websites-prod.s3.ap-south-1.amazonaws.com/sony-sports-networks-live/slider/Slider_img_web_140_08072025035750.png",
     "linkType": "multi",
     "featured": true,
     "streams": [
@@ -348,7 +274,7 @@
         "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willowbycricbuzz"
       },
       {
-        "name": "Willow 2",
+        "name": "Willow 2 by Cricbuzz",
         "image": "https://p-img.movetv.com/1280x720/3dca399cce2d5ddec3993ae3dc351399.png",
         "linkType": "external",
         "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willow2bycricbuzz"
@@ -370,12 +296,6 @@
         "image": "https://linear-poster.astro.com.my/prod/logo/AstroCricket_2024.png",
         "linkType": "external",
         "link": "https://scoobysports.vercel.app/player/astrocric"
-      },
-      {
-        "name": "Willow by Cricbuzz",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/willow-us.png",
-        "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willowbycricbuzz"
       },
       {
         "name": "Ten Cricket",
