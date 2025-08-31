@@ -180,6 +180,30 @@
         "link": "https://scoobysports.vercel.app/player/fancode1"
       },
       {
+        "name": "CEV vs VIL",
+        "image": "https://www.fancode.com/skillup-uploads/cms-media/130853_5427_CEV_VIL_fc-Web.jpg",
+        "linkType": "external",
+        "link": "https://scoobyfancode.vercel.app/fancode.html?id=130853"
+      },
+      {
+        "name": "RB vs ATH",
+        "image": "https://www.fancode.com/skillup-uploads/cms-media/130858_5427_RB_ATH_fc-Web.jpg",
+        "linkType": "external",
+        "link": "https://scoobyfancode.vercel.app/fancode.html?id=130858"
+      },
+      {
+        "name": "ESL vs OSN",
+        "image": "https://www.fancode.com/skillup-uploads/cms-media/130855_5427_ESL_OSN_fc-Web.jpg",
+        "linkType": "external",
+        "link": "https://scoobyfancode.vercel.app/fancode.html?id=130855"
+      },
+      {
+        "name": "RVL vs BAR",
+        "image": "https://www.fancode.com/skillup-uploads/cms-media/130859_5427_CEV_VIL_fc-Web.jpg",
+        "linkType": "external",
+        "link": "https://scoobyfancode.vercel.app/fancode.html?id=130859"
+      },
+      {
         "name": "Laliga TV",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-kingdom/laliga-tv-uk.png",
         "linkType": "external",
