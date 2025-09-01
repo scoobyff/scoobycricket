@@ -154,6 +154,26 @@
    ]
 },
     {
+    "name": "PKL 2025",
+    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGfz8EGU6ChUJ9bNmq-iigDzVcE2LPCfmkYsoizsLPpWqtIyyAnXvCNabR&s=10",
+    "linkType": "multi",
+    "featured": true,
+    "streams": [
+      {
+        "name": "English",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVoNuCLvWKGt_H-pTYJfuNrmtDrob45KdA8awX9n7YDkEt0VmXWe8PeZOn&s=10",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=pkleng"
+      },
+      {
+        "name": "Telugu",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwzFcLraWiclnmm3YvpL4CLDGbs2dl3ZwytJMzd9KNclNFh9Lj4mxFpOQ&s=10",
+        "linkType": "external",
+        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=pkltelugu"
+      }
+   ]
+},
+    {
     "name": "UAE Tri Nation",
     "image": "https://yallasports.ae/wp-content/uploads/2025/08/t20i-tri-series-fixtures-2025.webp",
     "linkType": "multi",
