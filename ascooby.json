@@ -298,6 +298,12 @@
         "link": "https://scoobysports.vercel.app/player/pltv"
       },
       {
+        "name": "Fubo Tv",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/misc/media/fubo-tv.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/fubotv"
+      },
+      {
         "name": "USA East",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/usa-us.png",
         "linkType": "external",
