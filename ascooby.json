@@ -54,6 +54,12 @@
         "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willow2bycricbuzz"
       },
       {
+        "name": "TNT Sports",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/tnt-us.png",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/tnt1"
+      },
+      {
         "name": "Fox 501",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/australia/fox-sports-cricket-hd-hz-au.png",
         "linkType": "external",
