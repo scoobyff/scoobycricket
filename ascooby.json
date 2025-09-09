@@ -76,6 +76,18 @@
         "image": "https://p-img.movetv.com/1280x720/6cc66eec23429f8821491ce16bf5032c.png",
         "linkType": "external",
         "link": "https://scoobysports.vercel.app/player/willowsports"
+      },
+      {
+        "name": "CricBuzz 1",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7Fsi-UTAy46MdgpVIRPYENei3wty_MXFRO24xU-ermQaFIXZs_jTPYoM&s=10",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/cbuzz1"
+       },
+       {
+        "name": "CricBuzz 2",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7Fsi-UTAy46MdgpVIRPYENei3wty_MXFRO24xU-ermQaFIXZs_jTPYoM&s=10",
+        "linkType": "external",
+        "link": "https://scoobysports.vercel.app/player/cbuzz2"
       }
      ]
     },
