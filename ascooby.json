@@ -1,7 +1,7 @@
 [
   {
     "name": "Asia Cup 2025",
-    "image": "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000007653/17573254247497_ACC25_promo_AFGvsHKG_ton_8sep_landscape_thumb_re3.jpg",
+    "image": "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000007904/1757537563843275_ACC25_BAN_vs_HKC_11sep_promo_tonight_landscape_thumb.jpg",
     "linkType": "multi",
     "featured": true,
     "streams": [
@@ -36,12 +36,6 @@
         "link": "https://scoobystreams.vercel.app/sonysports.html?c=sonyten5hd"
       },
       {
-        "name": "Willow by Cricbuzz",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/willow-us.png",
-        "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willowbycricbuzz"
-      },
-      {
         "name": "Willow 2",
         "image": "https://p-img.movetv.com/1280x720/3dca399cce2d5ddec3993ae3dc351399.png",
         "linkType": "external",
@@ -52,18 +46,6 @@
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/tnt-us.png",
         "linkType": "external",
         "link": "https://scoobysports.vercel.app/player/tnt1"
-      },
-      {
-        "name": "Fox 501",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/australia/fox-sports-cricket-hd-hz-au.png",
-        "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=fox501"
-      },
-      {
-        "name": "Sky Sports Cricket",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-kingdom/other/sky-sports-cricket-icon-alt-uk.png",
-        "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=skysportscricket"
       },
       {
         "name": "Astro Cricket",
@@ -93,7 +75,7 @@
     },
     {
     "name": "S Africa tour of England",
-    "image": "https://www.fancode.com/skillup-uploads/cms-media/South-Africa-Tour-of-England-T20Is_old.jpg",
+    "image": "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000007807/1757472905804535_ENG_vs_SA_2T20i_DDT_Promo_landscape_thumb_10sep.jpg",
     "linkType": "multi",
     "featured": true,
     "streams": [
