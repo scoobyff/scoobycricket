@@ -1,7 +1,7 @@
 [
   {
     "name": "Asia Cup 2025",
-    "image": "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000007904/1757537563843275_ACC25_BAN_vs_HKC_11sep_promo_tonight_landscape_thumb.jpg",
+    "image": "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000007930/1757587214391409_ACC25_PAK_vs_OMA_TON_Promo_landscape_thumb.jpg",
     "linkType": "multi",
     "featured": true,
     "streams": [
@@ -34,12 +34,6 @@
         "image": "https://brand-websites-prod.s3.ap-south-1.amazonaws.com/sony-sports-networks-live/channel_logos/Sony%20Sports%20TEN%205%20HD.png",
         "linkType": "external",
         "link": "https://scoobystreams.vercel.app/sonysports.html?c=sonyten5hd"
-      },
-      {
-        "name": "Willow 2",
-        "image": "https://p-img.movetv.com/1280x720/3dca399cce2d5ddec3993ae3dc351399.png",
-        "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willow2bycricbuzz"
       },
       {
         "name": "TNT Sports",
@@ -101,13 +95,7 @@
           "name": "Willow by Cricbuzz",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/willow-us.png",
         "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willowbycricbuzz"
-      },
-      {
-        "name": "Willow 2",
-        "image": "https://p-img.movetv.com/1280x720/3dca399cce2d5ddec3993ae3dc351399.png",
-        "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=willow2bycricbuzz"
+        "link": "https://scoobystreamsv2.vercel.app/sports.html?id=willowbycricbuzz"
       },
       {
         "name": "Willow Sports",
@@ -204,12 +192,6 @@
         "link": "https://scoobysports.vercel.app/player/fancode2"
       },
       {
-        "name": "Sky Sports F1",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-kingdom/other/sky-sports-f1-icon-alt-uk.png",
-        "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=skysportsf1"
-      },
-      {
         "name": "beIN Sports F1",
         "image": "https://linear-poster.astro.com.my/prod/logo/beIN_Sports_v1.png",
         "linkType": "external",
@@ -239,13 +221,13 @@
         "name": "UFC",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/ufc-us.png",
         "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=ufc"
+        "link": "https://scoobystreamsv2.vercel.app/sports.html?id=ufc"
      },
      {
         "name": "UFC Fight Pass",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/ufc-fight-pass-us.png",
         "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/streamplayer.html?id=ufcpass"
+        "link": "https://scoobystreamsv2.vercel.app/sports.html?id=ufcpass"
      },
      {
         "name": "Unifi HD",
