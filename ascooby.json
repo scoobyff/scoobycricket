@@ -1,7 +1,7 @@
 [
   {
     "name": "Asia Cup 2025",
-    "image": "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008031/1757633597225396_ACC25_BAN_vs_SL_12sep_tonight_landscape_thumb.jpg",
+    "image": "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000008954/1758365835605556_ACC25_S4_IND_vs_PAK_Clean_live_Landscape_thumb.jpg",
     "linkType": "multi",
     "featured": true,
     "streams": [
@@ -58,13 +58,7 @@
         "image": "https://jiotvimages.cdn.jio.com/dare_images/images/Asia_Cup_Telugu.png",
         "linkType": "external",
         "link": "https://scooby.fwh.is/asia.php?id=telugu"
-       },
-       {
-        "name": "CricBuzz 2",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7Fsi-UTAy46MdgpVIRPYENei3wty_MXFRO24xU-ermQaFIXZs_jTPYoM&s=10",
-        "linkType": "external",
-        "link": "https://scoobysports.vercel.app/player/cbuzz2"
-      }
+       }
      ]
     },
     {
