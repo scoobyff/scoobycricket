@@ -33,26 +33,20 @@
         "name": "TNT Sports",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/tnt-us.png",
         "linkType": "external",
-        "link": "https://scooby.fwh.is/play.php?id=tnt"
+        "link": "https://scoobystream.pages.dev/stream?id=tnt1"
       },
       {
         "name": "Astro Cricket",
         "image": "https://linear-poster.astro.com.my/prod/logo/AstroCricket_2024.png",
         "linkType": "external",
-        "link": "https://scooby.fwh.is/play.php?id=astrocric"
+        "link": "https://scoobystream.pages.dev/stream?id=astrocric"
       },
       {
         "name": "Willow Sports",
         "image": "https://p-img.movetv.com/1280x720/6cc66eec23429f8821491ce16bf5032c.png",
         "linkType": "external",
-        "link": "https://scooby.fwh.is/play.php?id=willowsports"
-      },
-      {
-        "name": "Telugu Ad Free",
-        "image": "https://jiotvimages.cdn.jio.com/dare_images/images/Asia_Cup_Telugu.png",
-        "linkType": "external",
-        "link": "https://scooby.fwh.is/asia.php?id=telugu"
-       }
+        "link": "https://scoobystream.pages.dev/stream?id=willowsports"
+      }
      ]
     },
     {
