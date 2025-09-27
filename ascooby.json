@@ -33,19 +33,19 @@
         "name": "TNT Sports",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/tnt-us.png",
         "linkType": "external",
-        "link": "https://scoobystream.pages.dev/stream?id=tnt1"
+        "link": "https://scoobystream.pages.dev/streamss?id=tnt1"
       },
       {
         "name": "Astro Cricket",
         "image": "https://linear-poster.astro.com.my/prod/logo/AstroCricket_2024.png",
         "linkType": "external",
-        "link": "https://scoobystream.pages.dev/stream?id=astrocric"
+        "link": "https://scoobystream.pages.dev/streamss?id=astrocric"
       },
       {
         "name": "Willow Sports",
         "image": "https://p-img.movetv.com/1280x720/6cc66eec23429f8821491ce16bf5032c.png",
         "linkType": "external",
-        "link": "https://scoobystream.pages.dev/stream?id=willowsports"
+        "link": "https://scoobystream.pages.dev/streamss?id=willowsports"
       }
      ]
     },
@@ -59,13 +59,13 @@
         "name": "English",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVoNuCLvWKGt_H-pTYJfuNrmtDrob45KdA8awX9n7YDkEt0VmXWe8PeZOn&s=10",
         "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/sports.html?id=pkleng"
+        "link": "https://scoobystream.pages.dev/streamss?id=pkleng"
       },
       {
         "name": "Telugu",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwzFcLraWiclnmm3YvpL4CLDGbs2dl3ZwytJMzd9KNclNFh9Lj4mxFpOQ&s=10",
         "linkType": "external",
-        "link": "https://scoobystreamsv2.vercel.app/sports.html?id=pkltelugu"
+        "link": "https://scoobystream.pages.dev/streamss?id=pkltelugu"
       }
    ]
     },
