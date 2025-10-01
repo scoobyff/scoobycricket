@@ -1,47 +1,23 @@
 [
   {
-    "name": "Asia Cup 2025",
-    "image": "https://www.fancode.com/skillup-uploads/cms-media/INDvsPAK_AsiaCup_OldMatch_card.jpg",
+    "name": "ICC WOMENS WORLD CUP 2025",
+    "image": "https://imgeng.jagran.com/images/2025/09/30/article/image/complete-list-of-ICC-women-cricket-world-cup-winners--1759237177116.webp",
     "linkType": "multi",
     "featured": true,
     "streams": [
       {
-        "name": "Telugu Ad Free",
-        "image": "https://jiotvimages.cdn.jio.com/dare_images/images/Asia_Cup_Telugu.png",
+        "name": "Prime English 50fps",
+        "image": "https://logos-world.net/wp-content/uploads/2021/04/Amazon-Prime-Video-Logo.png",
         "linkType": "external",
-        "link": "https://as.al/file/Rbzb1d"
+        "link": "https://scoobystream.pages.dev/streamss?id=wceng"
        },
        {
-        "name": "Tamil Ad Free",
-        "image": "https://jiotvimages.cdn.jio.com/dare_images/images/Asia_Cup_Tamil.png",
+        "name": "Prime Hindi 50fps",
+        "image": "https://logos-world.net/wp-content/uploads/2021/04/Amazon-Prime-Video-Logo.png",
         "linkType": "external",
-        "link": "https://as.al/file/7CBNQ3"
+        "link": "https://scoobystream.pages.dev/streamss?id=wchin"
        },
        {
-        "name": "Hindi Ad Free",
-        "image": "https://jiotvimages.cdn.jio.com/dare_images/images/Asia_Cup_Hindi.png",
-        "linkType": "external",
-        "link": "https://as.al/file/JTSxuS"
-       },
-       {
-        "name": "English Ad Free",
-        "image": "https://jiotvimages.cdn.jio.com/dare_images/images/Asia_Cup_English.png",
-        "linkType": "external",
-        "link": "https://as.al/file/sabbvG"
-       },
-       {
-        "name": "Sony MAX Hindi HD",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/india/sony-max-hd-in.png",
-        "linkType": "external",
-        "link": "https://scoobystream.pages.dev/streamss?id=smax"
-},
-      {
-        "name": "TNT Sports",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/tnt-us.png",
-        "linkType": "external",
-        "link": "https://scoobystream.pages.dev/streamss?id=tnt1"
-      },
-      {
         "name": "Astro Cricket",
         "image": "https://linear-poster.astro.com.my/prod/logo/AstroCricket_2024.png",
         "linkType": "external",
