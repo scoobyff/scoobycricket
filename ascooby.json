@@ -74,6 +74,18 @@
         "image": "https://m.media-amazon.com/images/G/01/LCXO_Station_Logos/FanCode1_White-Logo._AC_SL360_FMpng_.png",
         "linkType": "external",
         "link": "https://scoobystream.pages.dev/streamss?id=fancode1"
+      },
+            {
+        "name": "Prime English 50fps",
+        "image": "https://logos-world.net/wp-content/uploads/2021/04/Amazon-Prime-Video-Logo.png",
+        "linkType": "external",
+        "link": "https://scoobystream.pages.dev/streamss?id=aunzpv"
+        },
+        {
+        "name": "TNT Sports",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/tnt-us.png",
+        "linkType": "external",
+        "link": "https://scoobystream.pages.dev/streamss?id=tnt1"
       }
    ]
 },
