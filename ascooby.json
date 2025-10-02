@@ -32,6 +32,32 @@
      ]
     },
     {
+    "name": "WI tour of IND 2025",
+    "image": "https://img.cricketnmore.com/uploads/2025/10/india-vs-west-indies-1st-test-who-will-win-today-ind-vs-wi-match.jpg",
+    "linkType": "multi",
+    "featured": true,
+    "streams": [
+      {
+        "name": "Astro Cricket",
+        "image": "https://linear-poster.astro.com.my/prod/logo/AstroCricket_2024.png",
+        "linkType": "external",
+        "link": "https://scoobystream.pages.dev/streams?id=astrocric"
+      },
+      {
+        "name": "TNT Sports",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/tnt-us.png",
+        "linkType": "external",
+        "link": "https://scoobystream.pages.dev/streamss?id=tnt3"
+      },
+      {
+        "name": "Willow Sports",
+        "image": "https://p-img.movetv.com/1280x720/6cc66eec23429f8821491ce16bf5032c.png",
+        "linkType": "external",
+        "link": "https://scoobystream.pages.dev/streamss?id=willowsports"
+      }
+   ]
+},
+    {
     "name": "PKL 2025",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGfz8EGU6ChUJ9bNmq-iigDzVcE2LPCfmkYsoizsLPpWqtIyyAnXvCNabR&s=10",
     "linkType": "multi",
