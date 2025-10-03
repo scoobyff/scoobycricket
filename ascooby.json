@@ -24,6 +24,12 @@
         "link": "https://scoobystream.pages.dev/streamss?id=wceng"
        },
        {
+        "name": "Shoq",
+        "image": "https://mir-s3-cdn-cf.behance.net/projects/404/b4c69f166939345.Y3JvcCwzNDUxLDI3MDAsNjc1LDA.jpg",
+        "linkType": "external",
+        "link": "https://scoobystream.pages.dev/streamss?id=show"
+      },
+       {
         "name": "Astro Cricket",
         "image": "https://linear-poster.astro.com.my/prod/logo/AstroCricket_2024.png",
         "linkType": "external",
