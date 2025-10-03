@@ -152,10 +152,16 @@
         "link": "https://scoobysports.vercel.app/player/f1tv"
       },
       {
-        "name": "Fancode 🇮🇳",
+        "name": "Fancode 🇮🇳 P1",
         "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/FanCode_logo.svg/1200px-FanCode_logo.svg.png",
         "linkType": "external",
         "link": "https://scoobystream.pages.dev/fc?id=118466"
+      },
+      {
+        "name": "Fancode 🇮🇳 P2",
+        "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/FanCode_logo.svg/1200px-FanCode_logo.svg.png",
+        "linkType": "external",
+        "link": "https://scoobystream.pages.dev/fc?id=118467"
       },
       {
         "name": "Fancode 🌎 1",
