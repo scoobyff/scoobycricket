@@ -152,16 +152,22 @@
         "link": "https://scoobysports.vercel.app/player/f1tv"
       },
       {
-        "name": "Fancode 🇮🇳 P3",
+        "name": "F1 English 🇮🇳",
         "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/FanCode_logo.svg/1200px-FanCode_logo.svg.png",
         "linkType": "external",
-        "link": "https://scoobystream.pages.dev/fc?id=118468"
+        "link": "https://scoobystream.pages.dev/f1?id=1184701"
       },
       {
-        "name": "Fancode 🇮🇳 Q1",
+        "name": "F1 Hindi 🇮🇳",
         "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/FanCode_logo.svg/1200px-FanCode_logo.svg.png",
         "linkType": "external",
-        "link": "https://scoobystream.pages.dev/fc?id=118469"
+        "link": "https://scoobystream.pages.dev/f1?id=1184702"
+      },
+      {
+        "name": "F1 Tamil 🇮🇳",
+        "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/FanCode_logo.svg/1200px-FanCode_logo.svg.png",
+        "linkType": "external",
+        "link": "https://scoobystream.pages.dev/f1?id=1184703"
       },
       {
         "name": "Fancode 🌎 1",
