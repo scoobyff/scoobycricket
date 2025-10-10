@@ -59,13 +59,13 @@
         "name": "Willow Ad Free",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUTz7gbP8IZLP-5X4qRDbIOJwnxB7o6NXXYNZ34F2QfOfOnbpNDvs-2xSd&s=10",
         "linkType": "external",
-        "link": "https://scoobystream.pages.dev/streamss?id=willowtest"
+        "link": "https://scoobystream.pages.dev/stream?id=willowtest"
        },
       {
         "name": "TNT Sports",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/tnt-us.png",
         "linkType": "external",
-        "link": "https://scoobystream.pages.dev/streamss?id=tnt3"
+        "link": "https://scoobystream.pages.dev/stream?id=tnt1"
       },
             {
         "name": "English",
@@ -89,7 +89,7 @@
         "name": "Willow Sports",
         "image": "https://p-img.movetv.com/1280x720/6cc66eec23429f8821491ce16bf5032c.png",
         "linkType": "external",
-        "link": "https://scoobystream.pages.dev/streamss?id=willowsports"
+        "link": "https://scoobystream.pages.dev/stream?id=willowsports"
       }
    ]
 },
