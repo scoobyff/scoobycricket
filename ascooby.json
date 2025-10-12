@@ -46,6 +46,30 @@
         "image": "https://p-img.movetv.com/1280x720/6cc66eec23429f8821491ce16bf5032c.png",
         "linkType": "external",
         "link": "https://scoobystream.pages.dev/streamss?id=willowsports"
+      },
+                  {
+        "name": "English",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVoNuCLvWKGt_H-pTYJfuNrmtDrob45KdA8awX9n7YDkEt0VmXWe8PeZOn&s=10",
+        "linkType": "external",
+        "link": "https://scoobystream.pages.dev/ok?id=english2"
+      },
+      {
+        "name": "Telugu",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwzFcLraWiclnmm3YvpL4CLDGbs2dl3ZwytJMzd9KNclNFh9Lj4mxFpOQ&s=10",
+        "linkType": "external",
+        "link": "https://scoobystream.pages.dev/ok?id=telugu2"
+      },
+      {
+        "name": "Hindi",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZYJQe3RmqrgTLoC-44eNdgS-IMwTVO6AtX4X1I1hCVg&s=10",
+        "linkType": "external",
+        "link": "https://scoobystream.pages.dev/sports?id=hindisp"
+       },
+      {
+        "name": "Tamil",
+        "image": "https://www.shutterstock.com/image-vector/little-kawaii-girl-illustration-flat-600nw-2297558687.jpg",
+        "linkType": "external",
+        "link": "https://scoobystream.pages.dev/ok?id=tamil2"
       }
      ]
     },
