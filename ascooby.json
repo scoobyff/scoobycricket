@@ -194,22 +194,28 @@
         "link": "https://scoobysports.vercel.app/player/f1tv"
       },
       {
-        "name": "F1 English 🇮🇳",
+        "name": "F1 Practice 1🇮🇳",
         "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/FanCode_logo.svg/1200px-FanCode_logo.svg.png",
         "linkType": "external",
-        "link": "https://scoobystream.pages.dev/f1?id=1184701"
+        "link": "https://scoobystream.pages.dev/fc?id=118471"
       },
       {
-        "name": "F1 Hindi 🇮🇳",
+        "name": "F1 Sprint  Qualifying 🇮🇳",
         "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/FanCode_logo.svg/1200px-FanCode_logo.svg.png",
         "linkType": "external",
-        "link": "https://scoobystream.pages.dev/f1?id=1184702"
+        "link": "https://scoobystream.pages.dev/fc?id=118472"
       },
       {
-        "name": "F1 Tamil 🇮🇳",
+        "name": "F1 Sprint 🇮🇳",
         "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/FanCode_logo.svg/1200px-FanCode_logo.svg.png",
         "linkType": "external",
-        "link": "https://scoobystream.pages.dev/f1?id=1184703"
+        "link": "https://scoobystream.pages.dev/fc?id=118473"
+      },
+      {
+        "name": "F1 Qualifying 🇮🇳",
+        "image": "https://upload.wikimedia.org/wikipedia/en/thumb/6/6c/FanCode_logo.svg/1200px-FanCode_logo.svg.png",
+        "linkType": "external",
+        "link": "https://scoobystream.pages.dev/fc?id=118474"
       },
       {
         "name": "Fancode 🌎 1",
