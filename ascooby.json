@@ -74,8 +74,8 @@
      ]
     },
     {
-    "name": "WI tour of IND 2025",
-    "image": "https://img.cricketnmore.com/uploads/2025/10/india-vs-west-indies-1st-test-who-will-win-today-ind-vs-wi-match.jpg",
+    "name": "IND tour of AUS 2025",
+    "image": "https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/9102/1760785919102-h",
     "linkType": "multi",
     "featured": true,
     "streams": [
@@ -91,6 +91,12 @@
         "linkType": "external",
         "link": "https://scoobystream.pages.dev/stream?id=willowtest"
        },
+       {
+        "name": "SKY Sports",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/new-zealand/sky-sport-3-hz-nz.png",
+        "linkType": "external",
+        "link": "https://scoobystream.pages.dev/sports?id=sky2"
+      },
       {
         "name": "TNT Sports",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/tnt-us.png",
@@ -114,6 +120,12 @@
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZYJQe3RmqrgTLoC-44eNdgS-IMwTVO6AtX4X1I1hCVg&s=10",
         "linkType": "external",
         "link": "https://scoobystream.pages.dev/sports?id=hindisp"
+       },
+       {
+        "name": "Hindi",
+        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZYJQe3RmqrgTLoC-44eNdgS-IMwTVO6AtX4X1I1hCVg&s=10",
+        "linkType": "external",
+        "link": "https://scoobystream.pages.dev/ok?id=hindi"
        },
       {
         "name": "Tamil",
