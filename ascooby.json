@@ -18,6 +18,12 @@
         "link": "https://scoobystream.pages.dev/streamss?id=wchin"
        },
        {
+        "name": "SKY Sports",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/new-zealand/sky-sport-1-nz.png",
+        "linkType": "external",
+        "link": "https://scoobystream.pages.dev/sports?id=sky2"
+      },
+      {
         "name": "Willow Ad Free 1",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUTz7gbP8IZLP-5X4qRDbIOJwnxB7o6NXXYNZ34F2QfOfOnbpNDvs-2xSd&s=10",
         "linkType": "external",
@@ -93,7 +99,7 @@
        },
        {
         "name": "SKY Sports",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/new-zealand/sky-sport-3-hz-nz.png",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/new-zealand/sky-sport-2-nz.png",
         "linkType": "external",
         "link": "https://scoobystream.pages.dev/sports?id=sky2"
       },
