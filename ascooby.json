@@ -99,15 +99,15 @@
        },
        {
         "name": "SKY Sports",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/new-zealand/sky-sport-2-nz.png",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/new-zealand/sky-sport-1-nz.png",
         "linkType": "external",
-        "link": "https://scoobystream.pages.dev/sports?id=sky2"
+        "link": "https://scoobystream.pages.dev/sports?id=sky1"
       },
       {
         "name": "TNT Sports",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/tnt-us.png",
         "linkType": "external",
-        "link": "https://scoobystream.pages.dev/stream?id=tnt1"
+        "link": "https://scoobystream.pages.dev/stream?id=tnt3"
       },
             {
         "name": "English",
