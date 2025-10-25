@@ -98,7 +98,7 @@
         "link": "https://scoobystream.pages.dev/stream?id=willowtest"
        },
        {
-        "name": "SKY Sports",
+        "name": "Sky Sports",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/new-zealand/sky-sport-1-nz.png",
         "linkType": "external",
         "link": "https://scoobystream.pages.dev/sports?id=sky1"
@@ -109,7 +109,12 @@
         "linkType": "external",
         "link": "https://scoobystream.pages.dev/stream?id=tnt4"
       },
-        
+        {
+        "name": "Fox 50fps",
+        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/australia/fox-sports-cricket-501-hd-au.png",
+        "linkType": "external",
+        "link": "https://scoobystream.pages.dev/sports?id=fox501"
+           },
        {
         "name": "English",
         "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVoNuCLvWKGt_H-pTYJfuNrmtDrob45KdA8awX9n7YDkEt0VmXWe8PeZOn&s=10",
