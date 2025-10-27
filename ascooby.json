@@ -212,6 +212,13 @@
    ]
 },
     {
+    "name": " Fancode Live Matches",
+    "image": "https://images.fancode.com/skillup-uploads/fc-web-logo/fc_logo_white_bg.svg?hash=eyJrZXkiOiJza2lsbHVwLXVwbG9hZHMvZmMtd2ViLWxvZ28vZmNfbG9nb193aGl0ZV9iZy5zdmciLCJlZGl0cyI6eyJyZXNpemUiOnsiZml0IjoiY29udGFpbiIsImJhY2tncm91bmQiOiJ0cmFuc3BhcmVudCIsIndpZHRoIjoyMDgsImhlaWdodCI6NjR9LCJ3ZWJwIjp7InF1YWxpdHkiOjYwLCJsb3NzbGVzcyI6ZmFsc2V9fSwib3V0cHV0Rm9ybWF0Ijoid2VicCJ9",
+    "linkType": "external",
+    "featured": true,
+    "link": "https://scoobystream.pages.dev/fancode"
+  },
+    {
     "name": "Formula 1",
     "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTRz-jhU6YC13Q4RCQRyg9mYhhJyoonamMqezZbK1_iFiwgieDfPK105D8&s=10",
     "linkType": "multi",
