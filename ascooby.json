@@ -97,17 +97,11 @@
         "linkType": "external",
         "link": "https://scoobystream.pages.dev/stream?id=willowtest"
        },
-       {
-        "name": "Sky Sports",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/new-zealand/sky-sport-1-nz.png",
-        "linkType": "external",
-        "link": "https://scoobystream.pages.dev/sports?id=sky1"
-      },
       {
         "name": "TNT Sports",
         "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/united-states/tnt-us.png",
         "linkType": "external",
-        "link": "https://scoobystream.pages.dev/stream?id=tnt4"
+        "link": "https://scoobystream.pages.dev/stream?id=tnt2"
       },
         {
         "name": "Fox 50fps",
