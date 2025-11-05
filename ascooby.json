@@ -1,60 +1,4 @@
 [
-  {
-    "name": "ICC WOMENS WORLD CUP 2025",
-    "image": "https://imgeng.jagran.com/images/2025/09/30/article/image/complete-list-of-ICC-women-cricket-world-cup-winners--1759237177116.webp",
-    "linkType": "multi",
-    "featured": true,
-    "streams": [
-      {
-        "name": "Prime English 50fps",
-        "image": "https://logos-world.net/wp-content/uploads/2021/04/Amazon-Prime-Video-Logo.png",
-        "linkType": "external",
-        "link": "https://scoobystream.pages.dev/streamss?id=wceng1"
-       },
-       {
-        "name": "Prime Hindi 50fps",
-        "image": "https://logos-world.net/wp-content/uploads/2021/04/Amazon-Prime-Video-Logo.png",
-        "linkType": "external",
-        "link": "https://scoobystream.pages.dev/streamss?id=wchin"
-       },
-       {
-        "name": "SKY Sports",
-        "image": "https://raw.githubusercontent.com/scoobyff/tv-logos/main/countries/new-zealand/sky-sport-1-nz.png",
-        "linkType": "external",
-        "link": "https://scoobystream.pages.dev/sports?id=sky1"
-      },
-      {
-        "name": "Willow Ad Free 1",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUTz7gbP8IZLP-5X4qRDbIOJwnxB7o6NXXYNZ34F2QfOfOnbpNDvs-2xSd&s=10",
-        "linkType": "external",
-        "link": "https://scoobystream.pages.dev/streams?id=1c"
-       },
-       {
-        "name": "Willow Ad Free 2",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQUTz7gbP8IZLP-5X4qRDbIOJwnxB7o6NXXYNZ34F2QfOfOnbpNDvs-2xSd&s=10",
-        "linkType": "external",
-        "link": "https://scoobystream.pages.dev/stream?id=willowfree"
-       },
-       {
-        "name": "Shoq",
-        "image": "https://mir-s3-cdn-cf.behance.net/projects/404/b4c69f166939345.Y3JvcCwzNDUxLDI3MDAsNjc1LDA.jpg",
-        "linkType": "external",
-        "link": "https://scoobystream.pages.dev/streamss?id=show"
-      },
-       {
-        "name": "Astro Cricket",
-        "image": "https://linear-poster.astro.com.my/prod/logo/AstroCricket_2024.png",
-        "linkType": "external",
-        "link": "https://scoobystream.pages.dev/streamss?id=astrocric"
-      },
-      {
-        "name": "Willow Sports",
-        "image": "https://p-img.movetv.com/1280x720/6cc66eec23429f8821491ce16bf5032c.png",
-        "linkType": "external",
-        "link": "https://scoobystream.pages.dev/streamss?id=willowsports"
-      } 
-     ]
-    },
     {
     "name": "IND tour of AUS 2025",
     "image": "https://img10.hotstar.com/image/upload/f_auto/sources/r1/cms/prod/9102/1760785919102-h",
@@ -100,40 +44,8 @@
    ]
 },
     {
-    "name": "PKL 2025",
-    "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGfz8EGU6ChUJ9bNmq-iigDzVcE2LPCfmkYsoizsLPpWqtIyyAnXvCNabR&s=10",
-    "linkType": "multi",
-    "featured": true,
-    "streams": [
-               {
-        "name": "English",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQVoNuCLvWKGt_H-pTYJfuNrmtDrob45KdA8awX9n7YDkEt0VmXWe8PeZOn&s=10",
-        "linkType": "external",
-        "link": "https://scoobystream.pages.dev/ok?id=english2"
-      },
-      {
-        "name": "Telugu",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTwzFcLraWiclnmm3YvpL4CLDGbs2dl3ZwytJMzd9KNclNFh9Lj4mxFpOQ&s=10",
-        "linkType": "external",
-        "link": "https://scoobystream.pages.dev/ok?id=telugu"
-      },
-      {
-        "name": "Hindi",
-        "image": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSZYJQe3RmqrgTLoC-44eNdgS-IMwTVO6AtX4X1I1hCVg&s=10",
-        "linkType": "external",
-        "link": "https://scoobystream.pages.dev/sports?id=hindisp"
-       },
-      {
-        "name": "Tamil",
-        "image": "https://www.shutterstock.com/image-vector/little-kawaii-girl-illustration-flat-600nw-2297558687.jpg",
-        "linkType": "external",
-        "link": "https://scoobystream.pages.dev/ok?id=tamil"
-      }
-   ]
-    },
-    {
-    "name": "ENG tour of NZ 2025",
-    "image": "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000009885/1759596746115336_NZvsENG_PROMO_landscape_thumb.jpg",
+    "name": "WI tour of NZ 2025",
+    "image": "https://origin-staticv2.sonyliv.com/videoasset_images/manage_file/1000010812/1762231007524425_NZvsWI25_1t20i_4nov_landscape_thumb.jpg",
     "linkType": "multi",
     "featured": true,
     "streams": [
